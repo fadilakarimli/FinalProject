@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Brand>
+<div class="container" style="margin-left:300px; margin-top:50px;">
+    <div class="col-sm-12 col-xl-6">
+        <a asp-controller="Brand" asp-action="Create" class="btn btn-success">Create</a>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Image
+                        </th>
+                        <th>
+                            Operations
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                               <img src="@item.Image" style="width:150px; height:120px"/>
+                            </td>
+                            <td>
+                            <form asp-controller="Brand" asp-action="Delete" asp-area="Admin" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                                <a class="btn btn-warning" asp-controller="Brand" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-info" asp-controller="Brand" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+</div>
+
+
