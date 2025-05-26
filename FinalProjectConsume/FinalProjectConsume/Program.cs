@@ -11,6 +11,10 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<IInstagramService, InstagramService>();
+builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IDestinationFeatureService, DestinationFeatureService>();
+builder.Services.AddScoped<ITeamMemberService, TeamMemberService>();
+builder.Services.AddScoped<ITrandingDestinationService, TrandingDestinationService>();
 
 
 var app = builder.Build(); 

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FinalProjectConsume.Models.TrandingDestination.TrandingDestination>
+
+<div class="container" style="margin-left:300px; margin-top:50px;">
+    <div class="col-sm-12 col-xl-10">
+        <a asp-controller="TrandingDestination" asp-action="Create" asp-area="Admin" class="btn btn-success mb-3">Create</a>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.Image" alt="Image" style="width:150px; height:100px;" />
+                        </td>
+                        <td>@item.Title</td>
+                        <td>
+                            <form asp-controller="TrandingDestination" asp-action="Delete" asp-area="Admin" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                            <a class="btn btn-warning btn-sm" asp-controller="TrandingDestination" asp-action="Edit" asp-route-id="@item.Id" asp-area="Admin">Edit</a>
+                            <a class="btn btn-info btn-sm" asp-controller="TrandingDestination" asp-action="Detail" asp-route-id="@item.Id" asp-area="Admin">Detail</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

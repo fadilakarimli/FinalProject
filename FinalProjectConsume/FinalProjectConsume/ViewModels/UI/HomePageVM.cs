@@ -1,5 +1,9 @@
-﻿using FinalProjectConsume.Models.Brand;
+﻿using FinalProjectConsume.Models.Blog;
+using FinalProjectConsume.Models.Brand;
+using FinalProjectConsume.Models.DestinationFeature;
 using FinalProjectConsume.Models.Instagram;
+using FinalProjectConsume.Models.TeamMember;
+using FinalProjectConsume.Models.TrandingDestination;
 
 namespace FinalProjectConsume.ViewModels.UI
 {
@@ -7,5 +11,9 @@ namespace FinalProjectConsume.ViewModels.UI
     {
         public IEnumerable<Brand> Brands { get; set; }
         public IEnumerable<Instagram> Instagrams { get; set; }
+        public IEnumerable<Blog> Blogs { get; set; }
+        public IEnumerable<DestinationFeature> DestinationFeatures { get; set; }
+        public IEnumerable<TeamMember> TeamMembersB { get; set; }
+        public IEnumerable<TrandingDestination> TrandingDestinations { get; set; }
     }
 }
