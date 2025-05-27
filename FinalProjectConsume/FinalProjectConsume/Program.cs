@@ -15,6 +15,8 @@ builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<IDestinationFeatureService, DestinationFeatureService>();
 builder.Services.AddScoped<ITeamMemberService, TeamMemberService>();
 builder.Services.AddScoped<ITrandingDestinationService, TrandingDestinationService>();
+builder.Services.AddScoped<ITourService, TourService>();
+builder.Services.AddScoped<ISliderService, SliderService>();
 
 
 var app = builder.Build(); 

@@ -173,111 +173,30 @@
             </a>
         </div>
         <div class="row">
-            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                <div class="trending-destinations-card-items">
-                    <div class="destinations-img">
-                        <img src="assets/img/destinations/01.jpg" alt="img">
-                        <div class="icon">
-                            <a href="destination-details.html">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+            @foreach (var item in Model.TrandingDestinations)
+            {
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                    <div class="trending-destinations-card-items">
+                        <div class="destinations-img">
+                            <img src="@item.Image" alt="img">
+                            <div class="icon">
+                                <a href="/destination-details/@item.Id">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <ul class="destinations-content">
+                                <li class="title">
+                                    <a href="/destination-details/@item.Id">@item.Title</a>
+                                </li>
+                            </ul>
                         </div>
-                        <ul class="destinations-content">
-                            <li class="title">
-                                <a href="destination-details.html">Istanbul, Turkey</a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                <div class="trending-destinations-card-items">
-                    <div class="destinations-img">
-                        <img src="assets/img/destinations/02.jpg" alt="img">
-                        <div class="icon">
-                            <a href="destination-details.html">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <ul class="destinations-content">
-                            <li class="title">
-                                <a href="destination-details.html">Kyoto, Japan</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                <div class="trending-destinations-card-items">
-                    <div class="destinations-img">
-                        <img src="assets/img/destinations/03.jpg" alt="img">
-                        <div class="icon">
-                            <a href="destination-details.html">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <ul class="destinations-content">
-                            <li class="title">
-                                <a href="destination-details.html">Cusco, Peru</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                <div class="trending-destinations-card-items">
-                    <div class="destinations-img">
-                        <img src="assets/img/destinations/04.jpg" alt="img">
-                        <div class="icon">
-                            <a href="destination-details.html">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <ul class="destinations-content">
-                            <li class="title">
-                                <a href="destination-details.html">Vienna, Australia</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                <div class="trending-destinations-card-items">
-                    <div class="destinations-img">
-                        <img src="assets/img/destinations/05.jpg" alt="img">
-                        <div class="icon">
-                            <a href="destination-details.html">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <ul class="destinations-content">
-                            <li class="title">
-                                <a href="destination-details.html">Lisbon, Portugal</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                <div class="trending-destinations-card-items">
-                    <div class="destinations-img">
-                        <img src="assets/img/destinations/06.jpg" alt="img">
-                        <div class="icon">
-                            <a href="destination-details.html">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <ul class="destinations-content">
-                            <li class="title">
-                                <a href="destination-details.html">Zagreb, Croatia</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>
+
 <!-- About Section Start -->
 <section class="about-section section-padding sect-bg">
     <div class="shape-1">
@@ -396,6 +315,7 @@
     </div>
 </div>
 <!-- Tour Section Start -->
+
 <section class="tour-section fix section-padding">
     <div class="container">
         <div class="section-title text-center">
@@ -406,218 +326,42 @@
             </p>
         </div>
         <div class="row">
-            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                <div class="tour-box-items">
-                    <div class="thumb">
-                        <img src="assets/img/tour/01.jpg" alt="img">
-                    </div>
-                    <div class="content">
-                        <span>AUSTRALIA</span>
-                        <h4>
-                            <a href="tour-details.html">
-                                Island Peak Climbing
-                            </a>
-                        </h4>
-                        <h6>From <span>$376</span> <del>$999</del></h6>
-                        <ul class="list">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                3 Days / 2 Night
-                            </li>
-                            <li>
-                                <i class="far fa-flag"></i>
-                                3 Countries
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                <div class="tour-box-items">
-                    <div class="thumb">
-                        <img src="assets/img/tour/02.jpg" alt="img">
-                    </div>
-                    <div class="content">
-                        <span>LOS ANGLES</span>
-                        <h4>
-                            <a href="tour-details.html">
-                                Ocean on the Maldive
-                            </a>
-                        </h4>
-                        <h6>From <span>$995</span> <del>$1048</del></h6>
-                        <ul class="list">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                4 Days / 5 Night
-                            </li>
-                            <li>
-                                <i class="far fa-flag"></i>
-                                3 Countries
-                            </li>
-                        </ul>
+            @foreach (var tour in Model.Tours)
+            {
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="tour-box-items">
+                        <div class="thumb">
+                            <img src="@tour.ImageUrl" alt="Tour image" />
+                        </div>
+                        <div class="content">
+                            <span>@tour.CityName</span>
+                            <h4>
+                                <a href="/Tour/Details/@tour.Id">@tour.Name</a>
+                            </h4>
+                            <h6>
+                                From <span>$@tour.Price</span>
+                                @if (tour.OldPrice.HasValue)
+                                {
+                                    <del>$@tour.OldPrice</del>
+                                }
+                            </h6>
+                            <ul class="list">
+                                <li>
+                                    <i class="far fa-calendar"></i>
+                                    @tour.Duration
+                                </li>
+                                <li>
+                                    <i class="far fa-flag"></i>
+                                    @tour.CountryCount Countries
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                <div class="tour-box-items">
-                    <div class="thumb">
-                        <img src="assets/img/tour/03.jpg" alt="img">
-                    </div>
-                    <div class="content">
-                        <span>LONDON</span>
-                        <h4>
-                            <a href="tour-details.html">
-                                Short around Pokhara
-                            </a>
-                        </h4>
-                        <h6>From <span>$574</span> <del>$943</del></h6>
-                        <ul class="list">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                2 Days / 3 Night
-                            </li>
-                            <li>
-                                <i class="far fa-flag"></i>
-                                3 Countries
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                <div class="tour-box-items">
-                    <div class="thumb">
-                        <img src="assets/img/tour/04.jpg" alt="img">
-                    </div>
-                    <div class="content">
-                        <span>BANGLADESH</span>
-                        <h4>
-                            <a href="tour-details.html">
-                                Langtang Valley Trekking
-                            </a>
-                        </h4>
-                        <h6>From <span>$678</span> <del>$899</del></h6>
-                        <ul class="list">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                1 Week
-                            </li>
-                            <li>
-                                <i class="far fa-flag"></i>
-                                2 Countries
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                <div class="tour-box-items">
-                    <div class="thumb">
-                        <img src="assets/img/tour/05.jpg" alt="img">
-                    </div>
-                    <div class="content">
-                        <span>WASINGTON</span>
-                        <h4>
-                            <a href="tour-details.html">
-                                France Eiffel Tower
-                            </a>
-                        </h4>
-                        <h6>From <span>$473</span> <del>$199</del></h6>
-                        <ul class="list">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                4 Days / 5 Night
-                            </li>
-                            <li>
-                                <i class="far fa-flag"></i>
-                                3 Countries
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                <div class="tour-box-items">
-                    <div class="thumb">
-                        <img src="assets/img/tour/06.jpg" alt="img">
-                    </div>
-                    <div class="content">
-                        <span>AMERICA</span>
-                        <h4>
-                            <a href="tour-details.html">
-                                Gananoque Islands
-                            </a>
-                        </h4>
-                        <h6>From <span>$345</span> <del>$599</del></h6>
-                        <ul class="list">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                9 Days / 8 Night
-                            </li>
-                            <li>
-                                <i class="far fa-flag"></i>
-                                3 Countries
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                <div class="tour-box-items">
-                    <div class="thumb">
-                        <img src="assets/img/tour/077.jpg" alt="img">
-                    </div>
-                    <div class="content">
-                        <span>FRANCE</span>
-                        <h4>
-                            <a href="tour-details.html">
-                                Paradise, Places
-                            </a>
-                        </h4>
-                        <h6>From <span>$270</span> <del>$399</del></h6>
-                        <ul class="list">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                2 Weeks
-                            </li>
-                            <li>
-                                <i class="far fa-flag"></i>
-                                5 Countries
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                <div class="tour-box-items">
-                    <div class="thumb">
-                        <img src="assets/img/tour/088.jpg" alt="img">
-                    </div>
-                    <div class="content">
-                        <span>DHAKA</span>
-                        <h4>
-                            <a href="tour-details.html">
-                                Moscow Red City Land
-                            </a>
-                        </h4>
-                        <h6>From <span>$678</span> <del>$899</del></h6>
-                        <ul class="list">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                4 Days / 5 Night
-                            </li>
-                            <li>
-                                <i class="far fa-flag"></i>
-                                3 Countries
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
-</section>
-<!-- Tour-descover-section Start -->
+</section><!-- Tour-descover-section Start -->
 <section class="tour-descover-section section-padding fix bg-cover" style="background-image: url(assets/img/tour/bg2.jpg);">
     <div class="container">
         <div class="tour-discover-wrapper">

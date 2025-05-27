@@ -3,6 +3,7 @@ using FinalProjectConsume.Models.Brand;
 using FinalProjectConsume.Models.DestinationFeature;
 using FinalProjectConsume.Models.Instagram;
 using FinalProjectConsume.Models.TeamMember;
+using FinalProjectConsume.Models.Tour;
 using FinalProjectConsume.Models.TrandingDestination;
 
 namespace FinalProjectConsume.ViewModels.UI
@@ -15,5 +16,6 @@ namespace FinalProjectConsume.ViewModels.UI
         public IEnumerable<DestinationFeature> DestinationFeatures { get; set; }
         public IEnumerable<TeamMember> TeamMembersB { get; set; }
         public IEnumerable<TrandingDestination> TrandingDestinations { get; set; }
+        public IEnumerable<Tour> Tours { get; set; }
     }
 }

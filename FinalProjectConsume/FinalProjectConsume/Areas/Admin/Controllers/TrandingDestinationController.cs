@@ -1,4 +1,5 @@
 ﻿using FinalProjectConsume.Models.TrandingDestination;
+using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -64,17 +65,17 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             return View(model);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _trandingDestinationService.DeleteAsync(id);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             return BadRequest();
         }
-
         [HttpGet]
         public async Task<IActionResult> Detail(int id)
         {
