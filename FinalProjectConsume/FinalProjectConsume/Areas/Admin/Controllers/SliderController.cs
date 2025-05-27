@@ -35,12 +35,17 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Create(SliderCreate model)
         {
             if (!ModelState.IsValid)
                 return View(model);
+
+            if (model.Img == null)
+            {
+                ModelState.AddModelError("Img", "Image is required");
+                return View(model);
+            }
 
             var response = await _sliderService.CreateAsync(model);
 
@@ -50,6 +55,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             ModelState.AddModelError("", "Error occurred");
             return View(model);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)

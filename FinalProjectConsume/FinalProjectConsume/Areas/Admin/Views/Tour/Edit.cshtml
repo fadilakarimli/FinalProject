@@ -1,0 +1,62 @@
+﻿@model FinalProjectConsume.Models.Tour.TourEdit
+
+@{
+    ViewData["Title"] = "Edit Tour";
+}
+
+<div class="container" style="margin-left:300px; margin-top:50px;">
+    <h2>Edit Tour</h2>
+
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Duration"></label>
+            <input asp-for="Duration" class="form-control" />
+            <span asp-validation-for="Duration" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CountryCount"></label>
+            <input asp-for="CountryCount" class="form-control" />
+            <span asp-validation-for="CountryCount" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OldPrice"></label>
+            <input asp-for="OldPrice" class="form-control" />
+            <span asp-validation-for="OldPrice" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CityId"></label>
+            <input asp-for="CityId" class="form-control" />
+            <span asp-validation-for="CityId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Current Image:</label>
+            <div>
+                <img src="@Model.ExistingImageUrl" alt="Tour Image" class="img-thumbnail" style="max-width: 300px; max-height: 200px;" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="ImageFile">Select New Image (optional)</label>
+            <input asp-for="ImageFile" type="file" class="form-control" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+    </form>
+</div>

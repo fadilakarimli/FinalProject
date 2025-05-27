@@ -1,0 +1,65 @@
+﻿@model FinalProjectConsume.Models.Tour.Tour
+
+<div class="container" style="margin-left:300px; margin-top:50px;">
+    <h2>Tour Details</h2>
+
+    <div class="form-group">
+        <label>Name:</label>
+        <p>@Model.Name</p>
+    </div>
+
+    <div class="form-group">
+        <label>Duration:</label>
+        <p>@Model.Duration</p>
+    </div>
+
+    <div class="form-group">
+        <label>Country Count:</label>
+        <p>@Model.CountryCount</p>
+    </div>
+
+    <div class="form-group">
+        <label>Price:</label>
+        <p>$@Model.Price</p>
+    </div>
+
+    @if (Model.OldPrice.HasValue)
+    {
+        <div class="form-group">
+            <label>Old Price:</label>
+            <p><del>$@Model.OldPrice</del></p>
+        </div>
+    }
+
+    <div class="form-group">
+        <label>City:</label>
+        <p>@Model.CityName</p>
+    </div>
+
+    <div class="form-group">
+        <label>Image:</label><br />
+        <img src="@Model.ImageUrl" alt="@Model.Name" style="max-width: 300px; max-height: 200px;" />
+    </div>
+
+    <div class="form-group">
+        <label>Activities:</label>
+        <ul>
+            @foreach (var activity in Model.ActivityNames ?? new List<string>())
+            {
+                <li>@activity</li>
+            }
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <label>Amenities:</label>
+        <ul>
+            @foreach (var amenity in Model.Amenities ?? new List<string>())
+            {
+                <li>@amenity</li>
+            }
+        </ul>
+    </div>
+
+    <a asp-action="Index" asp-area="Admin" class="btn btn-secondary mt-3">Back to List</a>
+</div>

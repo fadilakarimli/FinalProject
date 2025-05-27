@@ -45,7 +45,6 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
             var model = new TourEdit
             {
-                Id = tour.Id,
                 Name = tour.Name,
                 Duration = tour.Duration,
                 CountryCount = tour.CountryCount,

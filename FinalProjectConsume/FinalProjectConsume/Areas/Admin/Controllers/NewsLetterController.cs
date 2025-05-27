@@ -1,0 +1,34 @@
+﻿using FinalProjectConsume.Models.NewsLetter;
+using FinalProjectConsume.Services;
+using FinalProjectConsume.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectConsume.Areas.Admin.Controllers
+{
+    [Area("Admin")]
+    public class NewsLetterController : Controller
+    {
+        private readonly INewsLetterService _newsletterService;
+        public NewsLetterController(INewsLetterService newsLetterService)
+        {
+            _newsletterService = newsLetterService;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var emails = await _newsletterService.GetAllAsync();
+            return View(emails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _newsletterService.DeleteAsync(id);
+            if (response.IsSuccessStatusCode)
+                return RedirectToAction(nameof(Index));
+
+            return BadRequest();
+        }
+
+    }
+}

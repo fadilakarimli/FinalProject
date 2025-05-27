@@ -32,7 +32,7 @@ namespace FinalProjectConsume.Services
             {
                 var stream = model.Image.OpenReadStream();
                 var fileContent = new StreamContent(stream);
-                fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(model.Image.ContentType);
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(model.Image.ContentType);
                 content.Add(fileContent, "Image", model.Image.FileName);
             }
 

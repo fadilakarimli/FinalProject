@@ -22,8 +22,8 @@ namespace FinalProjectConsume.Services
             {
                 var stream = model.Img.OpenReadStream();
                 var fileContent = new StreamContent(stream);
-                fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(model.Img.ContentType);
-                content.Add(fileContent, "Img", model.Img.FileName);
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(model.Img.ContentType);
+                content.Add(fileContent, "Image", model.Img.FileName);
             }
 
             return await _httpClient.PostAsync($"{_baseUrl}Create", content);

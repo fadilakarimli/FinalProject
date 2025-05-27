@@ -1,8 +1,11 @@
 using FinalProjectConsume.Models.Brand;
+using FinalProjectConsume.Models.NewsLetter;
+using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels.UI;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Drawing.Printing;
 
 namespace FinalProjectConsume.Controllers
 {
@@ -15,12 +18,15 @@ namespace FinalProjectConsume.Controllers
         private readonly ITeamMemberService _teamMemberService;
         private readonly ITrandingDestinationService _trandingDestinationService;
         private readonly ITourService _tourService;
+        private readonly ISliderService _sliderService;
+        private readonly INewsLetterService _newsLetterService;
 
         public HomeController(IBrandService brandService,
                              IInstagramService instagramService, IBlogService blogService,
                              IDestinationFeatureService destinationFeatureService,
                              ITeamMemberService teamMemberService,
-                             ITrandingDestinationService trandingDestinationService, ITourService tourService )
+                             ITrandingDestinationService trandingDestinationService, ITourService tourService
+                           , ISliderService sliderService, INewsLetterService newsLetterService)
         {
             _brandService = brandService;
             _instagramService = instagramService;
@@ -28,7 +34,9 @@ namespace FinalProjectConsume.Controllers
             _destinationFeatureService = destinationFeatureService;
             _teamMemberService = teamMemberService;
             _trandingDestinationService = trandingDestinationService;
-           _tourService = tourService;
+            _tourService = tourService;
+            _sliderService = sliderService;
+            _newsLetterService = newsLetterService;
         }
         public async Task<IActionResult> Index()
         {
@@ -39,6 +47,7 @@ namespace FinalProjectConsume.Controllers
             var teamMembers = await _teamMemberService.GetAllAsync();
             var trandingDestinatons = await _trandingDestinationService.GetAllAsync();
             var tours = await _tourService.GetAllAsync();
+            var sliders = await _sliderService.GetAllAsync();
 
             var model = new HomePageVM
             {
@@ -49,10 +58,38 @@ namespace FinalProjectConsume.Controllers
                 TeamMembersB = teamMembers.ToList(),
                 TrandingDestinations = trandingDestinatons.ToList(),
                 Tours = tours.ToList(),
+                Sliders = sliders.ToList(),
             };
 
             return View(model);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Subscribe(SubscribePostVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Email düzgün deyil.";
+                return RedirectToAction("Index");
+            }
+
+            var response = await _newsLetterService.CreateAsync(new NewsLetterCreate { Email = model.Email });
+
+            if (response.IsSuccessStatusCode)
+            {
+                TempData["Success"] = "Abun?lik uðurla ?lav? edildi.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["Error"] = "X?ta baþ verdi.";
+                return RedirectToAction("Index");
+            }
+        }
+
+
 
     }
 }
