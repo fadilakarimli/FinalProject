@@ -12,12 +12,14 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         private readonly ITourService _tourService;
         private readonly IActivityService _activityService;
         private readonly IAmenityService _amenityService;
+        private readonly ICountryService _countryService;
 
-        public TourController(ITourService tourService , IAmenityService amenityService , IActivityService activityService)
+        public TourController(ITourService tourService , IAmenityService amenityService , IActivityService activityService, ICountryService countryService)
         {
             _tourService = tourService;
             _activityService = activityService;
             _amenityService = amenityService;
+            _countryService = countryService;
         }
 
         public async Task<IActionResult> Index()
@@ -30,12 +32,23 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         {
             var activities = await _activityService.GetAllAsync();
             var amenities = await _amenityService.GetAllAsync();
+            var countries = await _countryService.GetAllAsync(); // <--- BURA ƏLAVƏ ET
 
-            ViewBag.Activities = new SelectList(activities, "Id", "Name");
-            ViewBag.Amenities = new SelectList(amenities, "Id", "Name");
+            ViewBag.Activities = activities
+                .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                .ToList();
+
+            ViewBag.Amenities = amenities
+                .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                .ToList();
+
+            ViewBag.Countries = countries
+                .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                .ToList(); // <--- VƏ BU SƏTRİ
 
             return View();
         }
+
 
 
         [HttpPost]

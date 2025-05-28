@@ -19,21 +19,23 @@ namespace FinalProjectConsume.Services
 
             content.Add(new StringContent(model.Name), "Name");
             content.Add(new StringContent(model.Duration), "Duration");
-            content.Add(new StringContent(model.CountryCount.ToString()), "CountryCount");
+
+            content.Add(new StringContent(model.CountryIds.Count.ToString()), "CountryCount");
+
             content.Add(new StringContent(model.Price.ToString()), "Price");
             if (model.OldPrice != null)
                 content.Add(new StringContent(model.OldPrice.ToString()), "OldPrice");
+
             content.Add(new StringContent(model.CityId.ToString()), "CityId");
 
             foreach (var activityId in model.ActivityIds)
-            {
                 content.Add(new StringContent(activityId.ToString()), "ActivityIds");
-            }
 
             foreach (var amenityId in model.AmenityIds)
-            {
                 content.Add(new StringContent(amenityId.ToString()), "AmenityIds");
-            }
+
+            foreach (var countryId in model.CountryIds) 
+                content.Add(new StringContent(countryId.ToString()), "CountryIds");
 
             if (model.ImageFile != null)
             {

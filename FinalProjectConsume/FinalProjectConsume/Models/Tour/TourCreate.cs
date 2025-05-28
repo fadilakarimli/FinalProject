@@ -14,5 +14,6 @@ namespace FinalProjectConsume.Models.Tour
         public IFormFile ImageFile { get; set; }
         public List<int> ActivityIds { get; set; } = new List<int>();
         public List<int> AmenityIds { get; set; } = new List<int>();
+        public List<int> CountryIds { get; set; }
     }
 }

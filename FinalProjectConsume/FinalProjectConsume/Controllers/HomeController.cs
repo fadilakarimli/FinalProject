@@ -20,13 +20,16 @@ namespace FinalProjectConsume.Controllers
         private readonly ITourService _tourService;
         private readonly ISliderService _sliderService;
         private readonly INewsLetterService _newsLetterService;
+        private readonly ISliderInfoService _sliderInfoService;
+        private readonly ISpecialOfferService _specialOfferService;
 
         public HomeController(IBrandService brandService,
                              IInstagramService instagramService, IBlogService blogService,
                              IDestinationFeatureService destinationFeatureService,
                              ITeamMemberService teamMemberService,
                              ITrandingDestinationService trandingDestinationService, ITourService tourService
-                           , ISliderService sliderService, INewsLetterService newsLetterService)
+                           , ISliderService sliderService, INewsLetterService newsLetterService, ISliderInfoService sliderInfoService, 
+                            ISpecialOfferService specialOfferService)
         {
             _brandService = brandService;
             _instagramService = instagramService;
@@ -37,6 +40,8 @@ namespace FinalProjectConsume.Controllers
             _tourService = tourService;
             _sliderService = sliderService;
             _newsLetterService = newsLetterService;
+            _sliderInfoService = sliderInfoService;
+            _specialOfferService = specialOfferService;
         }
         public async Task<IActionResult> Index()
         {
@@ -48,6 +53,8 @@ namespace FinalProjectConsume.Controllers
             var trandingDestinatons = await _trandingDestinationService.GetAllAsync();
             var tours = await _tourService.GetAllAsync();
             var sliders = await _sliderService.GetAllAsync();
+            var sliderInfos = await _sliderInfoService.GetAllAsync();
+            var specialOffer = await _specialOfferService.GetAllAsync();
 
             var model = new HomePageVM
             {
@@ -59,6 +66,8 @@ namespace FinalProjectConsume.Controllers
                 TrandingDestinations = trandingDestinatons.ToList(),
                 Tours = tours.ToList(),
                 Sliders = sliders.ToList(),
+                SliderInfos = sliderInfos.ToList(),
+                SpecialOffers = specialOffer.ToList(),
             };
 
             return View(model);

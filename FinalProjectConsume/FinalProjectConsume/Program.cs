@@ -20,6 +20,11 @@ builder.Services.AddScoped<ISliderService, SliderService>();
 builder.Services.AddScoped<INewsLetterService, NewsLetterService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<IAmenityService, AmenityService>();
+builder.Services.AddScoped<ICountryService, CountryService>();
+builder.Services.AddScoped<ICityService, CityService>();
+builder.Services.AddScoped<ISliderInfoService, SliderInfoService>();
+builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
+
 
 
 var app = builder.Build(); 

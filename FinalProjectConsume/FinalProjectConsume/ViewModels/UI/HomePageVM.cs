@@ -4,6 +4,8 @@ using FinalProjectConsume.Models.DestinationFeature;
 using FinalProjectConsume.Models.Instagram;
 using FinalProjectConsume.Models.NewsLetter;
 using FinalProjectConsume.Models.Slider;
+using FinalProjectConsume.Models.SliderInfo;
+using FinalProjectConsume.Models.SpecialOffer;
 using FinalProjectConsume.Models.TeamMember;
 using FinalProjectConsume.Models.Tour;
 using FinalProjectConsume.Models.TrandingDestination;
@@ -21,5 +23,7 @@ namespace FinalProjectConsume.ViewModels.UI
         public IEnumerable<Tour> Tours { get; set; }
         public IEnumerable<Slider> Sliders { get; set; }
         public IEnumerable<NewsLetter> NewsLetters { get; set; }
+        public IEnumerable<SliderInfo> SliderInfos { get; set; }
+        public IEnumerable<SpecialOffer> SpecialOffers { get; set; }
     }
 }
