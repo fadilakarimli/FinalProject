@@ -1,4 +1,5 @@
-﻿<!-- Search Section Start -->
+﻿@model TourPageVM
+<!-- Search Section Start -->
 <div class="header-search-bar d-flex align-items-center">
     <button class="search-close">×</button>
     <div class="container">
@@ -60,16 +61,17 @@
                                         <h5>Destination</h5>
                                         <div class="form-clt">
                                             <div class="form">
-                                                <select class="single-select w-100">
-                                                    <option>Your city or Region</option>
-                                                    <option>Australia</option>
-                                                    <option>India</option>
-                                                    <option>Italy</option>
-                                                    <option>Japan</option>
+                                                <select class="single-select w-100" name="cityId">
+                                                    <option disabled selected>Your city</option>
+                                                    @foreach (var city in Model.Cities) // və ya Model.Destinations
+                                                    {
+                                                        <option value="@city.Id">@city.Name</option>
+                                                    }
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="booking-list">
                                     <div class="icon">
@@ -80,14 +82,23 @@
                                         <div class="form-clt">
                                             <div class="form">
                                                 <select class="single-select w-100">
-                                                    <option>Choose Activity</option>
-                                                    <option> Activity 01</option>
-                                                    <option> Activity 02</option>
-                                                    <option> Activity 03</option>
+                                                    <option disabled selected>Choose Activity</option>
+                                                    @if (Model.Activities != null && Model.Activities.Any())
+                                                    {
+                                                        foreach (var amenity in Model.Activities)
+                                                        {
+                                                            <option value="@amenity.Id">@amenity.Name</option>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <option disabled>No activities found</option>
+                                                    }
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="booking-list">
                                     <div class="icon">
@@ -139,496 +150,84 @@
                                         </div>
                                     </div>
                                 </div>
-                             
+
                                 <div class="tour-sidebar-widget">
                                     <div class="wid-title">
                                         <h3>Amenities</h3>
                                     </div>
                                     <div class="checkbox-items">
-                                        <label class="checkbox-single">
-                                            <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                <span class="checkbox-area d-center">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark d-center"></span>
-                                                </span>
-                                                <span class="text-color">
-                                                    Car Parking
-                                                </span>
-                                            </span>
-                                        </label>
-                                        <label class="checkbox-single">
-                                            <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                <span class="checkbox-area d-center">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark d-center"></span>
-                                                </span>
-                                                <span class="text-color">
-                                                    Accepts Credit Cards
-                                                </span>
-                                            </span>
-                                        </label>
-                                        <label class="checkbox-single">
-                                            <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                <span class="checkbox-area d-center">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark d-center"></span>
-                                                </span>
-                                                <span class="text-color">
-                                                    Free Coupons
-                                                </span>
-                                            </span>
-                                        </label>
-                                        <label class="checkbox-single">
-                                            <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                <span class="checkbox-area d-center">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark d-center"></span>
-                                                </span>
-                                                <span class="text-color">
-                                                    Laundry Service
-                                                </span>
-                                            </span>
-                                        </label>
-                                        <label class="checkbox-single">
-                                            <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                <span class="checkbox-area d-center">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark d-center"></span>
-                                                </span>
-                                                <span class="text-color">
-                                                    Outdoor Seating
-                                                </span>
-                                            </span>
-                                        </label>
-                                        <label class="checkbox-single">
-                                            <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                <span class="checkbox-area d-center">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark d-center"></span>
-                                                </span>
-                                                <span class="text-color">
-                                                    Reservations
-                                                </span>
-                                            </span>
-                                        </label>
-                                        <label class="checkbox-single mb-0">
-                                            <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                <span class="checkbox-area d-center">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark d-center"></span>
-                                                </span>
-                                                <span class="text-color">
-                                                    Wireless Internet
-                                                </span>
-                                            </span>
-                                        </label>
+                                        @if (Model.Amenities != null && Model.Amenities.Any())
+                                        {
+                                            foreach (var amenity in Model.Amenities)
+                                            {
+                                                <label class="checkbox-single">
+                                                    <span class="d-flex gap-xl-3 gap-2 align-items-center">
+                                                        <span class="checkbox-area d-center">
+                                                            <input type="checkbox" name="amenities" value="@amenity.Id" />
+                                                            <span class="checkmark d-center"></span>
+                                                        </span>
+                                                        <span class="text-color">
+                                                            @amenity.Name
+                                                        </span>
+                                                    </span>
+                                                </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p>No amenities found.</p>
+                                        }
                                     </div>
                                 </div>
+
                                 <div class="search-widget">
                                     <form action="#">
                                         <button type="submit" class="theme-btn"><span>Search</span><i class="fal fa-search"></i></button>
                                     </form>
                                 </div>
                             </div>
-                            <div class="popular-posts">
-                                <div class="single-post-item">
-                                    <div class="thumb bg-cover" style="background-image: url('assets/img/tour/post-1.jpg');"></div>
-                                    <div class="post-content">
-                                        <div class="star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <h5><a href="tour-details.html"> Explore Scenic Beaches</a></h5>
-
-                                        <p>
-                                            Fromb <b> $129.00 </b>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="single-post-item">
-                                    <div class="thumb bg-cover" style="background-image: url('assets/img/tour/post-2.jpg');"></div>
-                                    <div class="post-content">
-                                        <div class="star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <h5><a href="tour-details.html">Tour Beaches Explore </a></h5>
-                                        <p>
-                                            Fromb <b> $129.00 </b>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="single-post-item">
-                                    <div class="thumb bg-cover" style="background-image: url('assets/img/tour/post-3.jpg');"></div>
-                                    <div class="post-content">
-                                        <div class="star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <h5><a href="tour-details.html">Beaches Tour Enjoy</a></h5>
-                                        <p>
-                                            Fromb <b> $129.00 </b>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                          
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-8">
-                    <div class="row g-4">
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="amazing-tour-items mt-0">
-                                <div class="thumb">
-                                    <div class="post-box">
-                                        <h4>$333</h4>
-                                        <span>/ person</span>
+                    <div class="row justify-content-center">
+                        @foreach (var tour in Model.Tours)
+                        {
+                            <div class="col-4 wow fadeInUp" data-wow-delay=".2s">
+                                <div class="tour-box-items">
+                                    <div class="thumb">
+                                        <img src="@tour.ImageUrl" alt="Tour image" />
                                     </div>
-                                    <img src="~/assets/img/tour/07.jpg" alt="img">
-                                    <div class="list-items">
-                                        <h6>FEATURED</h6>
-                                        <ul class="popup-icon">
+                                    <div class="content">
+                                        <span>@tour.CityName</span>
+                                        <h4>
+                                            <a href="/Tour/Details/@tour.Id">@tour.Name</a>
+                                        </h4>
+                                        <h6>
+                                            From <span>$@tour.Price</span>
+                                            @if (tour.OldPrice.HasValue)
+                                            {
+                                                <del>$@tour.OldPrice</del>
+                                            }
+                                        </h6>
+                                        <ul class="list">
                                             <li>
-                                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-buttton video-popup">
-                                                    <i class="far fa-video"></i>
-                                                </a>
+                                                <i class="far fa-calendar"></i>
+                                                @tour.Duration
                                             </li>
                                             <li>
-                                                <a href="assets/img/tour/07.jpg" class="img-popup">
-                                                    <i class="far fa-camera"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="tour-details.html">Explore the Bustling Streets and Temples in Bangkok</a>
-                                    </h4>
-                                    <span class="location-icon">
-                                        <i class="far fa-map-marker-alt"></i>
-                                        132, Tic St, Wingston, New York 12401
-                                    </span>
-                                    <a href="tour-details.html" class="theme-btn">
-                                        <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="amazing-tour-items mt-0">
-                                <div class="thumb">
-                                    <div class="post-box">
-                                        <h4>$565</h4>
-                                        <span>/ person</span>
-                                    </div>
-                                    <img src="~/assets/img/tour/08.jpg" alt="img">
-                                    <div class="list-items">
-                                        <h6>FEATURED</h6>
-                                        <ul class="popup-icon">
-                                            <li>
-                                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-buttton video-popup">
-                                                    <i class="far fa-video"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="assets/img/tour/08.jpg" class="img-popup">
-                                                    <i class="far fa-camera"></i>
-                                                </a>
+                                                <i class="far fa-flag"></i>
+                                                @tour.CountryCount Countries
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="tour-details.html">Acropolis, Parthenon, Plaka District 3 Day Athens Tour</a>
-                                    </h4>
-                                    <span class="location-icon">
-                                        <i class="far fa-map-marker-alt"></i>
-                                        132, Tic St, Wingston, New York 12401
-                                    </span>
-                                    <a href="tour-details.html" class="theme-btn">
-                                        <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
-                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="amazing-tour-items mt-0">
-                                <div class="thumb">
-                                    <div class="post-box">
-                                        <h4>$290</h4>
-                                        <span>/ person</span>
-                                    </div>
-                                    <img src="~/assets/img/tour/09.jpg" alt="img">
-                                    <div class="list-items">
-                                        <h6>FEATURED</h6>
-                                        <ul class="popup-icon">
-                                            <li>
-                                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-buttton video-popup">
-                                                    <i class="far fa-video"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="assets/img/tour/09.jpg" class="img-popup">
-                                                    <i class="far fa-camera"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="tour-details.html">Step Back in Time at Ancient Ruins in Rome, Italy</a>
-                                    </h4>
-                                    <span class="location-icon">
-                                        <i class="far fa-map-marker-alt"></i>
-                                        132, Tic St, Wingston, New York 12401
-                                    </span>
-                                    <a href="tour-details.html" class="theme-btn">
-                                        <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="amazing-tour-items mt-0">
-                                <div class="thumb">
-                                    <div class="post-box">
-                                        <h4>$565</h4>
-                                        <span>/ person</span>
-                                    </div>
-                                    <img src="~/assets/img/tour/10.jpg" alt="img">
-                                    <div class="list-items">
-                                        <h6>FEATURED</h6>
-                                        <ul class="popup-icon">
-                                            <li>
-                                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-buttton video-popup">
-                                                    <i class="far fa-video"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="assets/img/tour/10.jpg" class="img-popup">
-                                                    <i class="far fa-camera"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="tour-details.html">Explore Scenic Beaches and Temples in Bali, Indonesia</a>
-                                    </h4>
-                                    <span class="location-icon">
-                                        <i class="far fa-map-marker-alt"></i>
-                                        132, Tic St, Wingston, New York 12401
-                                    </span>
-                                    <a href="tour-details.html" class="theme-btn">
-                                        <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="amazing-tour-items mt-0">
-                                <div class="thumb">
-                                    <div class="post-box">
-                                        <h4>$855</h4>
-                                        <span>/ person</span>
-                                    </div>
-                                    <img src="~/assets/img/tour/11.jpg" alt="img">
-                                    <div class="list-items">
-                                        <h6>FEATURED</h6>
-                                        <ul class="popup-icon">
-                                            <li>
-                                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-buttton video-popup">
-                                                    <i class="far fa-video"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="assets/img/tour/11.jpg" class="img-popup">
-                                                    <i class="far fa-camera"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="tour-details.html">Marvel at Majestic Mountains and Lakes in Banff, Canada</a>
-                                    </h4>
-                                    <span class="location-icon">
-                                        <i class="far fa-map-marker-alt"></i>
-                                        132, Tic St, Wingston, New York 12401
-                                    </span>
-                                    <a href="tour-details.html" class="theme-btn">
-                                        <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="amazing-tour-items mt-0">
-                                <div class="thumb">
-                                    <div class="post-box">
-                                        <h4>$636</h4>
-                                        <span>/ person</span>
-                                    </div>
-                                    <img src="~/assets/img/tour/16.jpg" alt="img">
-                                    <div class="list-items">
-                                        <h6>FEATURED</h6>
-                                        <ul class="popup-icon">
-                                            <li>
-                                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-buttton video-popup">
-                                                    <i class="far fa-video"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="assets/img/tour/16.jpg" class="img-popup">
-                                                    <i class="far fa-camera"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="tour-details.html">Romance and Charm Await in Paris, France</a>
-                                    </h4>
-                                    <span class="location-icon">
-                                        <i class="far fa-map-marker-alt"></i>
-                                        132, Tic St, Wingston, New York 12401
-                                    </span>
-                                    <a href="tour-details.html" class="theme-btn">
-                                        <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="amazing-tour-items mt-0">
-                                <div class="thumb">
-                                    <div class="post-box">
-                                        <h4>$336</h4>
-                                        <span>/ person</span>
-                                    </div>
-                                    <img src="~/assets/img/tour/17.jpg" alt="img">
-                                    <div class="list-items">
-                                        <h6>FEATURED</h6>
-                                        <ul class="popup-icon">
-                                            <li>
-                                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-buttton video-popup">
-                                                    <i class="far fa-video"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="assets/img/tour/17.jpg" class="img-popup">
-                                                    <i class="far fa-camera"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="tour-details.html">Explore Scenic Beaches and Temples in Bali, Indonesia</a>
-                                    </h4>
-                                    <span class="location-icon">
-                                        <i class="far fa-map-marker-alt"></i>
-                                        132, Tic St, Wingston, New York 12401
-                                    </span>
-                                    <a href="tour-details.html" class="theme-btn">
-                                        <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="amazing-tour-items mt-0">
-                                <div class="thumb">
-                                    <div class="post-box">
-                                        <h4>$636</h4>
-                                        <span>/ person</span>
-                                    </div>
-                                    <img src="~/assets/img/tour/18.jpg" alt="img">
-                                    <div class="list-items">
-                                        <h6>FEATURED</h6>
-                                        <ul class="popup-icon">
-                                            <li>
-                                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-buttton video-popup">
-                                                    <i class="far fa-video"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="assets/img/tour/18.jpg" class="img-popup">
-                                                    <i class="far fa-camera"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="tour-details.html">Acropolis, Parthenon, Plaka District 3 Day Athens Tour</a>
-                                    </h4>
-                                    <span class="location-icon">
-                                        <i class="far fa-map-marker-alt"></i>
-                                        132, Tic St, Wingston, New York 12401
-                                    </span>
-                                    <a href="tour-details.html" class="theme-btn">
-                                        <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6">
-                            <div class="amazing-tour-items mt-0">
-                                <div class="thumb">
-                                    <div class="post-box">
-                                        <h4>$436</h4>
-                                        <span>/ person</span>
-                                    </div>
-                                    <img src="~/assets/img/tour/19.jpg" alt="img">
-                                    <div class="list-items">
-                                        <h6>FEATURED</h6>
-                                        <ul class="popup-icon">
-                                            <li>
-                                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-buttton video-popup">
-                                                    <i class="far fa-video"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="assets/img/tour/19.jpg" class="img-popup">
-                                                    <i class="far fa-camera"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="tour-details.html">Romance and Charm Await in Paris, France</a>
-                                    </h4>
-                                    <span class="location-icon">
-                                        <i class="far fa-map-marker-alt"></i>
-                                        132, Tic St, Wingston, New York 12401
-                                    </span>
-                                    <a href="tour-details.html" class="theme-btn">
-                                        <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
+
+
                     <div class="page-nav-wrap mt-5 text-center wow fadeInUp" data-wow-delay=".3s">
                         <ul>
                             <li><a class="page-numbers" href="#">01</a></li>
