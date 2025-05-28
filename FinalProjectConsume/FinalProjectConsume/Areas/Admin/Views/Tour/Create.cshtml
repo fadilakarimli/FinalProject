@@ -51,13 +51,15 @@
         </div>
 
         <div class="form-group">
-            <label>Activity IDs (comma separated)</label>
-            <input name="ActivityIds" class="form-control" placeholder="e.g. 1,2,3" />
+            <label asp-for="ActivityIds">Select Activities</label>
+            <select asp-for="ActivityIds" asp-items="ViewBag.Activities" multiple class="form-control"></select>
+            <span asp-validation-for="ActivityIds" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label>Amenity IDs (comma separated)</label>
-            <input name="AmenityIds" class="form-control" placeholder="e.g. 4,5,6" />
+            <label asp-for="AmenityIds">Select Amenities</label>
+            <select asp-for="AmenityIds" asp-items="ViewBag.Amenities" multiple class="form-control"></select>
+            <span asp-validation-for="AmenityIds" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-success mt-3">Create</button>

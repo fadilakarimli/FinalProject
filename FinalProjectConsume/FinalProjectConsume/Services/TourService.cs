@@ -86,7 +86,14 @@ namespace FinalProjectConsume.Services
 
         public async Task<Tour> GetByIdAsync(int id)
         {
-            return await _httpClient.GetFromJsonAsync<Tour>($"{_baseUrl}GetById/{id}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}GetById/{id}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var tour = await response.Content.ReadFromJsonAsync<Tour>();
+
+            return tour;
         }
+
+
     }
 }

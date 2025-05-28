@@ -1,6 +1,8 @@
 ﻿using FinalProjectConsume.Models.Tour;
+using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
@@ -8,10 +10,14 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
     public class TourController : Controller
     {
         private readonly ITourService _tourService;
+        private readonly IActivityService _activityService;
+        private readonly IAmenityService _amenityService;
 
-        public TourController(ITourService tourService)
+        public TourController(ITourService tourService , IAmenityService amenityService , IActivityService activityService)
         {
             _tourService = tourService;
+            _activityService = activityService;
+            _amenityService = amenityService;
         }
 
         public async Task<IActionResult> Index()
@@ -19,11 +25,18 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             var tours = await _tourService.GetAllAsync();
             return View(tours);
         }
-
-        public IActionResult Create()
+        [HttpGet]
+        public async Task<IActionResult> Create()
         {
+            var activities = await _activityService.GetAllAsync();
+            var amenities = await _amenityService.GetAllAsync();
+
+            ViewBag.Activities = new SelectList(activities, "Id", "Name");
+            ViewBag.Amenities = new SelectList(amenities, "Id", "Name");
+
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Create(TourCreate model)
@@ -85,7 +98,6 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         {
             var tour = await _tourService.GetByIdAsync(id);
             if (tour == null) return NotFound();
-
             return View(tour);
         }
     }

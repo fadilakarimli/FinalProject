@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FinalProjectConsume.Models.Amenity.Amenity>
+
+@{
+    ViewData["Title"] = "Amenity List";
+}
+
+<div class="container" style="margin-left:300px; margin-top:50px;">
+    <h2>@ViewData["Title"]</h2>
+
+    <p>
+        <a asp-action="Create" class="btn btn-success">Create</a>
+    </p>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var activity in Model)
+            {
+                <tr>
+                    <td>@activity.Name</td>
+                    <td>
+                        <a asp-action="Detail" asp-route-id="@activity.Id" class="btn btn-info btn-sm">Detail</a>
+                        <a asp-action="Edit" asp-route-id="@activity.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <form asp-action="Delete" asp-route-id="@activity.Id" method="post" style="display:inline-block" onsubmit="return confirm('Are your sure delete this activity?');">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

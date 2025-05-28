@@ -43,22 +43,36 @@
 
     <div class="form-group">
         <label>Activities:</label>
-        <ul>
-            @foreach (var activity in Model.ActivityNames ?? new List<string>())
-            {
-                <li>@activity</li>
-            }
-        </ul>
+        @if (Model.ActivityNames != null && Model.ActivityNames.Any())
+        {
+            <ul>
+                @foreach (var activity in Model.ActivityNames)
+                {
+                    <li>@activity</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No activities available.</p>
+        }
     </div>
 
     <div class="form-group">
         <label>Amenities:</label>
-        <ul>
-            @foreach (var amenity in Model.Amenities ?? new List<string>())
-            {
-                <li>@amenity</li>
-            }
-        </ul>
+        @if (Model.Amenities != null && Model.Amenities.Any())
+        {
+            <ul>
+                @foreach (var amenity in Model.Amenities)
+                {   
+                    <li>@amenity</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No amenities available.</p>
+        }
     </div>
 
     <a asp-action="Index" asp-area="Admin" class="btn btn-secondary mt-3">Back to List</a>

@@ -18,6 +18,8 @@ builder.Services.AddScoped<ITrandingDestinationService, TrandingDestinationServi
 builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ISliderService, SliderService>();
 builder.Services.AddScoped<INewsLetterService, NewsLetterService>();
+builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<IAmenityService, AmenityService>();
 
 
 var app = builder.Build(); 
