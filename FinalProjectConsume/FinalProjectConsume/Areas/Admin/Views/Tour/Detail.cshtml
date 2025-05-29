@@ -75,5 +75,23 @@
         }
     </div>
 
+    <div class="form-group">
+        <label>Experiences:</label>
+        @if (Model.ExperienceNames != null && Model.ExperienceNames.Any())
+        {
+            <ul>
+                @foreach (var experience in Model.ExperienceNames)
+                {
+                    <li>@experience</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No experiences available.</p>
+        }
+    </div>
+
+
     <a asp-action="Index" asp-area="Admin" class="btn btn-secondary mt-3">Back to List</a>
 </div>

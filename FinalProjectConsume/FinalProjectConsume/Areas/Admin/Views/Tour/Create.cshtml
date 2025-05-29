@@ -60,6 +60,11 @@
             <input asp-for="ImageFile" type="file" class="form-control" />
             <span asp-validation-for="ImageFile" class="text-danger"></span>
         </div>
+        <div class="form-group">
+            <label asp-for="Desc"></label>
+            <textarea asp-for="Desc" class="form-control"></textarea>
+            <span asp-validation-for="Desc" class="text-danger"></span>
+        </div>
 
         <div class="form-group">
             <label>Select Activities</label>
@@ -72,6 +77,18 @@
                 </div>
             }
         </div>
+        <div class="form-group">
+            <label>Select Experiences</label>
+            @foreach (var item in ViewBag.Experiences as List<SelectListItem>)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox"
+                           name="ExperienceIds" value="@item.Value" id="experience_@item.Value" />
+                    <label class="form-check-label" for="experience_@item.Value">@item.Text</label>
+                </div>
+            }
+        </div>
+
 
         <div class="form-group">
             <label>Select Amenities</label>

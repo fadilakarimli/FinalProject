@@ -19,8 +19,8 @@ namespace FinalProjectConsume.Services
 
             content.Add(new StringContent(model.Name), "Name");
             content.Add(new StringContent(model.Duration), "Duration");
-
             content.Add(new StringContent(model.CountryIds.Count.ToString()), "CountryCount");
+            content.Add(new StringContent(model.Desc ?? ""), "Desc"); // 🔹 ƏLAVƏ
 
             content.Add(new StringContent(model.Price.ToString()), "Price");
             if (model.OldPrice != null)
@@ -34,8 +34,11 @@ namespace FinalProjectConsume.Services
             foreach (var amenityId in model.AmenityIds)
                 content.Add(new StringContent(amenityId.ToString()), "AmenityIds");
 
-            foreach (var countryId in model.CountryIds) 
+            foreach (var countryId in model.CountryIds)
                 content.Add(new StringContent(countryId.ToString()), "CountryIds");
+
+            foreach (var experienceId in model.ExperienceIds) // 🔹 ƏLAVƏ
+                content.Add(new StringContent(experienceId.ToString()), "ExperienceIds");
 
             if (model.ImageFile != null)
             {

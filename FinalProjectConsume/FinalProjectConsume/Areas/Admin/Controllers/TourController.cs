@@ -13,13 +13,15 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         private readonly IActivityService _activityService;
         private readonly IAmenityService _amenityService;
         private readonly ICountryService _countryService;
+        private readonly IExperienceService _experienceService;
 
-        public TourController(ITourService tourService , IAmenityService amenityService , IActivityService activityService, ICountryService countryService)
+        public TourController(ITourService tourService , IAmenityService amenityService , IActivityService activityService, ICountryService countryService, IExperienceService experienceService)
         {
             _tourService = tourService;
             _activityService = activityService;
             _amenityService = amenityService;
             _countryService = countryService;
+            _experienceService = experienceService;
         }
 
         public async Task<IActionResult> Index()
@@ -32,7 +34,8 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         {
             var activities = await _activityService.GetAllAsync();
             var amenities = await _amenityService.GetAllAsync();
-            var countries = await _countryService.GetAllAsync(); // <--- BURA ƏLAVƏ ET
+            var countries = await _countryService.GetAllAsync();
+            var experiences = await _experienceService.GetAllAsync(); // 🔹 YENİ
 
             ViewBag.Activities = activities
                 .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
@@ -44,11 +47,14 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
             ViewBag.Countries = countries
                 .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
-                .ToList(); // <--- VƏ BU SƏTRİ
+                .ToList();
+
+            ViewBag.Experiences = experiences
+                .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                .ToList(); // 🔹 ƏLAVƏ
 
             return View();
         }
-
 
 
         [HttpPost]
@@ -77,7 +83,6 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
                 Price = tour.Price,
                 OldPrice = tour.OldPrice,
                 CityId = tour.CityId,
-                ExistingImageUrl = tour.ImageUrl
             };
 
             return View(model);

@@ -15,5 +15,9 @@ namespace FinalProjectConsume.Models.Tour
         public List<int> ActivityIds { get; set; } = new List<int>();
         public List<int> AmenityIds { get; set; } = new List<int>();
         public List<int> CountryIds { get; set; }
+
+        // ✅ Yeni əlavə olunanlar:
+        public string Desc { get; set; }
+        public List<int> ExperienceIds { get; set; } = new List<int>();
     }
 }
