@@ -18,7 +18,7 @@ namespace FinalProjectConsume.ViewModels.UI
         public IEnumerable<Instagram> Instagrams { get; set; }
         public IEnumerable<Blog> Blogs { get; set; }
         public IEnumerable<DestinationFeature> DestinationFeatures { get; set; }
-        public IEnumerable<TeamMember> TeamMembersB { get; set; }
+        public IEnumerable<TeamMember> TeamMembers { get; set; }
         public IEnumerable<TrandingDestination> TrandingDestinations { get; set; }
         public IEnumerable<Tour> Tours { get; set; }
         public IEnumerable<Slider> Sliders { get; set; }

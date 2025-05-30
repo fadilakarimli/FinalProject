@@ -62,7 +62,7 @@ namespace FinalProjectConsume.Controllers
                 Instagrams = instagrams.ToList(),
                 Blogs = blogs.ToList(),
                 DestinationFeatures = destinationFeatures.ToList(),
-                TeamMembersB = teamMembers.ToList(),
+                TeamMembers = teamMembers.ToList(),
                 TrandingDestinations = trandingDestinatons.ToList(),
                 Tours = tours.ToList(),
                 Sliders = sliders.ToList(),

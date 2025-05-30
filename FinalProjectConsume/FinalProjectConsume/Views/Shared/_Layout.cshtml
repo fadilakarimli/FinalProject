@@ -179,11 +179,11 @@
                                     <nav id="mobile-menu">
                                         <ul>
                                             <li class="has-dropdown menu-thumb">
-                                                <a href="index.html">
+                                                <a asp-action="Index" asp-controller="Home">
                                                     Home
                                                 </a>
                                             </li>
-                                            <li class="has-dropdown active d-xl-none">
+                                          @*   <li class="has-dropdown active d-xl-none">
                                                 <a href="index.html" class="border-none">
                                                     Home
                                                 </a>
@@ -192,29 +192,36 @@
                                                     <li><a href="index-2.html">Home 02</a></li>
                                                     <li><a href="index-3.html">Home 03</a></li>
                                                 </ul>
-                                            </li>
+                                            </li> *@
                                             <li>
-                                                <a href="tour-details.html">
+                                                <a asp-action="Index" asp-controller="Tour">
                                                     Tours
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="destination-details.html">
+                                                <a asp-action="Index" asp-controller="Destination">
                                                     Destinations
                                                 </a>
                                             </li>
                                             <li class="has-dropdown">
-                                                <a href="news-details.html">
+                                                <a asp-action="Index" asp-controller="About">
                                                     About
+                                                    <i class="fas fa-chevron-down"></i>
                                                 </a>
+                                                <ul class="submenu">
+                                                   
+                                                    <li><a asp-action="Index" asp-controller="Team">Our Team</a></li>
+                                                    <li><a href="faq.html">Faqs</a></li>
+                                                    <li><a href="404.html">404 Error</a></li>
+                                                </ul>
                                             </li>
                                             <li>
-                                                <a href="news-details.html">
+                                                <a asp-action="Index" asp-controller="New">
                                                     News
                                                 </a>    
                                             </li>
                                             <li>
-                                                <a href="contact.html">
+                                                <a asp-action="Index" asp-controller="Contact">
                                                     Contact
                                                 </a>
                                             </li>

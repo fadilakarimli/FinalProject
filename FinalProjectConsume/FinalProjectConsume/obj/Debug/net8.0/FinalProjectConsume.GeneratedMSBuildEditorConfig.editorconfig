@@ -274,6 +274,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Views/About/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Views/Contact/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Views/Destination/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzdGluYXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -288,6 +296,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Views/NewLetter/Subscribe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3TGV0dGVyXFN1YnNjcmliZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Views/New/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Views/Team/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Views/Tour/Index.cshtml]

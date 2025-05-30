@@ -63,7 +63,7 @@
                                             <div class="form">
                                                 <select class="single-select w-100" name="cityId">
                                                     <option disabled selected>Your city</option>
-                                                    @foreach (var city in Model.Cities) // və ya Model.Destinations
+                                                    @foreach (var city in Model.Cities)
                                                     {
                                                         <option value="@city.Id">@city.Name</option>
                                                     }

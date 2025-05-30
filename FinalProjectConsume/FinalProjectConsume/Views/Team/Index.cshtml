@@ -1,4 +1,4 @@
-﻿<!-- Search Section Start -->
+﻿  <!-- Search Section Start -->
 <div class="header-search-bar d-flex align-items-center">
     <button class="search-close">×</button>
     <div class="container">
@@ -32,50 +32,41 @@
                     <i class="far fa-slash"></i>
                 </li>
                 <li>
-                    Our Destination
+                    Tour Guide Team
                 </li>
             </ul>
-            <h1 class="wow fadeInUp" data-wow-delay=".5s">Our Destination</h1>
+            <h1 class="wow fadeInUp" data-wow-delay=".5s">Tour Guide Team</h1>
         </div>
     </div>
     <div class="plane-shape float-bob-x">
-        <img src="~/assets/img/breadcrumb-plane.png" alt="img">
+        <img src="assets/img/breadcrumb-plane.png" alt="img">
     </div>
 </div>
 
-<!-- Trending Section Start -->
-<div class="trending-destinations section-padding">
+<!--  Team Section Start -->
+<section class="team-section fix section-padding">
     <div class="container">
         <div class="row g-4">
-            @foreach (var item in Model.TrandingDestinations)
+            @foreach (var member in Model.TeamMembers)
             {
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="trending-destinations-card-items">
-                        <div class="destinations-img">
-                            <img src="@item.Image" alt="img">
-                            <div class="icon">
-                                <a href="/destination-details/@item.Id">
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="team-card-items-4">
+                        <div class="thumb">
+                            <img src="@member.Image" alt="img">
+                        </div>
+                        <div class="content">
+                            <span>@member.Position</span>
+                            <h3><a href="#">@member.FullName</a></h3>
+                            <div class="social-icon">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-basketball-ball"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
                             </div>
-                            <ul class="destinations-content">
-                                <li class="title">
-                                    <a href="/destination-details/@item.Id">@item.Title</a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             }
         </div>
-        <div class="page-nav-wrap mt-5 text-center wow fadeInUp" data-wow-delay=".3s">
-            <ul>
-                <li><a class="page-numbers" href="#">01</a></li>
-                <li><a class="page-numbers" href="#">02</a></li>
-                <li><a class="page-numbers" href="#">03</a></li>
-                <li><a class="page-numbers" href="#">04</a></li>
-                <li><a class="page-numbers" href="#">05</a></li>
-            </ul>
-        </div>
     </div>
-</div>
+</section>
