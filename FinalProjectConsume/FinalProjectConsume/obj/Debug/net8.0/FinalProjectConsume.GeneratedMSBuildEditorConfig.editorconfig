@@ -26,6 +26,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Asus\Desktop\FinalProject\FinalProjectConsume\FinalProjectConsume
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Areas/Admin/Views/AboutAgency/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRBZ2VuY3lcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Areas/Admin/Views/AboutAgency/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRBZ2VuY3lcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Areas/Admin/Views/AboutAgency/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRBZ2VuY3lcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Areas/Admin/Views/AboutAgency/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRBZ2VuY3lcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Asus/Desktop/FinalProject/FinalProjectConsume/FinalProjectConsume/Areas/Admin/Views/Activity/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWN0aXZpdHlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

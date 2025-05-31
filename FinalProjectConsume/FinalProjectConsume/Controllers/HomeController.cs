@@ -22,14 +22,14 @@ namespace FinalProjectConsume.Controllers
         private readonly INewsLetterService _newsLetterService;
         private readonly ISliderInfoService _sliderInfoService;
         private readonly ISpecialOfferService _specialOfferService;
-
+        private readonly IAboutAgencyService _aboutAgencyService;
         public HomeController(IBrandService brandService,
                              IInstagramService instagramService, IBlogService blogService,
                              IDestinationFeatureService destinationFeatureService,
                              ITeamMemberService teamMemberService,
                              ITrandingDestinationService trandingDestinationService, ITourService tourService
                            , ISliderService sliderService, INewsLetterService newsLetterService, ISliderInfoService sliderInfoService, 
-                            ISpecialOfferService specialOfferService)
+                            ISpecialOfferService specialOfferService, IAboutAgencyService aboutAgencyService)
         {
             _brandService = brandService;
             _instagramService = instagramService;
@@ -42,6 +42,7 @@ namespace FinalProjectConsume.Controllers
             _newsLetterService = newsLetterService;
             _sliderInfoService = sliderInfoService;
             _specialOfferService = specialOfferService;
+            _aboutAgencyService = aboutAgencyService;
         }
         public async Task<IActionResult> Index()
         {
@@ -55,6 +56,7 @@ namespace FinalProjectConsume.Controllers
             var sliders = await _sliderService.GetAllAsync();
             var sliderInfos = await _sliderInfoService.GetAllAsync();
             var specialOffer = await _specialOfferService.GetAllAsync();
+            var aboutAgency = await _aboutAgencyService.GetAllAsync();
 
             var model = new HomePageVM
             {
@@ -68,6 +70,7 @@ namespace FinalProjectConsume.Controllers
                 Sliders = sliders.ToList(),
                 SliderInfos = sliderInfos.ToList(),
                 SpecialOffers = specialOffer.ToList(),
+                AboutAgencies = aboutAgency.ToList(),
             };
 
             return View(model);

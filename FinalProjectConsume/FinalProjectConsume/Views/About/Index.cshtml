@@ -1,4 +1,7 @@
-﻿        <!-- Search Section Start -->
+﻿@model AboutPageVM 
+       
+
+<!-- Search Section Start -->
 <div class="header-search-bar d-flex align-items-center">
     <button class="search-close">×</button>
     <div class="container">
@@ -470,43 +473,25 @@
 </section>
 
 <!-- Brand Section Start -->
-<div class="brand-section fix section-padding">
+<div class="brand-section fix section-padding sect-bg pt-0">
     <div class="container">
-        <p class="brand-text wow fadeInUp" data-wow-delay=".3s">
+        <p class="brand-text wow fadeInUp">
             Join Hands with Our Trusted Partners to Discover Exclusive Travel Experiences, Unmatched Comfort, and Seamless Journeys Worldwide
         </p>
         <div class="swiper brand-slider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="brand-img text-center">
-                        <img src="assets/img/brand/01.png" alt="img">
+
+                @foreach (var item in Model.Brands)
+                {
+                    <div class="swiper-slide">
+                        <div class="brand-img text-center">
+                            <img src="@item.Image" alt="img">
+                        </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="brand-img text-center">
-                        <img src="assets/img/brand/02.png" alt="img">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="brand-img text-center">
-                        <img src="assets/img/brand/03.png" alt="img">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="brand-img text-center">
-                        <img src="assets/img/brand/04.png" alt="img">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="brand-img text-center">
-                        <img src="assets/img/brand/05.png" alt="img">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="brand-img text-center">
-                        <img src="assets/img/brand/06.png" alt="img">
-                    </div>
-                </div>
+                }
+
+
+
             </div>
         </div>
     </div>

@@ -11,11 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\assets\.DS_Store" />
     <None Include="wwwroot\assets\css\.DS_Store" />
     <None Include="wwwroot\assets\scss\.DS_Store" />
