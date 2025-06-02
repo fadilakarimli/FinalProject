@@ -26,6 +26,7 @@ builder.Services.AddScoped<ISliderInfoService, SliderInfoService>();
 builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
 builder.Services.AddScoped<IExperienceService, ExperienceService>();
 builder.Services.AddScoped<IAboutAgencyService, AboutAgencyService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 
 var app = builder.Build(); 

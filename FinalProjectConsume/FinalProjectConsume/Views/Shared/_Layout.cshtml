@@ -225,6 +225,21 @@
                                                     Contact
                                                 </a>
                                             </li>
+                                            <li style="position: relative; display: inline-block;">
+                                                <a onclick="showAuthOptions()">
+                                                    <i class="fas fa-user"></i>
+                                                </a>
+                                                <div id="auth-options" style="display: none; position: absolute; top: 100%; left: 0; background: white; padding: 5px; border: 1px solid #ccc; z-index: 100; font-size: 14px; min-width: 120px; text-align: center; border-radius: 5px;">
+                                                    <a asp-action="Login" asp-controller="Account" style="display: block; padding: 5px; text-decoration: none; color: black;">Login</a>
+                                                    <a asp-action="Register" asp-controller="Account" style="display: block; padding: 5px; text-decoration: none; color: black;">Register</a>
+                                                </div>
+                                            </li>
+
+
+                                            <li>
+                                                <a><i class="fas fa-shopping-cart"></i></a>
+                                            </li>
+                                         
                                         </ul>
                                     </nav>
                                 </div>
@@ -238,6 +253,7 @@
                                     <h6><a href="tel:+8809533309">+88 (09) 53 33 09</a></h6>
                                 </div>
                             </div>
+
                             <div class="header-search">
                                 <button class="d-flex align-items-center search-toggle"><i class="far fa-search"></i></button>
                             </div>
@@ -513,3 +529,11 @@
     <script src="~/admin/js/custom.js"></script>
 </body>
 </html>
+
+
+<script>
+    function showAuthOptions() {
+        var authDiv = document.getElementById("auth-options");
+        authDiv.style.display = (authDiv.style.display === "none") ? "block" : "none";
+    }
+</script>
