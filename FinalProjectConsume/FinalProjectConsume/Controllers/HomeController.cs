@@ -76,6 +76,14 @@ namespace FinalProjectConsume.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> LoadMoreTours(int skip)
+        {
+            var tours = await _tourService.GetAllAsync();
+            var nextTours = tours.Skip(skip).Take(4).ToList();
+
+            return Json(nextTours);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

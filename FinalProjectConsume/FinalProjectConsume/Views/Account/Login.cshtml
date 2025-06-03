@@ -149,21 +149,28 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form>
-        <h3>Login Here</h3>
+ <form asp-action="Login" asp-controller="Account" method="post">
 
-        <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username">
+    <h3>Login Here</h3>
 
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
+    <label for="username">Username</label>
+    <input type="text" name="Email" placeholder="Email or Phone" id="username" required>
 
-        <button>Log In</button>
-        <div class="social">
-            <div class="go"><i class="fab fa-google"></i>  Google</div>
-            <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        <label for="userPassword">Password</label>
+        <div style="position: relative; display: flex; align-items: center;">
+            <input type="password" id="userPassword" name="UserPassword" placeholder="Password">
+            <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; cursor: pointer;"></i>
         </div>
-    </form>
+
+    <button type="submit">Log In</button>
+
+</form>
+
 </body>
 </html>
+
+<script src="~/admin/js/custom.js"></script>
+
+
+
 

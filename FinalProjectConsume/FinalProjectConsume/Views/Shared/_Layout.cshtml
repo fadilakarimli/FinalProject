@@ -228,10 +228,26 @@
                                             <li style="position: relative; display: inline-block;">
                                                 <a onclick="showAuthOptions()">
                                                     <i class="fas fa-user"></i>
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        <span style="margin-left: 5px;">
+                                                            @User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value
+                                                        </span>
+                                                    }
                                                 </a>
+
                                                 <div id="auth-options" style="display: none; position: absolute; top: 100%; left: 0; background: white; padding: 5px; border: 1px solid #ccc; z-index: 100; font-size: 14px; min-width: 120px; text-align: center; border-radius: 5px;">
-                                                    <a asp-action="Login" asp-controller="Account" style="display: block; padding: 5px; text-decoration: none; color: black;">Login</a>
-                                                    <a asp-action="Register" asp-controller="Account" style="display: block; padding: 5px; text-decoration: none; color: black;">Register</a>
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        <form asp-action="Logout" asp-controller="Account" method="post" style="margin: 0;">
+                                                            <button type="submit" style="background: none; border: none; color: black; padding: 5px; cursor: pointer;">Logout</button>
+                                                        </form>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="Login" asp-controller="Account" style="display: block; padding: 5px; text-decoration: none; color: black;">Login</a>
+                                                        <a asp-action="Register" asp-controller="Account" style="display: block; padding: 5px; text-decoration: none; color: black;">Register</a>
+                                                    }
                                                 </div>
                                             </li>
 
@@ -530,10 +546,22 @@
 </body>
 </html>
 
-
 <script>
     function showAuthOptions() {
         var authDiv = document.getElementById("auth-options");
-        authDiv.style.display = (authDiv.style.display === "none") ? "block" : "none";
+        if (authDiv.style.display === "none" || authDiv.style.display === "") {
+            authDiv.style.display = "block";
+        } else {
+            authDiv.style.display = "none";
+        }
     }
+
+    // Hide dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+        var authDiv = document.getElementById("auth-options");
+        var button = event.target.closest("li");
+        if (!button || !button.contains(authDiv)) {
+            authDiv.style.display = "none";
+        }
+    });
 </script>

@@ -1,10 +1,11 @@
-﻿using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+﻿using FinalProjectConsume.Models.Account;
 
 namespace FinalProjectConsume.Services.Interfaces
 {
     public interface IAccountService
     {
-        Task<HttpResponseMessage> LoginAsync(Login model);
+        Task<bool> LoginAsync(Login model);
         Task<bool> RegisterAsync(Register model);
+        Task<string> VerifyEmailAsync(string email, string token);
     }
 }

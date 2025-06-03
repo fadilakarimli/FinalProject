@@ -3,48 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\controllers\\tourcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\controllers\\tourcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\services\\tourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\services\\tourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\models\\account\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\models\\account\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\viewmodels\\ui\\homepagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\viewmodels\\ui\\homepagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\services\\interfaces\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\services\\interfaces\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\services\\aboutagencyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\services\\aboutagencyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\models\\account\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\models\\account\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\services\\interfaces\\itourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\services\\interfaces\\itourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,149 +34,84 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Program.cs",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Program.cs",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Program.cs",
-              "RelativeToolTip": "FinalProjectConsume\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T15:46:08.411Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AboutAgencyService.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\AboutAgencyService.cs",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Services\\AboutAgencyService.cs",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\AboutAgencyService.cs",
-              "RelativeToolTip": "FinalProjectConsume\\Services\\AboutAgencyService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T15:42:28.166Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AccountService.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\AccountService.cs",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Services\\AccountService.cs",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\AccountService.cs",
-              "RelativeToolTip": "FinalProjectConsume\\Services\\AccountService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAuwA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T15:42:15.349Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Register.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Account\\Register.cs",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Models\\Account\\Register.cs",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Account\\Register.cs",
-              "RelativeToolTip": "FinalProjectConsume\\Models\\Account\\Register.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAgAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T15:40:41.463Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Account\\Login.cs",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Models\\Account\\Login.cs",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Account\\Login.cs",
-              "RelativeToolTip": "FinalProjectConsume\\Models\\Account\\Login.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T15:40:34.846Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IAccountService.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\Interfaces\\IAccountService.cs",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Services\\Interfaces\\IAccountService.cs",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\Interfaces\\IAccountService.cs",
-              "RelativeToolTip": "FinalProjectConsume\\Services\\Interfaces\\IAccountService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T15:39:43.432Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "FinalProjectConsume\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBMAAAAiAAAAAAAAAA==",
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Controllers\\HomeController.cs*",
+              "RelativeToolTip": "FinalProjectConsume\\Controllers\\HomeController.cs*",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAYwE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T15:37:27.031Z",
+              "WhenOpened": "2025-06-03T20:21:57.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "_ViewStart.cshtml",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\_ViewStart.cshtml",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Views\\_ViewStart.cshtml",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\_ViewStart.cshtml",
-              "RelativeToolTip": "FinalProjectConsume\\Views\\_ViewStart.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T13:43:25.148Z",
+              "DocumentIndex": 1,
+              "Title": "TourController.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Controllers\\TourController.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Controllers\\TourController.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Controllers\\TourController.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Controllers\\TourController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T20:20:49.124Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Account\\Register.cshtml",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Views\\Account\\Register.cshtml",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Account\\Register.cshtml",
-              "RelativeToolTip": "FinalProjectConsume\\Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAAAIkAAAAHAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "FinalProjectConsume\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAsCAAAAAAAAAAAAANkCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T12:56:13.235Z",
+              "WhenOpened": "2025-06-03T20:18:59.931Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "FinalProjectConsume\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAJkAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T12:53:57.771Z",
+              "DocumentIndex": 4,
+              "Title": "HomePageVM.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\ViewModels\\UI\\HomePageVM.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\ViewModels\\UI\\HomePageVM.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\ViewModels\\UI\\HomePageVM.cs",
+              "RelativeToolTip": "FinalProjectConsume\\ViewModels\\UI\\HomePageVM.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T20:18:52.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TourService.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\TourService.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Services\\TourService.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\TourService.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Services\\TourService.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAswFkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T20:18:43.872Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "FinalProjectConsume\\Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T12:49:16.781Z",
+              "Title": "ITourService.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\Interfaces\\ITourService.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Services\\Interfaces\\ITourService.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\Interfaces\\ITourService.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Services\\Interfaces\\ITourService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T20:18:16.805Z",
               "EditorCaption": ""
             }
           ]

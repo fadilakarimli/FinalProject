@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TPXp9IZj9Q2Cm65VxjSmNqDvRuH8I9wu4QO1YXyd5F8=",
+  "Hash": "i/ALknoJblJ+RhN5UhitozTXYemZlUshjEhnlcbqu3Q=",
   "Source": "FinalProjectConsume",
   "BasePath": "_content/FinalProjectConsume",
   "Mode": "Default",
@@ -8907,6 +8907,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\scss\\main.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\wwwroot\\confirm\\verifyemail.html",
+      "SourceId": "FinalProjectConsume",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\wwwroot\\",
+      "BasePath": "_content/FinalProjectConsume",
+      "RelativePath": "confirm/verifyemail.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\confirm\\verifyemail.html"
     }
   ]
 }

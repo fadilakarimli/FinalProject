@@ -3,9 +3,18 @@ using FinalProjectConsume.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuthentication("CookieAuth")
+    .AddCookie("CookieAuth", options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+    });
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();      
+
 
 builder.Services.AddHttpClient();
 
@@ -44,6 +53,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 

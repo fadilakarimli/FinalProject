@@ -270,19 +270,21 @@
                 Our attraction passes save you more than buying individual tickets for your tour <br> package system. Our attraction passes save you more than.
             </p>
         </div>
-        <div class="row">
-            @foreach (var tour in Model.Tours)
+        <div class="row" id="tour-container">
+            @{
+                var initialTours = Model.Tours.Take(4).ToList();
+            }
+            @foreach (var tour in initialTours)
             {
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                <div class="col-xl-3 col-lg-6 col-md-6 tour-item">
+                    <!-- tour content -->
                     <div class="tour-box-items">
                         <div class="thumb">
                             <img src="@tour.ImageUrl" alt="Tour image" />
                         </div>
                         <div class="content">
                             <span>@tour.CityName</span>
-                            <h4>
-                                <a href="/Tour/Details/@tour.Id">@tour.Name</a>
-                            </h4>
+                            <h4><a href="/Tour/Details/@tour.Id">@tour.Name</a></h4>
                             <h6>
                                 From <span>$@tour.Price</span>
                                 @if (tour.OldPrice.HasValue)
@@ -291,19 +293,16 @@
                                 }
                             </h6>
                             <ul class="list">
-                                <li>
-                                    <i class="far fa-calendar"></i>
-                                    @tour.Duration
-                                </li>
-                                <li>
-                                    <i class="far fa-flag"></i>
-                                    @tour.CountryCount Countries
-                                </li>
+                                <li><i class="far fa-calendar"></i> @tour.Duration</li>
+                                <li><i class="far fa-flag"></i> @tour.CountryCount Countries</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             }
+        </div>
+        <div class="text-center mt-4">
+            <button id="show-more-btn" class="btn btn-primary">Show More</button>
         </div>
     </div>
 </section>
@@ -728,6 +727,50 @@
         </div>
     </div>
 </div>
+<script>
+    let skipCount = 4;
+    const totalTours = @Model.Tours.Count();
 
+    document.getElementById("show-more-btn").addEventListener("click", function () {
+        if (skipCount >= totalTours) {
+            window.location.href = "/Tour";
+            return;
+        }
 
-    
+        fetch(`/Home/LoadMoreTours?skip=${skipCount}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(tour => {
+                    const container = document.getElementById("tour-container");
+                    const tourItem = document.createElement("div");
+                    tourItem.className = "col-xl-3 col-lg-6 col-md-6 tour-item";
+                    tourItem.innerHTML = `
+                            <div class="tour-box-items">
+                                <div class="thumb">
+                                    <img src="${tour.imageUrl}" alt="Tour image" />
+                                </div>
+                                <div class="content">
+                                    <span>${tour.cityName}</span>
+                                    <h4><a href="/Tour/Details/${tour.id}">${tour.name}</a></h4>
+                                    <h6>From <span>$${tour.price}</span>${tour.oldPrice ? `<del>$${tour.oldPrice}</del>` : ""}</h6>
+                                    <ul class="list">
+                                        <li><i class="far fa-calendar"></i> ${tour.duration}</li>
+                                        <li><i class="far fa-flag"></i> ${tour.countryCount} Countries</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `;
+                    container.appendChild(tourItem);
+                });
+                skipCount += 4;
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+            });
+    });
+</script>
