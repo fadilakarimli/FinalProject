@@ -12,10 +12,10 @@ namespace FinalProjectConsume.Services
             _httpClient = httpClientFactory.CreateClient();
         }
 
-        public async Task<bool> LoginAsync(Login model)
+        public async Task<HttpResponseMessage> LoginAsync(Login model)
         {
             var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Login", model);
-            return response.IsSuccessStatusCode;
+            return response;
         }
 
 

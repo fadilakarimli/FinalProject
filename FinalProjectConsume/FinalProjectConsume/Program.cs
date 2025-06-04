@@ -1,5 +1,6 @@
 using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,12 +12,29 @@ builder.Services.AddAuthentication("CookieAuth")
     });
 
 
+builder.Services.AddAuthorization();
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();      
 
 
 builder.Services.AddHttpClient();
+
+
+
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+    opt.User.RequireUniqueEmail = true;
+    opt.Password.RequiredUniqueChars = 1;
+    opt.Password.RequireNonAlphanumeric = true;
+    opt.Password.RequireDigit = true;
+    opt.Password.RequireLowercase = true;
+    opt.Password.RequireUppercase = true;
+    opt.SignIn.RequireConfirmedEmail = true;
+});
+
 
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<IInstagramService, InstagramService>();
@@ -36,6 +54,9 @@ builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
 builder.Services.AddScoped<IExperienceService, ExperienceService>();
 builder.Services.AddScoped<IAboutAgencyService, AboutAgencyService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IChooseUsAboutService, ChooseUsAboutService>();
+builder.Services.AddScoped<IAboutTeamMemberService, AboutTeamMemberService>();
+builder.Services.AddScoped<IAboutAppService, AboutAppService>();
 
 
 var app = builder.Build(); 

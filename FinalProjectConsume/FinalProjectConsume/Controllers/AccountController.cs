@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace FinalProjectConsume.Controllers
 {
@@ -15,12 +16,14 @@ namespace FinalProjectConsume.Controllers
         {
             _accountService = accountService;
         }
+        [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            return View(new Login());
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(Login model)
         {
             if (!ModelState.IsValid)
@@ -28,24 +31,53 @@ namespace FinalProjectConsume.Controllers
                 return View(model);
             }
 
-            bool loginSuccess = await _accountService.LoginAsync(model);
-            if (loginSuccess)
+            var loginSuccess = await _accountService.LoginAsync(model);
+            var content = await loginSuccess.Content.ReadAsStringAsync();
+            if (!loginSuccess.IsSuccessStatusCode)
             {
-                var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, model.UserNameOrEmail),
-        };
+                ModelState.AddModelError(string.Empty, "Login failed. Please check your credentials.");
+                return View(model);
+            }
+            var loginResponse = JsonSerializer.Deserialize<LoginResponse>(content, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
-                var identity = new ClaimsIdentity(claims, "Login");
+            if (loginResponse != null && loginResponse.Success)
+            {
+                // SESSION 
+                //HttpContext.Session.SetString("AuthToken", loginResponse.Token);
+                //HttpContext.Session.SetString("UserName", loginResponse.UserName ?? "");
+                //var claims = new List<Claim>
+                //{
+                //    new Claim(ClaimTypes.Name, loginResponse.UserName ?? "")
+                //};
+
+                //if (loginResponse.Roles != null && loginResponse.Roles.Any())
+                //{
+                //    foreach (var role in loginResponse.Roles)
+                //    {
+                //        claims.Add(new Claim(ClaimTypes.Role, role));
+                //    }
+                //}
+
+                var identity = new ClaimsIdentity("CookieAuth");
+                identity.AddClaim(new Claim(ClaimTypes.Name, model.UserNameOrEmail));  
+
                 var principal = new ClaimsPrincipal(identity);
-
-                await HttpContext.SignInAsync(principal);
+                await HttpContext.SignInAsync("CookieAuth", principal);
 
                 return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                ModelState.AddModelError(string.Empty, loginResponse?.Error ?? "Login failed.");
+                return View(model);
+            }
 
-            ModelState.AddModelError("", "Invalid email or password");
-            return View(model);
+
+
+
         }
 
 

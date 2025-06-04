@@ -86,7 +86,7 @@
             line-height: 42px;
             text-align: center;
         }
-
+        SSSSSSS
         label{
             display: block;
             margin-top: 30px;
@@ -149,18 +149,18 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
- <form asp-action="Login" asp-controller="Account" method="post">
+    <form asp-action="Login" asp-controller="Account" method="post">
 
     <h3>Login Here</h3>
 
-    <label for="username">Username</label>
-    <input type="text" name="Email" placeholder="Email or Phone" id="username" required>
+        <input type="text" name="UserNameOrEmail" id="UserNameOrEmail" placeholder="UserNameOrEmail">
+        <input type="password" name="Password" id="userPassword" placeholder="Password">
 
-        <label for="userPassword">Password</label>
+    @*     <label for="Password">Password</label>
         <div style="position: relative; display: flex; align-items: center;">
-            <input type="password" id="userPassword" name="UserPassword" placeholder="Password">
+            <input type="Password" id="pass" name="Password" placeholder="Password">
             <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; cursor: pointer;"></i>
-        </div>
+        </div> *@
 
     <button type="submit">Log In</button>
 
@@ -169,7 +169,7 @@
 </body>
 </html>
 
-<script src="~/admin/js/custom.js"></script>
+@* <script src="~/admin/js/custom.js"></script> *@
 
 
 

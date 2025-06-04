@@ -16,4 +16,8 @@
     <None Include="wwwroot\assets\scss\.DS_Store" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>
