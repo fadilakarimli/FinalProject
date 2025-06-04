@@ -47,21 +47,20 @@
 <section class="team-section fix section-padding">
     <div class="container">
         <div class="row g-4">
-            @foreach (var member in Model.TeamMembers)
+            @foreach (var member in Model.AboutTeamMembers)
             {
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="team-card-items-4">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="team-box-items">
                         <div class="thumb">
-                            <img src="@member.Image" alt="img">
+                            <img src="@member.Image" alt="@member.FullName" />
                         </div>
                         <div class="content">
-                            <span>@member.Position</span>
-                            <h3><a href="#">@member.FullName</a></h3>
+                            <p>@member.Position</p>
+                            <h3><a asp-action="Detail" asp-route-id="@member.Id">@member.FullName</a></h3>
                             <div class="social-icon">
                                 <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-basketball-ball"></i></a>
                                 <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
                             </div>
                         </div>
                     </div>

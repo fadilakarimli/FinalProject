@@ -194,262 +194,115 @@
     <div class="destination-wrapper-22">
         <div class="swiper destination-auto-slider">
             <div class="swiper-wrapper slide-transtion">
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb">
-                            <img src="assets/img/destinations/19.jpg" alt="img">
+                @foreach (var item in Model.AboutDestinations)
+                {
+                        <div class="swiper-slide brand-slide-element">
+                            <div class="destination-items">
+                                <div class="destination-thumb">
+                                    <img src="@item.Image" alt="img">
+                                </div>
+                                <div class="destination-content">
+                                    <h3><a href="destination-details.html">@item.Name</a></h3>
+                                </div>
+                            </div>
                         </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Belgium</a></h3>
-                            <p>70 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb style-2">
-                            <img src="assets/img/destinations/20.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Thailand</a></h3>
-                            <p>70 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb">
-                            <img src="assets/img/destinations/21.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Vietnam</a></h3>
-                            <p>30 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb style-2">
-                            <img src="assets/img/destinations/22.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">England</a></h3>
-                            <p>45 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb">
-                            <img src="assets/img/destinations/23.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Australia</a></h3>
-                            <p>08 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb style-2">
-                            <img src="assets/img/destinations/24.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Morocco</a></h3>
-                            <p>34 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb">
-                            <img src="assets/img/destinations/25.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Argentina</a></h3>
-                            <p>89 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb style-2">
-                            <img src="assets/img/destinations/26.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Switzerland</a></h3>
-                            <p>70 + Places</p>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
     <div class="destination-wrapper-22 style-2">
         <div dir="rtl" class="swiper destination-auto-slider-2">
             <div class="swiper-wrapper slide-transtion">
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb">
-                            <img src="assets/img/destinations/26.jpg" alt="img">
+                @foreach (var item in Model.AboutDestinations)
+                {
+                        <div class="swiper-slide brand-slide-element">
+                            <div class="destination-items">
+                                <div class="destination-thumb style-2">
+                                    <img src="@item.Image" alt="img">
+                                </div>
+                                <div class="destination-content">
+                                    <h3><a href="destination-details.html">@item.Name</a></h3>
+                                </div>
+                            </div>
                         </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Dubai</a></h3>
-                            <p>70 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb style-2">
-                            <img src="assets/img/destinations/27.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Hong Kong</a></h3>
-                            <p>70 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb">
-                            <img src="assets/img/destinations/28.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Pakistan</a></h3>
-                            <p>45 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb style-2">
-                            <img src="assets/img/destinations/29.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Afghanistan</a></h3>
-                            <p>30 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb">
-                            <img src="assets/img/destinations/30.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Italy</a></h3>
-                            <p>34 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb style-2">
-                            <img src="assets/img/destinations/31.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Hungary</a></h3>
-                            <p>08 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb">
-                            <img src="assets/img/destinations/32.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Brazil</a></h3>
-                            <p>70 + Places</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide brand-slide-element">
-                    <div class="destination-items">
-                        <div class="destination-thumb style-2">
-                            <img src="assets/img/destinations/33.jpg" alt="img">
-                        </div>
-                        <div class="destination-content">
-                            <h3><a href="destination-details.html">Croatia</a></h3>
-                            <p>89 + Places</p>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- about Section Start -->
+
 <section class="about-section section-padding section-bg fix">
     <div class="container">
-        <div class="about-wrappper-2">
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="about-image">
-                        <img src="assets/img/about/02.png" alt="img" class="wow img-custom-anim-left">
-                        <div class="cricle-shape float-bob-y">
-                            <img src="assets/img/about/circle-shape.png" alt="img">
-                        </div>
-                        <div class="counter-box float-bob-y">
-                            <div class="content">
-                                <h2><span class="count">345</span>+</h2>
-                                <p>LOCATIONS WORLD WIDE</p>
+        @foreach (var item in Model.AboutTravils)
+        {
+            <div class="about-wrappper-2">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="about-image">
+                            <img src="@item.Image" alt="img" class="wow img-custom-anim-left" />
+                            <div class="cricle-shape float-bob-y">
+                                <img src="@item.SmallImage" alt="img" />
+                            </div>
+                            <div class="counter-box float-bob-y">
+                                <div class="content">
+                                    <h2><span class="count">345</span>+</h2>
+                                    <p>LOCATIONS WORLD WIDE</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-content">
-                        <div class="section-title">
-                            <span class="wow fadeInUp">About Travil Agency</span>
-                            <h2 class="wow fadeInUp" data-wow-delay=".3s">
-                                Our Journey Memorable <br>
-                                Adventures Worldwide
-                            </h2>
-                        </div>
-                        <p class="mt-3 mt-md-0 wow fadeInUp" data-wow-delay=".5s">
-                            Our attraction pass save you more than buying individual <br> tickets for your tour package system.
-                        </p>
-                        <div class="about-area">
-                            <div class="about-items wow fadeInUp" data-wow-delay=".3s">
-                                <div class="icon">
-                                    @* <i class="flaticon-support"></i> *@
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <div class="section-title">
+                                <span class="wow fadeInUp">@item.Title</span>
+                                <h2 class="wow fadeInUp" data-wow-delay=".3s">
+                                    @item.Subtitle
+                                </h2>
+                            </div>
+                            <p class="mt-3 mt-md-0 wow fadeInUp" data-wow-delay=".5s">
+                                @item.Desc
+                            </p>
+                            <div class="about-area">
+                                <div class="about-items wow fadeInUp" data-wow-delay=".3s">
+                                    <div class="icon">
+                                        @* iconlar burda qalır *@
+                                    </div>
+                                    <div class="content">
+                                        <h4>
+                                            24/7 Support for Hassle-Free Trips
+                                        </h4>
+                                        <p>
+                                            @item.SubDesc
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="content">
-                                    <h4>
-                                        24/7 Support for Hassle-Free Trips
-                                    </h4>
-                                    <p>
-                                        Our attraction pass save you more than buying individual tickets for your tour package system.
-                                    </p>
+                                <div class="about-items wow fadeInUp" data-wow-delay=".5s">
+                                    <div class="icon">
+                                        @* iconlar burda qalır *@
+                                    </div>
+                                    <div class="content">
+                                        <h4>
+                                            Exclusive Deals on Top Destinations
+                                        </h4>
+                                        <p>
+                                            Our attraction pass save you more than buying individual <br /> tickets for your tour package system.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="about-items wow fadeInUp" data-wow-delay=".5s">
-                                <div class="icon">
-                                    @* <i class="flaticon-exclusive"></i> *@
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        Exclusive Deals on Top Destinations
-                                    </h4>
-                                    <p>
-                                        Our attraction pass save you more than buying individual <br> tickets for your tour package system.
-                                    </p>
-                                </div>
-                            </div>
+                            <a href="about.html" class="theme-btn wow fadeInUp" data-wow-delay=".3s">
+                                <span>More About Travil</span> <i class="far fa-long-arrow-right"></i>
+                            </a>
                         </div>
-                        <a href="about.html" class="theme-btn wow fadeInUp" data-wow-delay=".3s">
-                            <span>More About Travil</span> <i class="far fa-long-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </section>
-
 <!-- Brand Section Start -->
 <div class="brand-section fix section-padding sect-bg pt-0">
     <div class="container">
@@ -564,94 +417,45 @@
 
 
 <!--  news-section Start -->
+
 <section class="news-section section-padding pt-0">
     <div class="container">
         <div class="section-title text-center">
             <span class="wow fadeInUp">Latest Blog & News</span>
-            <h2 class="wow fadeInUp" data-wow-delay=".3s">Latest Travel Insights and <br> Destination Guides</h2>
+            <h2 class="wow fadeInUp" data-wow-delay=".3s">
+                Latest Travel Insights and <br> Destination Guides
+            </h2>
         </div>
         <div class="row">
-            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                <div class="news-card-items">
-                    <div class="news-image">
-                        <img src="assets/img/news/news-08.jpg" alt="img">
-                        <ul class="post">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                29 August, 2025
-                            </li>
-                            <li class="style-2">Travel</li>
-                        </ul>
-                    </div>
-                    <div class="news-content">
-                        <h3>
-                            <a href="news-details.html">
-                                The ultimate southwest USA road <br> trip itinerary for your traveling
+            @foreach (var item in Model.AboutBlogs)
+            {
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                    <div class="news-card-items">
+                        <div class="news-image">
+                            <img src="@item.Image" alt="img">
+                            <ul class="post">
+                                <li>
+                                    <i class="far fa-calendar"></i>
+                                    @item.CreatedDate.ToString("dd MMMM, yyyy")
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="news-content">
+                            <h3>
+                                <a asp-controller="AboutBlog" asp-action="Detail" asp-route-id="@item.Id">
+                                    @item.Name
+                                </a>
+                            </h3>
+                            <p>
+                                @item.Desc
+                            </p>
+                            <a asp-controller="AboutBlog" asp-action="Detail" asp-route-id="@item.Id" class="theme-btn">
+                                <span>Read More</span> <i class="far fa-long-arrow-right"></i>
                             </a>
-                        </h3>
-                        <p>
-                            We offer carefully curated destinations and tours that capture the true essence.
-                        </p>
-                        <a href="news-details.html" class="theme-btn">
-                            <span>Read More</span> <i class="far fa-long-arrow-right"></i>
-                        </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                <div class="news-card-items">
-                    <div class="news-image">
-                        <img src="assets/img/news/news-09.jpg" alt="img">
-                        <ul class="post">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                29 August, 2025
-                            </li>
-                            <li class="style-2">Travel</li>
-                        </ul>
-                    </div>
-                    <div class="news-content">
-                        <h3>
-                            <a href="news-details.html">
-                                How can you traveling in London, <br> United kingdom from Italy
-                            </a>
-                        </h3>
-                        <p>
-                            We offer carefully curated destinations and tours that capture the true essence.
-                        </p>
-                        <a href="news-details.html" class="theme-btn">
-                            <span>Read More</span> <i class="far fa-long-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                <div class="news-card-items">
-                    <div class="news-image">
-                        <img src="assets/img/news/news-10.jpg" alt="img">
-                        <ul class="post">
-                            <li>
-                                <i class="far fa-calendar"></i>
-                                29 August, 2025
-                            </li>
-                            <li class="style-2">Travel</li>
-                        </ul>
-                    </div>
-                    <div class="news-content">
-                        <h3>
-                            <a href="news-details.html">
-                                The top 10 places to traveling in <br> the world with your family
-                            </a>
-                        </h3>
-                        <p>
-                            We offer carefully curated destinations and tours that capture the true essence.
-                        </p>
-                        <a href="tour-details.html" class="theme-btn">
-                            <span>Read More</span> <i class="far fa-long-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>

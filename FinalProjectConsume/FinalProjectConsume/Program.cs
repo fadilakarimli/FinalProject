@@ -57,6 +57,9 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IChooseUsAboutService, ChooseUsAboutService>();
 builder.Services.AddScoped<IAboutTeamMemberService, AboutTeamMemberService>();
 builder.Services.AddScoped<IAboutAppService, AboutAppService>();
+builder.Services.AddScoped<IAboutDestinationService, AboutDestinationService>();
+builder.Services.AddScoped<IAboutBlogService, AboutBlogService>();
+builder.Services.AddScoped<IAboutTravilService, AboutTravilService>();
 
 
 var app = builder.Build(); 

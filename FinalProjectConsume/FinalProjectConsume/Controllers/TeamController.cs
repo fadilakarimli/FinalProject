@@ -13,17 +13,22 @@ namespace FinalProjectConsume.Controllers
 {
     public class TeamController : Controller
     {
-        private readonly ITeamMemberService _teamMemberService;
-        public TeamController(ITeamMemberService teamMemberService)
+        //private readonly ITeamMemberService _teamMemberService;
+        private readonly IAboutTeamMemberService _aboutTeamMemberService;
+        public TeamController(ITeamMemberService teamMemberService, IAboutTeamMemberService aboutTeamMemberService)
         {
-            _teamMemberService = teamMemberService;
+            //_teamMemberService = teamMemberService;
+            _aboutTeamMemberService = aboutTeamMemberService;
         }
         public async Task<IActionResult> Index()
         {
-            var teamMembers = await _teamMemberService.GetAllAsync();
+            //var teamMembers = await _teamMemberService.GetAllAsync();
+            var aboutTeamMember = await _aboutTeamMemberService.GetAllAsync();
             var model = new TeamPageVM
             {
-                TeamMembers = teamMembers.ToList(),
+                AboutTeamMembers = aboutTeamMember.ToList(),
+
+                //TeamMembers = teamMembers.ToList(),
             };
 
             return View(model);

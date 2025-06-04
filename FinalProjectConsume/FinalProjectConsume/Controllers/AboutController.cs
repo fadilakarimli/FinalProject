@@ -18,14 +18,22 @@ namespace FinalProjectConsume.Controllers
         private readonly IChooseUsAboutService _chooseUsAboutService;
         private readonly IAboutTeamMemberService _aboutTeamMemberService;  
         private readonly IAboutAppService _aboutAppService;
+        private readonly IAboutDestinationService _aboutDestinationService;
+        private readonly IAboutBlogService _aboutBlogService;
+        private readonly IAboutTravilService _aboutTravilService;
 
         public AboutController(IBrandService brandService, IChooseUsAboutService chooseUsAboutService
-                             , IAboutTeamMemberService aboutTeamMemberService, IAboutAppService aboutAppService)
+                             , IAboutTeamMemberService aboutTeamMemberService, IAboutAppService aboutAppService,
+                              IAboutDestinationService aboutDestinationService, IAboutBlogService aboutBlogService,
+                             IAboutTravilService aboutTravilService)
         {
             _brandService = brandService;
             _chooseUsAboutService = chooseUsAboutService;
             _aboutTeamMemberService = aboutTeamMemberService;
             _aboutAppService = aboutAppService;
+            _aboutDestinationService = aboutDestinationService;
+            _aboutBlogService = aboutBlogService;
+            _aboutTravilService = aboutTravilService;
         }
         public async Task <IActionResult> Index()
         {
@@ -33,12 +41,18 @@ namespace FinalProjectConsume.Controllers
             var chooseUsAbout = await _chooseUsAboutService.GetAllAsync();
             var aboutTeamMember = await _aboutTeamMemberService.GetAllAsync();
             var aboutApp = await _aboutAppService.GetAllAsync();
+            var aboutDest = await _aboutDestinationService.GetAllAsync();
+            var aboutBlogs = await _aboutBlogService.GetAllAsync();
+            var aboutTravil = await _aboutTravilService.GetAllAsync();
             var model = new AboutPageVM
             {
                 Brands = brands.ToList(),
                 ChooseUsAbouts = chooseUsAbout.ToList(),
                 AboutTeamMembers = aboutTeamMember.ToList(),    
                 AboutApps = aboutApp.ToList(),
+                AboutDestinations = aboutDest.ToList(),
+                AboutBlogs = aboutBlogs.ToList(),
+                AboutTravils = aboutTravil.ToList(),
             };
 
             return View(model);
