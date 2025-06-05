@@ -1,8 +1,11 @@
 using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Services.AddAuthentication("CookieAuth")
     .AddCookie("CookieAuth", options =>
@@ -15,9 +18,11 @@ builder.Services.AddAuthentication("CookieAuth")
 builder.Services.AddAuthorization();
 
 
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession();      
+builder.Services.AddSession();
 
 
 builder.Services.AddHttpClient();
@@ -60,7 +65,7 @@ builder.Services.AddScoped<IAboutAppService, AboutAppService>();
 builder.Services.AddScoped<IAboutDestinationService, AboutDestinationService>();
 builder.Services.AddScoped<IAboutBlogService, AboutBlogService>();
 builder.Services.AddScoped<IAboutTravilService, AboutTravilService>();
-
+//
 
 var app = builder.Build(); 
 
@@ -71,6 +76,13 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost
+});
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
