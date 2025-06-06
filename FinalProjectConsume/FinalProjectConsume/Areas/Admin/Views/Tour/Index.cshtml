@@ -12,6 +12,7 @@
                     <th>Duration</th>
                     <th>Country Count</th>
                     <th>Price</th>
+                    <th>Capacity</th>
                     <th>City</th>
                     <th>Activity</th>
                     <th>Amenity</th>
@@ -31,7 +32,8 @@
                             <td>@item.Duration</td>
                             <td>@item.CountryCount</td>
                             <td>@item.Price.ToString("C")</td>
-                            <td>@item.CityName</td>
+                            <td>@item.Capacity</td>
+                            <td>@string.Join(", ", item.CityNames ?? new List<string>())</td>
                             <td>@string.Join(", ", item.ActivityNames ?? new List<string>())</td>
                             <td>@string.Join(", ", item.Amenities ?? new List<string>())</td>
                             <td>

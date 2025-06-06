@@ -65,6 +65,7 @@ builder.Services.AddScoped<IAboutAppService, AboutAppService>();
 builder.Services.AddScoped<IAboutDestinationService, AboutDestinationService>();
 builder.Services.AddScoped<IAboutBlogService, AboutBlogService>();
 builder.Services.AddScoped<IAboutTravilService, AboutTravilService>();
+builder.Services.AddScoped<IPlanService, PlanService>();
 //
 
 var app = builder.Build(); 

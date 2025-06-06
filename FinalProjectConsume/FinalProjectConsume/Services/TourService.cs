@@ -20,13 +20,20 @@ namespace FinalProjectConsume.Services
             content.Add(new StringContent(model.Name), "Name");
             content.Add(new StringContent(model.Duration), "Duration");
             content.Add(new StringContent(model.CountryIds.Count.ToString()), "CountryCount");
-            content.Add(new StringContent(model.Desc ?? ""), "Desc"); // 🔹 ƏLAVƏ
+            content.Add(new StringContent(model.Desc ?? ""), "Desc");
+
+            content.Add(new StringContent(model.StartTime.ToString("o")), "StartTime");
+            content.Add(new StringContent(model.EndTime.ToString("o")), "EndTime");
 
             content.Add(new StringContent(model.Price.ToString()), "Price");
             if (model.OldPrice != null)
                 content.Add(new StringContent(model.OldPrice.ToString()), "OldPrice");
 
-            content.Add(new StringContent(model.CityId.ToString()), "CityId");
+            content.Add(new StringContent(model.Capacity.ToString()), "Capacity");
+
+            foreach (var cityId in model.CityIds)
+                content.Add(new StringContent(cityId.ToString()), "CityIds");
+
 
             foreach (var activityId in model.ActivityIds)
                 content.Add(new StringContent(activityId.ToString()), "ActivityIds");
@@ -37,8 +44,8 @@ namespace FinalProjectConsume.Services
             foreach (var countryId in model.CountryIds)
                 content.Add(new StringContent(countryId.ToString()), "CountryIds");
 
-            foreach (var experienceId in model.ExperienceIds) // 🔹 ƏLAVƏ
-                content.Add(new StringContent(experienceId.ToString()), "ExperienceIds");
+            //foreach (var experienceId in model.ExperienceIds) 
+            //    content.Add(new StringContent(experienceId.ToString()), "ExperienceIds");
 
             if (model.ImageFile != null)
             {

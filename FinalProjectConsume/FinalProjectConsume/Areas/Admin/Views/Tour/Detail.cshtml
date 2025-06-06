@@ -22,6 +22,25 @@
         <label>Price:</label>
         <p>$@Model.Price</p>
     </div>
+    <div class="form-group">
+        <label>Start Time:</label>
+        <p>
+            @(Model.StartTime.HasValue
+                ? Model.StartTime.Value.ToString("g")
+                : "No start time available")
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label>End Time:</label>
+        <p>
+            @(Model.EndTime.HasValue
+                ? Model.EndTime.Value.ToString("g")
+                : "No end time available")
+        </p>
+    </div>
+
+
 
     @if (Model.OldPrice.HasValue)
     {
@@ -33,8 +52,21 @@
 
     <div class="form-group">
         <label>City:</label>
-        <p>@Model.CityName</p>
+        @if (Model.CityNames != null && Model.CityNames.Any())
+        {
+            <ul>
+                @foreach (var city in Model.CityNames)
+                {
+                    <li>@city</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No cities available.</p>
+        }
     </div>
+
 
     <div class="form-group">
         <label>Image:</label><br />
@@ -74,6 +106,28 @@
             <p>No amenities available.</p>
         }
     </div>
+
+    <div class="form-group">
+        <label>Plans:</label>
+        @if (Model.Plans != null && Model.Plans.Any())
+        {
+            foreach (var plan in Model.Plans)
+            {
+                
+                <p> Day: @plan.Day</p> 
+                <p> Title:@plan.Title</p> 
+                <p>Description: @plan.Description</p> 
+            }
+        }
+        else
+        {
+            <p>No plans available</p>
+        }
+
+    </div>
+
+
+   
 
     <div class="form-group">
         <label>Experiences:</label>

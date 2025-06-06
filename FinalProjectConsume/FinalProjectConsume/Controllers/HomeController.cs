@@ -23,13 +23,18 @@ namespace FinalProjectConsume.Controllers
         private readonly ISliderInfoService _sliderInfoService;
         private readonly ISpecialOfferService _specialOfferService;
         private readonly IAboutAgencyService _aboutAgencyService;
+        private readonly ICityService _cityService;
+        private readonly IActivityService _activityService;
+
+
         public HomeController(IBrandService brandService,
                              IInstagramService instagramService, IBlogService blogService,
                              IDestinationFeatureService destinationFeatureService,
                              ITeamMemberService teamMemberService,
                              ITrandingDestinationService trandingDestinationService, ITourService tourService
                            , ISliderService sliderService, INewsLetterService newsLetterService, ISliderInfoService sliderInfoService, 
-                            ISpecialOfferService specialOfferService, IAboutAgencyService aboutAgencyService)
+                            ISpecialOfferService specialOfferService, IAboutAgencyService aboutAgencyService, ICityService cityService,     
+                            IActivityService activityService)
         {
             _brandService = brandService;
             _instagramService = instagramService;
@@ -43,6 +48,8 @@ namespace FinalProjectConsume.Controllers
             _sliderInfoService = sliderInfoService;
             _specialOfferService = specialOfferService;
             _aboutAgencyService = aboutAgencyService;
+            _cityService = cityService;
+            _activityService = activityService;
         }
         public async Task<IActionResult> Index()
         {
@@ -57,6 +64,9 @@ namespace FinalProjectConsume.Controllers
             var sliderInfos = await _sliderInfoService.GetAllAsync();
             var specialOffer = await _specialOfferService.GetAllAsync();
             var aboutAgency = await _aboutAgencyService.GetAllAsync();
+            var city = await _cityService.GetAllAsync();
+            var activity = await _activityService.GetAllAsync();    
+
 
             var model = new HomePageVM
             {
@@ -71,6 +81,9 @@ namespace FinalProjectConsume.Controllers
                 SliderInfos = sliderInfos.ToList(),
                 SpecialOffers = specialOffer.ToList(),
                 AboutAgencies = aboutAgency.ToList(),
+                Cities = city.ToList(),
+                Activities = activity.ToList(),
+
             };
 
             return View(model);

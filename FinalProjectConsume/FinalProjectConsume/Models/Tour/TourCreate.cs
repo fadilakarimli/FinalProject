@@ -10,14 +10,22 @@ namespace FinalProjectConsume.Models.Tour
         public int CountryCount { get; set; }
         public decimal Price { get; set; }
         public decimal? OldPrice { get; set; }
-        public int CityId { get; set; }
+        public int Capacity { get; set; }
+        public List<int> CityIds { get; set; } = new List<int>();
         public IFormFile ImageFile { get; set; }
-        public List<int> ActivityIds { get; set; } = new List<int>();
+        public List<int> ActivityIds { get; set; }
         public List<int> AmenityIds { get; set; } = new List<int>();
         public List<int> CountryIds { get; set; }
-
-        // ✅ Yeni əlavə olunanlar:
         public string Desc { get; set; }
-        public List<int> ExperienceIds { get; set; } = new List<int>();
+        //public List<int> ExperienceIds { get; set; } = new List<int>();
+
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime StartTime { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime EndTime { get; set; }
     }
 }

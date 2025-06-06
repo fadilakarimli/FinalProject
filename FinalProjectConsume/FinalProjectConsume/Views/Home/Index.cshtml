@@ -79,15 +79,15 @@
                     <img src="assets/img/hero/location.png" alt="img">
                 </div>
                 <div class="content">
-                    <h5>Destination</h5>
+                    <h5>All Cities</h5>
                     <div class="form-clt">
                         <div class="form">
                             <select class="single-select w-100">
-                                <option>Your city or Region</option>
-                                <option>Australia</option>
-                                <option>India</option>
-                                <option>Italy</option>
-                                <option>Japan</option>
+                                <option disabled selected>Your city</option>
+                                @foreach (var city in Model.Cities)
+                                {
+                                    <option value="@city.Id">@city.Name</option>
+                                }
                             </select>
                         </div>
                     </div>
@@ -103,9 +103,10 @@
                         <div class="form">
                             <select class="single-select w-100">
                                 <option>Choose Activity</option>
-                                <option> Activity 01</option>
-                                <option> Activity 02</option>
-                                <option> Activity 03</option>
+                                @foreach (var item in Model.Activities)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
                             </select>
                         </div>
                     </div>
@@ -133,12 +134,7 @@
                     <h5>Guest</h5>
                     <div class="form-clt">
                         <div class="form">
-                            <select class="single-select w-100">
-                                <option> Your Guest</option>
-                                <option>  Guest 01</option>
-                                <option> Guest 02</option>
-                                <option> Guest 03</option>
-                            </select>
+                            <input type="number" class="form-control" placeholder="Number of Guests" min="1" />
                         </div>
                     </div>
                 </div>
@@ -283,7 +279,7 @@
                             <img src="@tour.ImageUrl" alt="Tour image" />
                         </div>
                         <div class="content">
-                            <span>@tour.CityName</span>
+                            <span>@(tour.CityNames != null && tour.CityNames.Count > 0 ? tour.CityNames[0] : "Şəhər yoxdur")</span>
                             <h4><a href="/Tour/Details/@tour.Id">@tour.Name</a></h4>
                             <h6>
                                 From <span>$@tour.Price</span>
@@ -292,6 +288,7 @@
                                     <del>$@tour.OldPrice</del>
                                 }
                             </h6>
+                            <h6>Capacity:@tour.Capacity</h6>
                             <ul class="list">
                                 <li><i class="far fa-calendar"></i> @tour.Duration</li>
                                 <li><i class="far fa-flag"></i> @tour.CountryCount Countries</li>
@@ -351,7 +348,7 @@
                                             <ul>
                                                 <li>
                                                     <i class="far fa-map-marker-alt"></i>
-                                                    @tour.CityName
+                                                    @tour.CityNames
                                                 </li>
                                             </ul>
                                             <div class="list">
@@ -727,13 +724,14 @@
         </div>
     </div>
 </div>
+
 <script>
     let skipCount = 4;
     const totalTours = @Model.Tours.Count();
 
     document.getElementById("show-more-btn").addEventListener("click", function () {
         if (skipCount >= totalTours) {
-            window.location.href = "/Tour";
+            document.getElementById("show-more-btn").style.display = "none"; // 👈 Yönləndirməni sildik, butonu gizlətdik
             return;
         }
 
@@ -768,9 +766,15 @@
                     container.appendChild(tourItem);
                 });
                 skipCount += 4;
+
+                // Bu hissəni əlavə edək ki, butonu gizlədək
+                if (skipCount >= totalTours) {
+                    document.getElementById("show-more-btn").style.display = "none";
+                }
             })
             .catch(error => {
                 console.error("Fetch error:", error);
             });
     });
+
 </script>

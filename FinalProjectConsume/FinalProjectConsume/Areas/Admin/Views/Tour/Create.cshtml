@@ -50,9 +50,30 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="CityId"></label>
-            <input asp-for="CityId" type="number" class="form-control" />
-            <span asp-validation-for="CityId" class="text-danger"></span>
+            <label asp-for="Capacity"></label>
+            <input asp-for="Capacity" type="number" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Select Cities</label>
+            @{
+                var cities = ViewBag.Cities as List<SelectListItem>;
+            }
+            @if (cities != null && cities.Any())
+            {
+                foreach (var item in cities)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                               name="CityIds" value="@item.Value" id="city_@item.Value" />
+                        <label class="form-check-label" for="city_@item.Value">@item.Text</label>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-danger">City məlumatları yüklənmədi.</p>
+            }
         </div>
 
         <div class="form-group">
@@ -68,16 +89,40 @@
 
         <div class="form-group">
             <label>Select Activities</label>
-            @foreach (var item in ViewBag.Activities as List<SelectListItem>)
-            {
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox"
-                           name="ActivityIds" value="@item.Value" id="activity_@item.Value" />
-                    <label class="form-check-label" for="activity_@item.Value">@item.Text</label>
-                </div>
+            @{
+                var activities = ViewBag.Activities as List<SelectListItem>;
             }
+            @if (activities != null && activities.Any())
+            {
+                foreach (var item in activities)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="ActivityIds" value="@item.Value" id="activity_@item.Value" />
+                        <label class="form-check-label" for="activity_@item.Value">@item.Text</label>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-danger">Activity məlumatları yüklənmədi.</p>
+            }
+
         </div>
+
+
         <div class="form-group">
+            <label asp-for="StartTime"></label>
+            <input asp-for="StartTime" type="datetime-local" class="form-control" />
+            <span asp-validation-for="StartTime" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="EndTime"></label>
+            <input asp-for="EndTime" type="datetime-local" class="form-control" />
+            <span asp-validation-for="EndTime" class="text-danger"></span>
+        </div>
+    
+      @*   <div class="form-group">
             <label>Select Experiences</label>
             @foreach (var item in ViewBag.Experiences as List<SelectListItem>)
             {
@@ -89,7 +134,7 @@
             }
         </div>
 
-
+ *@
         <div class="form-group">
             <label>Select Amenities</label>
             @foreach (var item in ViewBag.Amenities as List<SelectListItem>)

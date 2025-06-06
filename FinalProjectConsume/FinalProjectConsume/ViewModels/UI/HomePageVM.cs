@@ -1,6 +1,8 @@
 ﻿using FinalProjectConsume.Models.AboutAgency;
+using FinalProjectConsume.Models.Activity;
 using FinalProjectConsume.Models.Blog;
 using FinalProjectConsume.Models.Brand;
+using FinalProjectConsume.Models.City;
 using FinalProjectConsume.Models.DestinationFeature;
 using FinalProjectConsume.Models.Instagram;
 using FinalProjectConsume.Models.NewsLetter;
@@ -26,6 +28,8 @@ namespace FinalProjectConsume.ViewModels.UI
         public IEnumerable<NewsLetter> NewsLetters { get; set; }
         public IEnumerable<SliderInfo> SliderInfos { get; set; }
         public IEnumerable<SpecialOffer> SpecialOffers { get; set; }
+        public IEnumerable<City> Cities { get; set; }
         public IEnumerable<AboutAgency> AboutAgencies { get; set; }
+        public IEnumerable<Activity> Activities { get; set; }
     }
 }

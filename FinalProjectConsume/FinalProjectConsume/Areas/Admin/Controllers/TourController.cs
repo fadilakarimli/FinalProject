@@ -14,14 +14,17 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         private readonly IAmenityService _amenityService;
         private readonly ICountryService _countryService;
         private readonly IExperienceService _experienceService;
+        private readonly ICityService _cityService;
 
-        public TourController(ITourService tourService , IAmenityService amenityService , IActivityService activityService, ICountryService countryService, IExperienceService experienceService)
+        public TourController(ITourService tourService , IAmenityService amenityService , IActivityService activityService, ICountryService countryService
+                           , IExperienceService experienceService, ICityService cityService)
         {
             _tourService = tourService;
             _activityService = activityService;
             _amenityService = amenityService;
             _countryService = countryService;
             _experienceService = experienceService;
+            _cityService = cityService;
         }
 
         public async Task<IActionResult> Index()
@@ -33,9 +36,14 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         public async Task<IActionResult> Create()
         {
             var activities = await _activityService.GetAllAsync();
+            var cities = await _cityService.GetAllAsync();
             var amenities = await _amenityService.GetAllAsync();
             var countries = await _countryService.GetAllAsync();
-            var experiences = await _experienceService.GetAllAsync(); // 🔹 YENİ
+            //var experiences = await _experienceService.GetAllAsync(); // 🔹 YENİ
+
+            ViewBag.Cities = cities
+                 .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                 .ToList();
 
             ViewBag.Activities = activities
                 .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
@@ -49,27 +57,49 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
                 .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
                 .ToList();
 
-            ViewBag.Experiences = experiences
-                .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
-                .ToList(); // 🔹 ƏLAVƏ
+            //ViewBag.Experiences = experiences
+            //    .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+            //    .ToList(); // 🔹 ƏLAVƏ
 
             return View();
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> Create(TourCreate model)
+        public async Task<IActionResult> Create([FromForm]TourCreate model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+            {
+                // Eyni ViewBag-ləri POST-da da doldur:
+                var activities = await _activityService.GetAllAsync();
+                var amenities = await _amenityService.GetAllAsync();
+                var countries = await _countryService.GetAllAsync();
+                //var experiences = await _experienceService.GetAllAsync();
 
-            var response = await _tourService.CreateAsync(model);
-            if (response.IsSuccessStatusCode)
-                return RedirectToAction(nameof(Index));
 
-            ModelState.AddModelError(string.Empty, "Tour yaradılarkən xəta baş verdi.");
-            return View(model);
+                ViewBag.Activities = activities
+                    .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                    .ToList();
+
+                ViewBag.Amenities = amenities
+                    .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                    .ToList();
+
+                ViewBag.Countries = countries
+                    .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                    .ToList();
+
+                //ViewBag.Experiences = experiences
+                //    .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                //    .ToList();
+
+                return View(model);
+            }
+
+            // Əgər model düzgünsə:
+            await _tourService.CreateAsync(model);
+            return RedirectToAction(nameof(Index));
         }
-
+    
         public async Task<IActionResult> Edit(int id)
         {
             var tour = await _tourService.GetByIdAsync(id);
@@ -82,7 +112,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
                 CountryCount = tour.CountryCount,
                 Price = tour.Price,
                 OldPrice = tour.OldPrice,
-                CityId = tour.CityId,
+                Capacity = tour.Capacity 
             };
 
             return View(model);
@@ -111,6 +141,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             }
             return BadRequest();
         }
+        [HttpGet]
 
         public async Task<IActionResult> Detail(int id)
         {
