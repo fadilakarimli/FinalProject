@@ -1,6 +1,7 @@
 ﻿using FinalProjectConsume.Models.Tour;
 using FinalProjectConsume.Services.Interfaces;
 using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace FinalProjectConsume.Services
 {
@@ -12,6 +13,7 @@ namespace FinalProjectConsume.Services
         public TourService(IHttpClientFactory httpClientFactory)
         {
             _httpClient = httpClientFactory.CreateClient();
+            _httpClient.BaseAddress = new Uri("https://localhost:7145/");
         }
         public async Task<HttpResponseMessage> CreateAsync(TourCreate model)
         {
@@ -22,8 +24,8 @@ namespace FinalProjectConsume.Services
             content.Add(new StringContent(model.CountryIds.Count.ToString()), "CountryCount");
             content.Add(new StringContent(model.Desc ?? ""), "Desc");
 
-            content.Add(new StringContent(model.StartTime.ToString("o")), "StartTime");
-            content.Add(new StringContent(model.EndTime.ToString("o")), "EndTime");
+            content.Add(new StringContent(model.StartDate ?? ""), "StartDate");
+            content.Add(new StringContent(model.EndDate ?? ""), "EndDate");
 
             content.Add(new StringContent(model.Price.ToString()), "Price");
             if (model.OldPrice != null)
@@ -98,13 +100,50 @@ namespace FinalProjectConsume.Services
 
         public async Task<Tour> GetByIdAsync(int id)
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}GetById/{id}");
-            if (!response.IsSuccessStatusCode) return null;
+            var response = await _httpClient.GetAsync($"api/admin/Tour/GetById/{id}");
+            response.EnsureSuccessStatusCode();
 
-            var tour = await response.Content.ReadFromJsonAsync<Tour>();
+            var jsonString = await response.Content.ReadAsStringAsync();
+            var tour = JsonSerializer.Deserialize<Tour>(jsonString, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
             return tour;
         }
+
+        public async Task<IEnumerable<Tour>> SearchAsync(TourSearchRequest searchRequest)
+        {
+            var queryParams = new List<string>();
+
+            if (!string.IsNullOrEmpty(searchRequest.Name))
+                queryParams.Add($"Name={Uri.EscapeDataString(searchRequest.Name)}");
+
+            if (searchRequest.CityIds != null && searchRequest.CityIds.Any())
+                queryParams.AddRange(searchRequest.CityIds.Select(id => $"CityIds={id}"));
+
+            if (searchRequest.ActivityIds != null && searchRequest.ActivityIds.Any())
+                queryParams.AddRange(searchRequest.ActivityIds.Select(id => $"ActivityIds={id}"));
+
+            if (searchRequest.Capacity.HasValue)
+                queryParams.Add($"Capacity={searchRequest.Capacity.Value}");
+
+            if (searchRequest.StartDate.HasValue)
+                queryParams.Add($"StartDate={searchRequest.StartDate.Value:yyyy-MM-dd}");
+
+            var queryString = string.Join("&", queryParams);
+
+            var response = await _httpClient.GetAsync($"{_baseUrl}Search?{queryString}");
+            if (!response.IsSuccessStatusCode) return Enumerable.Empty<Tour>();
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<IEnumerable<Tour>>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            }) ?? Enumerable.Empty<Tour>();
+        }
+
 
 
     }

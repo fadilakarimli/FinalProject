@@ -142,12 +142,68 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             return BadRequest();
         }
         [HttpGet]
-
         public async Task<IActionResult> Detail(int id)
         {
             var tour = await _tourService.GetByIdAsync(id);
-            if (tour == null) return NotFound();
+
+            if (tour == null)
+                return NotFound();
+
+            if (!string.IsNullOrEmpty(tour.StartDate))
+            {
+                if (DateTime.TryParseExact(tour.StartDate, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out var startDate))
+                {
+                    Console.WriteLine($"Parsed StartDate: {startDate}");
+                }
+            }
+
+            if (!string.IsNullOrEmpty(tour.EndDate))
+            {
+                if (DateTime.TryParseExact(tour.EndDate, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out var endDate))
+                {
+                    Console.WriteLine($"Parsed EndDate: {endDate}");
+                }
+            }
+
             return View(tour);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Search()
+        {
+            var cities = await _cityService.GetAllAsync(); // Şəhər siyahısı
+            var activities = await _activityService.GetAllAsync(); // Fəaliyyət siyahısı
+
+            var vm = new TourSearchRequest
+            {
+                AvailableCities = cities,      // bunu TourSearchRequest-də əlavə elə
+                AvailableActivities = activities // eyni şəkildə buraya da
+            };
+
+            return View(vm);
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> SearchResults(string Name, List<int> CityIds, List<int> ActivityIds, int? Capacity, DateTime? StartDate)
+        {
+            var searchRequest = new TourSearchRequest
+            {
+                Name = Name,
+                CityIds = CityIds ?? new List<int>(),
+                ActivityIds = ActivityIds ?? new List<int>(),
+                Capacity = Capacity,
+                StartDate = StartDate,
+            };
+
+            var results = await _tourService.SearchAsync(searchRequest);
+
+            return View(results);
+        }
+
+
+
     }
 }

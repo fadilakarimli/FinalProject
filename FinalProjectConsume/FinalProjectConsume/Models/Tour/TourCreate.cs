@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace FinalProjectConsume.Models.Tour
 {
@@ -18,14 +19,10 @@ namespace FinalProjectConsume.Models.Tour
         public List<int> CountryIds { get; set; }
         public string Desc { get; set; }
         //public List<int> ExperienceIds { get; set; } = new List<int>();
+        [JsonPropertyName("startDate")]
+        public string StartDate { get; set; }
 
-
-        [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime StartTime { get; set; }
-
-        [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime EndTime { get; set; }
+        [JsonPropertyName("endDate")]
+        public string EndDate { get; set; }
     }
 }

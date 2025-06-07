@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Numerics;
+using System.Text.Json.Serialization;
 using PlanModel = FinalProjectConsume.Models.Plan;
 
 namespace FinalProjectConsume.Models.Tour
@@ -20,8 +21,12 @@ namespace FinalProjectConsume.Models.Tour
         public List<string> Amenities { get; set; }
         public List<string> ExperienceNames { get; set; }
         public List<PlanModel.Plan> Plans { get; set; }
-        public DateTime? StartTime { get; set; }
-        public DateTime? EndTime { get; set; }
+
+        [JsonPropertyName("startDate")]
+        public string StartDate { get; set; }
+
+        [JsonPropertyName("endDate")]
+        public string EndDate { get; set; }
 
 
     }
