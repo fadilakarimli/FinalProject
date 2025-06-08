@@ -1,6 +1,8 @@
 ﻿using FinalProjectConsume.Models.Tour;
 using FinalProjectConsume.Services.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 
 namespace FinalProjectConsume.Services
@@ -116,32 +118,24 @@ namespace FinalProjectConsume.Services
         {
             var queryParams = new List<string>();
 
-            if (!string.IsNullOrEmpty(searchRequest.Name))
-                queryParams.Add($"Name={Uri.EscapeDataString(searchRequest.Name)}");
+            //if (!string.IsNullOrEmpty(searchRequest.Name))
+            //    queryParams.Add($"Name={Uri.EscapeDataString(searchRequest.Name)}");
 
-            if (searchRequest.CityIds != null && searchRequest.CityIds.Any())
-                queryParams.AddRange(searchRequest.CityIds.Select(id => $"CityIds={id}"));
 
-            if (searchRequest.ActivityIds != null && searchRequest.ActivityIds.Any())
-                queryParams.AddRange(searchRequest.ActivityIds.Select(id => $"ActivityIds={id}"));
 
-            if (searchRequest.Capacity.HasValue)
-                queryParams.Add($"Capacity={searchRequest.Capacity.Value}");
+            IEnumerable<Tour> tours = new List<Tour>();
 
-            if (searchRequest.StartDate.HasValue)
-                queryParams.Add($"StartDate={searchRequest.StartDate.Value:yyyy-MM-dd}");
+            //var content = new StringContent(json, Encoding.UTF8, "application/json");
+            //var response = await _httpClient.PostAsync($"{_baseUrl}Search", content);
+            //if (!response.IsSuccessStatusCode) return Enumerable.Empty<Tour>();
 
-            var queryString = string.Join("&", queryParams);
+            //var json = await response.Content.ReadAsStringAsync();
 
-            var response = await _httpClient.GetAsync($"{_baseUrl}Search?{queryString}");
-            if (!response.IsSuccessStatusCode) return Enumerable.Empty<Tour>();
-
-            var json = await response.Content.ReadAsStringAsync();
-
-            return JsonSerializer.Deserialize<IEnumerable<Tour>>(json, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            }) ?? Enumerable.Empty<Tour>();
+            //return JsonSerializer.Deserialize<IEnumerable<Tour>>(json, new JsonSerializerOptions
+            //{
+            //    PropertyNameCaseInsensitive = true
+            //}) ?? Enumerable.Empty<Tour>();
+            return tours;
         }
 
 

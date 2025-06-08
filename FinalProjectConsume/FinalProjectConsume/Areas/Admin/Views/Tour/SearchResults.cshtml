@@ -5,7 +5,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
+            @* <th>CityName</th> *@
             <th>Duration</th>
             <th>Price</th>
             <th>Capacity</th>
@@ -17,7 +17,6 @@
         @foreach (var tour in Model)
         {
             <tr>
-                <td>@tour.Name</td>
                 <td>@tour.Duration</td>
                 <td>@tour.Price</td>
                 <td>@tour.Capacity</td>

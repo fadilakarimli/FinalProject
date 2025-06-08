@@ -1,12 +1,4 @@
-﻿using FinalProjectConsume.Models.Brand;
-using FinalProjectConsume.Models.DestinationFeature;
-using FinalProjectConsume.Models.Instagram;
-using FinalProjectConsume.Models.Slider;
-using FinalProjectConsume.Models.SliderInfo;
-using FinalProjectConsume.Models.SpecialOffer;
-using FinalProjectConsume.Models.TeamMember;
-using FinalProjectConsume.Models.TrandingDestination;
-using FinalProjectConsume.Services.Interfaces;
+﻿using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels.UI;
 using Microsoft.AspNetCore.Mvc;
 

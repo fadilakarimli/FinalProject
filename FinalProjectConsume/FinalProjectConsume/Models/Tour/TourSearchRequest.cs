@@ -2,7 +2,7 @@
 {
     public class TourSearchRequest
     {
-        public string? Name { get; set; }
+        //public string? Name { get; set; }
         public List<int>? CityIds { get; set; }
         public List<int>? ActivityIds { get; set; }
         public int? Capacity { get; set; }

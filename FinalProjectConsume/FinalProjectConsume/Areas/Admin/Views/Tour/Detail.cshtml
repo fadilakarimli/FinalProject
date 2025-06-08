@@ -28,9 +28,9 @@
             @if (!string.IsNullOrEmpty(Model.StartDate))
             {
                 DateTime dtStart;
-                if (DateTime.TryParseExact(Model.StartDate, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out dtStart))
+                if (DateTime.TryParseExact(Model.StartDate, "MM.dd.yyyy", null, System.Globalization.DateTimeStyles.None, out dtStart))
                 {
-                    @dtStart.ToString("dd.MM.yyyy")
+                    @dtStart.ToString("MM.dd.yyyy")
                 }
                 else
                 {

@@ -187,11 +187,11 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> SearchResults(string Name, List<int> CityIds, List<int> ActivityIds, int? Capacity, DateTime? StartDate)
+        public async Task<IActionResult> SearchResults(List<int> CityIds, List<int> ActivityIds, int? Capacity, DateTime? StartDate)
         {
             var searchRequest = new TourSearchRequest
             {
-                Name = Name,
+                //Name = Name,
                 CityIds = CityIds ?? new List<int>(),
                 ActivityIds = ActivityIds ?? new List<int>(),
                 Capacity = Capacity,

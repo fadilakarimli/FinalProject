@@ -31,5 +31,6 @@ namespace FinalProjectConsume.ViewModels.UI
         public IEnumerable<City> Cities { get; set; }
         public IEnumerable<AboutAgency> AboutAgencies { get; set; }
         public IEnumerable<Activity> Activities { get; set; }
+
     }
 }
