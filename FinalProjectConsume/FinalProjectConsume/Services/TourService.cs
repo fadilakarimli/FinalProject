@@ -113,32 +113,31 @@ namespace FinalProjectConsume.Services
 
             return tour;
         }
-
         public async Task<IEnumerable<Tour>> SearchAsync(TourSearchRequest searchRequest)
         {
-            var queryParams = new List<string>();
+            var apiModel = new
+            {
+                Cities = string.Join(",", searchRequest.CityIds ?? new List<int>()),
+                Activities = string.Join(",", searchRequest.ActivityIds ?? new List<int>()),
+                Date = searchRequest.StartDate ?? DateTime.Now,
+                GuestCount = searchRequest.Capacity ?? 1
+            };
 
-            //if (!string.IsNullOrEmpty(searchRequest.Name))
-            //    queryParams.Add($"Name={Uri.EscapeDataString(searchRequest.Name)}");
+            var json = JsonSerializer.Serialize(apiModel);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+            var response = await _httpClient.PostAsync("api/admin/Tour/Search", content);
+            if (!response.IsSuccessStatusCode) return Enumerable.Empty<Tour>();
 
+            var responseJson = await response.Content.ReadAsStringAsync();
 
-            IEnumerable<Tour> tours = new List<Tour>();
+            var result = JsonSerializer.Deserialize<IEnumerable<Tour>>(responseJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
-            //var content = new StringContent(json, Encoding.UTF8, "application/json");
-            //var response = await _httpClient.PostAsync($"{_baseUrl}Search", content);
-            //if (!response.IsSuccessStatusCode) return Enumerable.Empty<Tour>();
-
-            //var json = await response.Content.ReadAsStringAsync();
-
-            //return JsonSerializer.Deserialize<IEnumerable<Tour>>(json, new JsonSerializerOptions
-            //{
-            //    PropertyNameCaseInsensitive = true
-            //}) ?? Enumerable.Empty<Tour>();
-            return tours;
+            return result ?? Enumerable.Empty<Tour>();
         }
-
-
 
     }
 }

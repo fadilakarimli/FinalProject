@@ -1,5 +1,6 @@
 using FinalProjectConsume.Models.Brand;
 using FinalProjectConsume.Models.NewsLetter;
+using FinalProjectConsume.Models.Tour;
 using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels.UI;
