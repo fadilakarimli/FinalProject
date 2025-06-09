@@ -195,7 +195,7 @@ namespace FinalProjectConsume.Controllers
                 return View(userPasswordVM);
             }
 
-            var requestUri = "/api/client/Account/ResetPassword";
+            var requestUri = "https://localhost:7145/api/Account/ResetPassword";
             var response = await _httpClient.PostAsJsonAsync(requestUri, userPasswordVM);
 
             if (response.IsSuccessStatusCode)
