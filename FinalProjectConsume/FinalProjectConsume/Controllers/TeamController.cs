@@ -20,13 +20,14 @@ namespace FinalProjectConsume.Controllers
             //_teamMemberService = teamMemberService;
             _aboutTeamMemberService = aboutTeamMemberService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search )
         {
             //var teamMembers = await _teamMemberService.GetAllAsync();
             var aboutTeamMember = await _aboutTeamMemberService.GetAllAsync();
             var model = new TeamPageVM
             {
                 AboutTeamMembers = aboutTeamMember.ToList(),
+                SearchTerm = search ?? string.Empty
 
                 //TeamMembers = teamMembers.ToList(),
             };

@@ -13,7 +13,7 @@ namespace FinalProjectConsume.Controllers
             _tourService = tourService;
         }
 
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index(int id, string search)
         {
             var tour = await _tourService.GetByIdAsync(id);
             if (tour == null) return NotFound();
@@ -21,6 +21,8 @@ namespace FinalProjectConsume.Controllers
             var vm = new TourDetailVM
             {
                 Tour = tour,
+                SearchTerm = search ?? string.Empty
+
             };
 
             return View(vm);

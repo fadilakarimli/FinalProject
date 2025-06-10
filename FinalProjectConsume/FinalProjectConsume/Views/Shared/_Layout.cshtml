@@ -269,13 +269,62 @@
                                     <h6><a href="tel:+8809533309">+88 (09) 53 33 09</a></h6>
                                 </div>
                             </div>
+                            <form method="get" asp-action="Index" asp-controller="Tour" class="search-form">
+                                <input class="search-input"
+                                       type="text"
+                                       name="search"
+                                       autocomplete="off"
+                                       placeholder="Search tours..."
+                                       value="@Model.SearchTerm" />
+                                <button type="submit" class="search-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
 
-                            <div class="header-search">
-                                <button class="d-flex align-items-center search-toggle"><i class="far fa-search"></i></button>
-                            </div>
-                            <a href="tour-details.html" class="theme-btn">
+                            <style>
+                                .search-form {
+                                    display: flex;
+                                    background: white;
+                                    border: 2px solid #3498db;
+                                    border-radius: 25px;
+                                    overflow: hidden;
+                                    max-width: 300px;
+                                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                                }
+
+                                .search-input {
+                                    flex: 1;
+                                    border: none;
+                                    outline: none;
+                                    padding: 10px 16px;
+                                    font-size: 13px;
+                                    color: #000;
+                                }
+
+                                    .search-input::placeholder {
+                                        color: #999;
+                                    }
+
+                                    .search-input:focus {
+                                        color: #000;
+                                    }
+
+                                .search-btn {
+                                    background: #3498db;
+                                    border: none;
+                                    padding: 10px 16px;
+                                    color: white;
+                                    cursor: pointer;
+                                    transition: background 0.3s;
+                                }
+
+                                    .search-btn:hover {
+                                        background: #2980b9;
+                                    }
+                            </style>
+                           @*  <a href="tour-details.html" class="theme-btn">
                                 <span>Explore More</span> <i class="far fa-long-arrow-right"></i>
-                            </a>
+                            </a> *@
                             <div class="header__hamburger d-xl-none my-auto">
                                 <div class="sidebar__toggle">
                                     <div class="header-bar">

@@ -52,7 +52,7 @@ namespace FinalProjectConsume.Controllers
             _cityService = cityService;
             _activityService = activityService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
             var brands = await _brandService.GetAllAsync();
             var instagrams = await _instagramService.GetAllAsync();
@@ -84,7 +84,7 @@ namespace FinalProjectConsume.Controllers
                 AboutAgencies = aboutAgency.ToList(),
                 Cities = city.ToList(),
                 Activities = activity.ToList(),
-
+                SearchTerm = search ?? string.Empty
             };
 
             return View(model);

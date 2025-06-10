@@ -18,6 +18,8 @@ namespace FinalProjectConsume.ViewModels.UI
         public IEnumerable<AboutDestination> AboutDestinations { get; set; }
         public IEnumerable<AboutBlog> AboutBlogs { get; set; }
         public IEnumerable<AboutTravil> AboutTravils { get; set; }
+        public string SearchTerm { get; set; }
+
 
     }
 }

@@ -167,13 +167,13 @@
                         <div class="destinations-img">
                             <img src="@item.Image" alt="img">
                             <div class="icon">
-                                <a href="/destination-details/@item.Id">
+                                <a asp-controller="DestinationDetail" asp-action="Index" asp-route-id="@item.Id">
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
                             <ul class="destinations-content">
                                 <li class="title">
-                                    <a href="/destination-details/@item.Id">@item.Title</a>
+                                    <a asp-controller="DestinationDetail" asp-action="Index" asp-route-id="@item.Id">@item.Title</a>
                                 </li>
                             </ul>
                         </div>

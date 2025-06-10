@@ -35,7 +35,7 @@ namespace FinalProjectConsume.Controllers
             _aboutBlogService = aboutBlogService;
             _aboutTravilService = aboutTravilService;
         }
-        public async Task <IActionResult> Index()
+        public async Task <IActionResult> Index(string search)
         {
             var brands = await _brandService.GetAllAsync();
             var chooseUsAbout = await _chooseUsAboutService.GetAllAsync();
@@ -53,7 +53,10 @@ namespace FinalProjectConsume.Controllers
                 AboutDestinations = aboutDest.ToList(),
                 AboutBlogs = aboutBlogs.ToList(),
                 AboutTravils = aboutTravil.ToList(),
+                SearchTerm = search ?? string.Empty
+
             };
+
 
             return View(model);
         }

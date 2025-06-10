@@ -18,13 +18,15 @@ namespace FinalProjectConsume.Controllers
         {
             _trandingDestinationService = trandingDestinationService;
         }
-        public async Task <ActionResult> Index()
+        public async Task <ActionResult> Index(string search)
         {
             var trandingDestinatons = await _trandingDestinationService.GetAllAsync();
 
             var model = new DestinationPageVM
             {
                 TrandingDestinations = trandingDestinatons.ToList(),
+                SearchTerm = search ?? string.Empty
+
             };
 
             return View(model);

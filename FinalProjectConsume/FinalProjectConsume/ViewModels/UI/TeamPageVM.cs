@@ -7,6 +7,8 @@ namespace FinalProjectConsume.ViewModels.UI
     {
         //public IEnumerable<TeamMember> TeamMembers { get; set; }
         public IEnumerable<AboutTeamMember> AboutTeamMembers { get; set; }
+        public string SearchTerm { get; set; }
+
 
 
     }

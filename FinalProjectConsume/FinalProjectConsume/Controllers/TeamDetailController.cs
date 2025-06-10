@@ -14,7 +14,7 @@ namespace FinalProjectConsume.Controllers
             _aboutTeamMemberService = aboutTeamMemberService;
         }
 
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index(int id , string search)
         {
             var aboutTeam = await _aboutTeamMemberService.GetByIdAsync(id);
             if (aboutTeam == null) return NotFound();
@@ -22,6 +22,7 @@ namespace FinalProjectConsume.Controllers
             var vm = new TeamDetailVM
             {
                 AboutTeamMember = aboutTeam,
+                SearchTerm = search ?? string.Empty
             };
 
             return View(vm);
