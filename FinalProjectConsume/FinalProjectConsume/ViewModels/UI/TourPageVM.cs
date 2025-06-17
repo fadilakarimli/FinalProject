@@ -12,6 +12,5 @@ namespace FinalProjectConsume.ViewModels.UI
         public IEnumerable<Activity> Activities { get; set; }
         public IEnumerable<City> Cities { get; set; }
         public string? SearchTerm { get; set; }
-
     }
 }

@@ -1,6 +1,8 @@
-﻿using FinalProjectConsume.Services.Interfaces;
+﻿using FinalProjectConsume.Models.Tour;
+using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels.UI;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 using System.Text.Json;
 
 namespace FinalProjectConsume.Controllers
@@ -54,6 +56,7 @@ namespace FinalProjectConsume.Controllers
         }
 
 
+
         [HttpGet]
         public async Task<IActionResult> SearchByName(string? search)
         {
@@ -64,5 +67,25 @@ namespace FinalProjectConsume.Controllers
 
             return Json(searchObject);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Filter([FromBody] TourFilter filter)
+
+        {
+            var json = JsonSerializer.Serialize(filter);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("https://localhost:7145/api/Tour/Filter/filter", content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return BadRequest("Filter failed");
+            }
+            Console.WriteLine($"Filter status: {response.StatusCode}");
+            var resultJson = await response.Content.ReadAsStringAsync();
+            return Content(resultJson, "application/json");
+        }
+
+
+
     }
 }

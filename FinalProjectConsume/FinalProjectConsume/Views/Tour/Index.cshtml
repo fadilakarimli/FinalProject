@@ -49,147 +49,153 @@
     <div class="container">
         <div class="amazing-tour-wrapper">
             <div class="row g-4">
-                <div class="col-xl-3 col-lg-4">
-                    <div class="tour-sidebar-area sticky-style">
-                        <div class="tour-destination-sidebar">
-                            <div class="booking-list-area">
-                                <div class="booking-list">
-                                    <div class="icon">
-                                        <img src="~/assets/img/hero/location.png" alt="img">
-                                    </div>
-                                    <div class="content">
-                                        <h5>Destination</h5>
-                                        <div class="form-clt">
-                                            <div class="form">
-                                                <select class="single-select w-100" name="cityId">
-                                                    <option disabled selected>Your city</option>
-                                                    @foreach (var city in Model.Cities)
-                                                    {
-                                                        <option value="@city.Id">@city.Name</option>
-                                                    }
-                                                </select>
-                                            </div>
+                    <div class="col-xl-3 col-lg-4">
+                        <div class="tour-sidebar-area sticky-style">
+                            <div class="tour-destination-sidebar">
+                                <form id="filterForm" method="post">
+                                <div class="booking-list-area">
+                                    <!-- Destination -->
+                                    <div class="booking-list">
+                                        <div class="icon">
+                                            <img src="~/assets/img/hero/location.png" alt="img">
                                         </div>
-                                    </div>
-
-                                </div>
-                                <div class="booking-list">
-                                    <div class="icon">
-                                        <img src="~/assets/img/hero/location.png" alt="img">
-                                    </div>
-                                    <div class="content">
-                                        <h5>All Activity</h5>
-                                        <div class="form-clt">
-                                            <div class="form">
-                                                <select class="single-select w-100">
-                                                    <option disabled selected>Choose Activity</option>
-                                                    @if (Model.Activities != null && Model.Activities.Any())
-                                                    {
-                                                        foreach (var amenity in Model.Activities)
+                                        <div class="content">
+                                            <h5>Destination</h5>
+                                            <div class="form-clt">
+                                                <div class="form">
+                                                    <select class="single-select w-100" name="cityId">
+                                                        <option disabled selected>Your city</option>
+                                                        @foreach (var city in Model.Cities)
                                                         {
-                                                            <option value="@amenity.Id">@amenity.Name</option>
+                                                            <option value="@city.Id">@city.Name</option>
                                                         }
-                                                    }
-                                                    else
-                                                    {
-                                                        <option disabled>No activities found</option>
-                                                    }
-                                                </select>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                </div>
-                                <div class="booking-list">
-                                    <div class="icon">
-                                        <img src="~/assets/img/hero/location.png" alt="img">
-                                    </div>
-                                    <div class="content">
-                                        <h5>Departure Date</h5>
-                                        <div class="form-clt">
-                                            <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                                <input class="form-control" type="text" placeholder="Date Form" readonly="">
-                                                <span class="input-group-addon"><i class="far fa-calendar"></i></span>
+                                    <!-- Activity -->
+                                    <div class="booking-list">
+                                        <div class="icon">
+                                            <img src="~/assets/img/hero/location.png" alt="img">
+                                        </div>
+                                        <div class="content">
+                                            <h5>All Activity</h5>
+                                            <div class="form-clt">
+                                                <div class="form">
+                                                    <select class="single-select w-100" name="activityId">
+                                                        <option disabled selected>Choose Activity</option>
+                                                        @if (Model.Activities != null && Model.Activities.Any())
+                                                        {
+                                                            foreach (var activity in Model.Activities)
+                                                            {
+                                                                <option value="@activity.Id">@activity.Name</option>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <option disabled>No activities found</option>
+                                                        }
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="booking-list style-2">
-                                    <div class="icon">
-                                        <img src="~/assets/img/hero/location.png" alt="img">
-                                    </div>
-                                    <div class="content">
-                                        <h5>Guest</h5>
-                                        <div class="form-clt">
-                                            <div class="form">
-                                                <select class="single-select w-100">
-                                                    <option> Your Guest</option>
-                                                    <option>  Guest 01</option>
-                                                    <option> Guest 02</option>
-                                                    <option> Guest 03</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tour-sidebar-widget">
-                                    <div class="wid-title">
-                                        <h3>Filter by Price</h3>
-                                    </div>
-                                    <div class="price-range-wrapper">
-                                        <div class="slider-container">
-                                            <!-- Range sliders -->
-                                            <input type="range" id="min-slider" class="slider" min="130" max="500"
-                                                   value="130">
-                                            <input type="range" id="max-slider" class="slider" min="130" max="500"
-                                                   value="250">
-                                        </div>
-                                        <div class="price-text pt-4 d-flex gap-3">
-                                            <label for="amount">Price:</label>
-                                            <input type="text" id="amount" readonly style="border:0;">
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="tour-sidebar-widget">
-                                    <div class="wid-title">
-                                        <h3>Amenities</h3>
+                                    <!-- Departure Date -->
+                                    <div class="booking-list">
+                                        <div class="icon">
+                                            <img src="~/assets/img/hero/location.png" alt="img">
+                                        </div>
+                                        <div class="content">
+                                            <h5>Departure Date</h5>
+                                            <div class="form-clt">
+                                                <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                                    <input class="form-control" name="departureDate" type="text" placeholder="Date From" readonly="">
+                                                    <span class="input-group-addon"><i class="far fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="checkbox-items">
-                                        @if (Model.Amenities != null && Model.Amenities.Any())
-                                        {
-                                            foreach (var amenity in Model.Amenities)
+
+                                    <!-- Guests -->
+                                    <div class="booking-list style-2">
+                                        <div class="icon">
+                                            <img src="~/assets/img/hero/location.png" alt="img">
+                                        </div>
+                                        <div class="content">
+                                            <h5>Guest</h5>
+                                            <div class="form-clt">
+                                                <div class="form">
+                                                    <input type="number" name="guestCount" class="form-control" placeholder="Number of Guests" min="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Price Filter -->
+                                    <div class="tour-sidebar-widget">
+                                        <div class="wid-title">
+                                            <h3>Filter by Price</h3>
+                                        </div>
+                                        <div class="price-range-wrapper">
+                                            <div class="slider-container">
+                                                <input type="range" name="minPrice" id="min-slider" class="slider" min="130" max="500" value="130">
+                                                <input type="range" name="maxPrice" id="max-slider" class="slider" min="130" max="500" value="250">
+                                            </div>
+                                            <div class="price-text pt-4 d-flex gap-3">
+                                                <label for="amount">Price:</label>
+                                                <input type="text" id="amount" readonly style="border:0;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Amenities -->
+                                    <div class="tour-sidebar-widget">
+                                        <div class="wid-title">
+                                            <h3>Amenities</h3>
+                                        </div>
+                                        <div class="checkbox-items">
+                                            @if (Model.Amenities != null && Model.Amenities.Any())
                                             {
-                                                <label class="checkbox-single">
-                                                    <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                        <span class="checkbox-area d-center">
-                                                            <input type="checkbox" name="amenities" value="@amenity.Id" />
-                                                            <span class="checkmark d-center"></span>
+                                                foreach (var amenity in Model.Amenities)
+                                                {
+                                                    <label class="checkbox-single">
+                                                        <span class="d-flex gap-xl-3 gap-2 align-items-center">
+                                                            <span class="checkbox-area d-center">
+                                                                <input type="checkbox" name="amenities" value="@amenity.Id" />
+                                                                <span class="checkmark d-center"></span>
+                                                            </span>
+                                                            <span class="text-color">@amenity.Name</span>
                                                         </span>
-                                                        <span class="text-color">
-                                                            @amenity.Name
-                                                        </span>
-                                                    </span>
-                                                </label>
+                                                    </label>
+                                                }
                                             }
-                                        }
-                                        else
-                                        {
-                                            <p>No amenities found.</p>
-                                        }
+                                            else
+                                            {
+                                                <p>No amenities found.</p>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <!-- Search Button -->
+                                    <div class="search-widget">
+                                        <button type="submit" class="theme-btn">
+                                            <span>Search</span><i class="fal fa-search"></i>
+                                        </button>
                                     </div>
                                 </div>
+                                </form>
 
-                                <div class="search-widget">
-                                    <form action="#">
-                                        <button type="submit" class="theme-btn"><span>Search</span><i class="fal fa-search"></i></button>
-                                    </form>
-                                </div>
+                            <div id="filteredToursContainer">
+                                <!-- Filter nəticələri JS ilə bura yazılacaq -->
                             </div>
-                          
+
+                            </div>
                         </div>
                     </div>
-                </div>
+
                 <div class="col-xl-9 col-lg-8">
                     <div class="row justify-content-center">
                         @foreach (var tour in Model.Tours)
@@ -242,3 +248,99 @@
         </div>
     </div>
 </section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("filterForm");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const getSelectedOptionValue = (selector) => {
+                const el = document.querySelector(selector);
+                if (el && el.value) {
+                    return [el.value]; // Burda ID-ləri (value) göndəririk
+                }
+                return [];
+            };
+
+            const getCheckedValues = (name) => {
+                return Array.from(document.querySelectorAll(`input[name='${name}']:checked`)).map(x => x.value);
+            };
+
+            // const rawDate = document.querySelector("input[name='departureDate']").value;
+            // let parsedDate = null;
+
+            // if (rawDate) {
+            //     const [day, month, year] = rawDate.split("-");
+            //     parsedDate = new Date(`${year}-${month}-${day}`).toISOString();
+            // }
+
+            const rawDate = document.querySelector("input[name='departureDate']").value;
+            let parsedDate = null;
+
+            if (rawDate) {
+                // əgər tarix nöqtə ilə ayrılıbsa:
+                if (rawDate.includes(".")) {
+                    const [day, month, year] = rawDate.split(".");
+                    parsedDate = `${year}-${month}-${day}T00:00:00`;
+                }
+                // əgər tire ilə ayrılıbsa:
+                else if (rawDate.includes("-")) {
+                    const [day, month, year] = rawDate.split("-");
+                    parsedDate = `${year}-${month}-${day}T00:00:00`;
+                }
+            }
+
+
+            const filterDto = {
+                cityNames: getSelectedOptionValue("select[name='cityId']"),
+                activityNames: getSelectedOptionValue("select[name='activityId']"),
+
+                departureDate: parsedDate,
+                guestCount: parseInt(document.querySelector("input[name='guestCount']").value) || null,
+                minPrice: parseFloat(document.querySelector("input[name='minPrice']").value) || null,
+                maxPrice: parseFloat(document.querySelector("input[name='maxPrice']").value) || null,
+                amenityNames: getCheckedValues("amenities")
+            };
+
+
+            const response = await fetch("/Tour/Filter", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(filterDto),
+            });
+
+            const container = document.getElementById("filteredToursContainer");
+            container.innerHTML = "";
+
+            if (response.ok) {
+                const tours = await response.json();
+
+                if (tours.length === 0) {
+                    container.innerHTML = "<p>No tours found.</p>";
+                    return;
+                }
+
+                tours.forEach(tour => {
+                    const tourCard = `
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">${tour.name}</h5>
+                                    <p class="card-text">${tour.description ?? "No description"}</p>
+                                    <p><strong>Price:</strong> ${tour.price} AZN</p>
+                                    <p><strong>Departure:</strong> ${tour.startDate?.split("T")[0]}</p>
+                                </div>
+                            </div>
+                        `;
+                    container.innerHTML += tourCard;
+                });
+            } else {
+                container.innerHTML = "<p style='color:red;'>Filter failed.</p>";
+            }
+        });
+    });
+</script>

@@ -139,5 +139,29 @@ namespace FinalProjectConsume.Services
             return result ?? Enumerable.Empty<Tour>();
         }
 
+        public async Task<IEnumerable<Tour>> FilterAsync(TourFilter filter)
+        {
+            var json = JsonSerializer.Serialize(filter);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync($"{_baseUrl}filter", content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return Enumerable.Empty<Tour>();
+            }
+
+            var responseJson = await response.Content.ReadAsStringAsync();
+
+            var tours = JsonSerializer.Deserialize<IEnumerable<Tour>>(responseJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            return tours ?? Enumerable.Empty<Tour>();
+        }
+
+
+
     }
 }

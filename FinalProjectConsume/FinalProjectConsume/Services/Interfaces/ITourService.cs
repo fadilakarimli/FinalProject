@@ -10,5 +10,6 @@ namespace FinalProjectConsume.Services.Interfaces
         Task<HttpResponseMessage> EditAsync(int id, TourEdit model);
         Task<HttpResponseMessage> DeleteAsync(int id);
         Task<IEnumerable<Tour>> SearchAsync(TourSearchRequest searchRequest);
+        Task<IEnumerable<Tour>> FilterAsync(TourFilter filter);
     }
 }
