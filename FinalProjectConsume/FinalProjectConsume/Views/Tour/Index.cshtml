@@ -188,16 +188,16 @@
                                 </div>
                                 </form>
 
-                            <div id="filteredToursContainer">
+                         @*    <div id="filteredToursContainer">
                                 <!-- Filter nəticələri JS ilə bura yazılacaq -->
-                            </div>
+                            </div> *@
 
                             </div>
                         </div>
                     </div>
 
                 <div class="col-xl-9 col-lg-8">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" id="toursRowContainer">
                         @foreach (var tour in Model.Tours)
                         {
                             <div class="col-4 wow fadeInUp" data-wow-delay=".2s">
@@ -232,6 +232,7 @@
                             </div>
                         }
                     </div>
+
 
 
                     <div class="page-nav-wrap mt-5 text-center wow fadeInUp" data-wow-delay=".3s">
@@ -295,15 +296,16 @@
 
 
             const filterDto = {
-                cityNames: getSelectedOptionValue("select[name='cityId']"),
-                activityNames: getSelectedOptionValue("select[name='activityId']"),
-
+                cityIds: getSelectedOptionValue("select[name='cityId']").map(Number),
+                activityIds: getSelectedOptionValue("select[name='activityId']").map(Number),
                 departureDate: parsedDate,
                 guestCount: parseInt(document.querySelector("input[name='guestCount']").value) || null,
                 minPrice: parseFloat(document.querySelector("input[name='minPrice']").value) || null,
                 maxPrice: parseFloat(document.querySelector("input[name='maxPrice']").value) || null,
-                amenityNames: getCheckedValues("amenities")
+                amenityIds: getCheckedValues("amenities").map(Number)
             };
+
+
 
 
             const response = await fetch("/Tour/Filter", {
@@ -314,8 +316,9 @@
                 body: JSON.stringify(filterDto),
             });
 
-            const container = document.getElementById("filteredToursContainer");
+            const container = document.getElementById("toursRowContainer");
             container.innerHTML = "";
+
 
             if (response.ok) {
                 const tours = await response.json();
@@ -327,17 +330,37 @@
 
                 tours.forEach(tour => {
                     const tourCard = `
-                            <div class="card mb-3 shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title">${tour.name}</h5>
-                                    <p class="card-text">${tour.description ?? "No description"}</p>
-                                    <p><strong>Price:</strong> ${tour.price} AZN</p>
-                                    <p><strong>Departure:</strong> ${tour.startDate?.split("T")[0]}</p>
-                                </div>
-                            </div>
-                        `;
+            <div class="col-4 wow fadeInUp" data-wow-delay=".2s">
+                <div class="tour-box-items">
+                    <div class="thumb">
+                        <img src="${tour.imageUrl}" alt="Tour image" />
+                    </div>
+                    <div class="content">
+                        <span>${tour.cityNames}</span>
+                        <h4>
+                            <a href="/Tour/Details/${tour.id}">${tour.name}</a>
+                        </h4>
+                        <h6>
+                            From <span>$${tour.price}</span>
+                            ${tour.oldPrice ? `<del>$${tour.oldPrice}</del>` : ""}
+                        </h6>
+                        <ul class="list">
+                            <li>
+                                <i class="far fa-calendar"></i>
+                                ${tour.duration}
+                            </li>
+                            <li>
+                                <i class="far fa-flag"></i>
+                                ${tour.countryCount} Countries
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `;
                     container.innerHTML += tourCard;
                 });
+
             } else {
                 container.innerHTML = "<p style='color:red;'>Filter failed.</p>";
             }
