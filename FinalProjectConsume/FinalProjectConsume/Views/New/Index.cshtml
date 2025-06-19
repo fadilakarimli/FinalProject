@@ -1,4 +1,7 @@
-﻿    <!-- Search Section Start -->
+﻿@model FinalProjectConsume.ViewModels.UI.NewVM
+
+
+<!-- Search Section Start -->
 <div class="header-search-bar d-flex align-items-center">
     <button class="search-close">×</button>
     <div class="container">
@@ -50,75 +53,32 @@
             <div class="row">
                 <div class="col-12 col-xl-8 col-lg-7">
                     <div class="blog-posts">
-                        <div class="single-blog-post">
-                            <div class="post-featured-thumb bg-cover" style="background-image: url('assets/img/news/post-1.jpg');">
-                            </div>
-                            <div class="post-content">
-                                <div class="post-meta">
-                                    <span><i class="fal fa-comments"></i>35 Comments</span>
-                                    <span><i class="fal fa-calendar-alt"></i>24th March 2025</span>
+                        @foreach (var item in Model.Blogs)
+                        {
+                            <div class="single-blog-post">
+                                <div class="post-featured-thumb bg-cover" style="background-image: url(@item.Image)">
                                 </div>
-                                <h2>
-                                    <a href="news-details.html">
-                                        The whimsically named Egg Canvas brainchesiko
+                                <div class="post-content">
+                                    <div class="post-meta">
+                                        <span><i class="fal fa-comments"></i>@item.CommentCount</span>
+                                        <span><i class="fal fa-calendar-alt"></i>@item.CreatedDate</span>
+                                    </div>
+                                    <h2>
+                                        <a href="news-details.html">
+                                            @item.Title
+                                        </a>
+                                    </h2>
+                                    <p>
+                                       @item.Content
+                                    </p>
+                                    <a href="news-details.html" class="theme-btn mt-4 line-height">
+                                        <span>Read More</span> <i class="far fa-long-arrow-right"></i>
                                     </a>
-                                </h2>
-                                <p>
-                                    There are many variations of passages of Lorem Ipsum available, but majority have suffered
-                                    teration in some form, by injected humour, or randomised words which don't look even slight
-                                    believable. If you are going to use a passage of Lorem Ipsum.
-                                </p>
-                                <a href="news-details.html" class="theme-btn mt-4 line-height">
-                                    <span>Read More</span> <i class="far fa-long-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="single-blog-post">
-                            <div class="post-featured-thumb bg-cover" style="background-image: url('assets/img/news/post-2.jpg');">
-                            </div>
-                            <div class="post-content">
-                                <div class="post-meta">
-                                    <span><i class="fal fa-comments"></i>35 Comments</span>
-                                    <span><i class="fal fa-calendar-alt"></i>24th March 2025</span>
                                 </div>
-                                <h2>
-                                    <a href="news-details.html">
-                                        The whimsically named Egg Canvas brainchesiko
-                                    </a>
-                                </h2>
-                                <p>
-                                    There are many variations of passages of Lorem Ipsum available, but majority have suffered
-                                    teration in some form, by injected humour, or randomised words which don't look even slight
-                                    believable. If you are going to use a passage of Lorem Ipsum.
-                                </p>
-                                <a href="news-details.html" class="theme-btn mt-4 line-height">
-                                    <span>Read More</span> <i class="far fa-long-arrow-right"></i>
-                                </a>
                             </div>
-                        </div>
-                        <div class="single-blog-post">
-                            <div class="post-featured-thumb bg-cover" style="background-image: url('assets/img/news/post-3.jpg');">
-                            </div>
-                            <div class="post-content">
-                                <div class="post-meta">
-                                    <span><i class="fal fa-comments"></i>35 Comments</span>
-                                    <span><i class="fal fa-calendar-alt"></i>24th March 2025</span>
-                                </div>
-                                <h2>
-                                    <a href="news-details.html">
-                                        The whimsically named Egg Canvas brainchesiko
-                                    </a>
-                                </h2>
-                                <p>
-                                    There are many variations of passages of Lorem Ipsum available, but majority have suffered
-                                    teration in some form, by injected humour, or randomised words which don't look even slight
-                                    believable. If you are going to use a passage of Lorem Ipsum.
-                                </p>
-                                <a href="news-details.html" class="theme-btn mt-4">
-                                    <span>Read More</span> <i class="far fa-long-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
+                        }
+                       
+                   
                     </div>
                     <div class="page-nav-wrap mt-5 text-center">
                         <ul>

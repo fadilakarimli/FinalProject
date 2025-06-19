@@ -1,4 +1,5 @@
 ﻿@model FinalProjectConsume.ViewModels.UI.TourDetailVM
+@using System.Globalization
 
 <!-- Search Section Start -->
 <div class="header-search-bar d-flex align-items-center">
@@ -53,7 +54,7 @@
                 <div class="col-xl-8 col-lg-7">
                     <div class="tour-details-items">
                         <div class="details-thumb">
-                            <img src="assets/img/tour/details-1.jpg" alt="img">
+                            <img src="@Model.Tour.ImageUrl" alt="img">
                         </div>
                         <div class="details-content">
                             <span class="location-icon">
@@ -63,6 +64,10 @@
                             <h2>
                                 @Model.Tour.CityNames
                             </h2>
+
+                            <h4>
+                               Guest Count: @Model.Tour.Capacity
+                            </h4>
                             <p>
                                 @Model.Tour.Desc
                             </p>
@@ -507,117 +512,117 @@
                                 <li>
                                     From Date:
                                     <div class="form-clt">
-                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control" type="text" placeholder="mm/dd/yyyy" readonly>
-                                            <span class="input-group-addon"><i class="far fa-calendar"></i></span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    Time:
-                                    <div class="form-clt d-flex gap-3">
-                                        <label class="checkbox-single">
-                                            <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                <span class="checkbox-area d-center">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark d-center"></span>
-                                                </span>
-                                                <span class="text-color">
-                                                    12:00
-                                                </span>
-                                            </span>
-                                        </label>
-                                        <label class="checkbox-single">
-                                            <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                <span class="checkbox-area d-center">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark d-center"></span>
-                                                </span>
-                                                <span class="text-color">
-                                                    10:00
-                                                </span>
-                                            </span>
-                                        </label>
+                                        @{
+                                            var parsedDate = DateTime.ParseExact(Model.Tour.StartDate, "MM.dd.yyyy", CultureInfo.InvariantCulture);
+                                        }
+                                        <input type="text" value="@parsedDate.ToString("dd-MM-yyyy")" readonly />
                                     </div>
                                 </li>
                             </ul>
+
                             <div class="tickets-list">
                                 <p>Tickets</p>
                                 <ul>
                                     <li>
-                                        18+ Years: <b>$168</b>
+                                        18+ Years:
                                         <div class="form-clt">
                                             <div class="form">
-                                                <select class="single-select w-100">
-                                                    <option> 01</option>
-                                                    <option> 02</option>
-                                                    <option> 03</option>
-                                                    <option> 04</option>
-                                                </select>
+                                                <input type="number" min="1" value="1" class="form-control quantity" id="adultCount" name="AdultsCount" />
                                             </div>
                                         </div>
+                                        Total:$<span id="adultTotal">@(Model.Tour.Price)</span>
                                     </li>
                                     <li>
-                                        18- Years: <b>$100</b>
+                                        18‑ Years:
                                         <div class="form-clt">
                                             <div class="form">
-                                                <select class="single-select w-100">
-                                                    <option> 01</option>
-                                                    <option> 02</option>
-                                                    <option> 03</option>
-                                                    <option> 04</option>
-                                                </select>
+                                                <input type="number" min="1" value="1" class="form-control quantity" id="childCount" name="ChildrenCount" />
                                             </div>
                                         </div>
+                                        Total:$<span id="childTotal">@((Model.Tour.Price - 50))</span>
                                     </li>
                                 </ul>
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', () => {
+                                        const adultPrice = parseFloat('@(Model.Tour.Price)');
+                                        const childPrice = adultPrice - 50;
+
+                                        const adultCountEl = document.getElementById('adultCount');
+                                        const childCountEl = document.getElementById('childCount');
+                                        const adultTotalEl = document.getElementById('adultTotal');
+                                        const childTotalEl = document.getElementById('childTotal');
+                                        const grandTotalEl = document.getElementById('grandTotal');
+
+                                        function updateTotals() {
+                                            const adults = parseInt(adultCountEl.value) || 0;
+                                            const children = parseInt(childCountEl.value) || 0;
+
+                                            const adultTotal = adults * adultPrice;
+                                            const childTotal = children * childPrice;
+                                            const grandTotal = adultTotal + childTotal;
+
+                                            adultTotalEl.textContent = adultTotal.toFixed(2);
+                                            childTotalEl.textContent = childTotal.toFixed(2);
+                                            grandTotalEl.textContent = grandTotal.toFixed(2);
+                                        }
+
+                                        adultCountEl.addEventListener('input', updateTotals);
+                                        childCountEl.addEventListener('input', updateTotals);
+
+                                        updateTotals();
+                                    });
+                                </script>
                             </div>
-                            <div class="extra-items">
-                                <p>Add Extra:</p>
-                                <label class="checkbox-single d-flex justify-content-between align-items-center">
-                                    <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                        <span class="checkbox-area d-center">
-                                            <input type="checkbox">
-                                            <span class="checkmark d-center"></span>
-                                        </span>
-                                        <span class="text-color">
-                                            Add service per booking
-                                        </span>
-                                    </span>
-                                    <span class="text-color">$45</span>
-                                </label>
-                                <label class="checkbox-single d-flex justify-content-between align-items-center">
-                                    <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                        <span class="checkbox-area d-center">
-                                            <input type="checkbox">
-                                            <span class="checkmark d-center"></span>
-                                        </span>
-                                        <span class="text-color">
-                                            Add service per personal
-                                        </span>
-                                    </span>
-                                    <span class="text-color">$35</span>
-                                </label>
-                            </div>
+
                             <ul class="total-list">
                                 <li>
-                                    Total:
-                                </li>
-                                <li>
-                                    $80
+                                    Grand Total: $<span id="grandTotal">@((Model.Tour.Price) + (Model.Tour.Price - 50))</span>
                                 </li>
                             </ul>
-                            <a href="tour-details.html" class="theme-btn">
-                                <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                            </a>
-                        </div>
-                        <div class="offer-card bg-cover" style="background-image: url('assets/img/destinations/offter-card.jpg');">
-                            <h3>Book Now and Enjoy Amazing Savings!</h3>
-                            <img src="assets/img/destinations/disocunt.png" alt="img">
+
+                            <!-- ✅ FORM əlavə olundu -->
+                            <form asp-action="Create" asp-controller="Booking" method="post" id="bookingForm">
+                                <input type="hidden" name="TourId" value="@Model.Tour.Id" />
+                                <input type="hidden" name="AdultsCount" id="AdultsCountInput" value="1" />
+                                <input type="hidden" name="ChildrenCount" id="ChildrenCountInput" value="1" />
+
+                                <a href="javascript:void(0);" class="theme-btn" id="bookNowBtn">
+                                    <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
+                                </a>
+                            </form>
+
+                            <!-- ✅ JS ilə dəyərləri form inputlarına ötür -->
+                            <script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    const adultInput = document.getElementById('adultCount');
+                                    const childInput = document.getElementById('childCount');
+
+                                    const hiddenAdult = document.getElementById('AdultsCountInput');
+                                    const hiddenChild = document.getElementById('ChildrenCountInput');
+
+                                    function syncCounts() {
+                                        hiddenAdult.value = adultInput.value;
+                                        hiddenChild.value = childInput.value;
+                                    }
+
+                                    adultInput.addEventListener('input', syncCounts);
+                                    childInput.addEventListener('input', syncCounts);
+
+                                    document.getElementById('bookNowBtn').addEventListener('click', function () {
+                                        syncCounts();
+                                        document.getElementById('bookingForm').submit();
+                                    });
+
+                                    syncCounts();
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </section>
+

@@ -208,7 +208,7 @@
                                     <div class="content">
                                         <span>@tour.CityNames</span>
                                         <h4>
-                                            <a href="/Tour/Details/@tour.Id">@tour.Name</a>
+                                            <a asp-controller="TourDetail" asp-action="Index" asp-route-id="@tour.Id">@tour.Name</a>
                                         </h4>
                                         <h6>
                                             From <span>$@tour.Price</span>

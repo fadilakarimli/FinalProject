@@ -96,10 +96,9 @@ namespace FinalProjectConsume.Controllers
         }
 
         [HttpGet]
-
         public IActionResult Register()
         {
-            return View();
+            return View(new Register()); // boş model göndər
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

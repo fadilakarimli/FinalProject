@@ -2,6 +2,9 @@
 @model Register
 
 
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,7 +133,11 @@
                 </div>
 
                 <button>Register</button>
+                <p class="text-muted mb-0 mt-2"><a asp-action="Login" asp-controller="Account" class="text-muted font-weight-medium"><b>Login</b></a></p>
+
             </form>
+
+
 
     </div>
 </div>
