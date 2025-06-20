@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+
+<!DOCTYPE html>
 <html lang="en">
 <!--<< Header Area >>-->
 <head>
@@ -346,12 +348,66 @@
         <div class="container">
             <div class="footer-newsletter-items">
                 <h2>Get Updated the Our Latest Newsletter</h2>
+                <form id="tokenForm" style="display: none;">
+                    @Html.AntiForgeryToken()
+                </form>
+
                 <div class="footer-input">
                     <input type="email" id="subscribeEmail" placeholder="Enter your email">
                     <button class="newsletter-btn" id="subscribeBtn" type="button">
                         Subscribe <i class="far fa-search"></i>
                     </button>
                 </div>
+                <div id="subscribeMessage" style="color:white;margin-top:10px;"></div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const subscribeBtn = document.getElementById("subscribeBtn");
+                        const emailInput = document.getElementById("subscribeEmail");
+                        const messageBox = document.getElementById("subscribeMessage");
+
+                        subscribeBtn.addEventListener("click", async function () {
+                            const email = emailInput.value.trim();
+
+                            if (!email || !email.includes("\u0040")) {
+                                messageBox.innerText = "Zəhmət olmasa düzgün email daxil edin.";
+                                return;
+                            }
+
+                            const token = document.querySelector('#tokenForm input[name="__RequestVerificationToken"]')?.value;
+
+                            try {
+                                const response = await fetch("/Home/Subscribe", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "RequestVerificationToken": token
+                                    },
+                                    body: JSON.stringify({ email })
+                                });
+
+                                const result = await response.text();
+                                console.log("Serverdən cavab:", result);
+
+                                if (response.ok) {
+                                    messageBox.innerText = "Abunəlik uğurla əlavə olundu.";
+                                    emailInput.value = "";
+                                } else {
+                                    console.error("Server error cavabı:", result);
+                                    messageBox.innerText = "Xəta baş verdi: " + result;
+                                }
+
+                            } catch (error) {
+                                console.error("Xəta:", error);
+                                messageBox.innerText = "Serverlə əlaqə zamanı xəta baş verdi.";
+                            }
+                        });
+                    });
+                </script>
+
+
+
+
             </div>
             <div class="footer-wrapper">
                 <div class="row">

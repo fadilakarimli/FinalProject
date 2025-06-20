@@ -1,4 +1,5 @@
-﻿using FinalProjectConsume.Models.Tour;
+﻿using FinalProjectConsume.Models.Paginate;
+using FinalProjectConsume.Models.Tour;
 
 namespace FinalProjectConsume.Services.Interfaces
 {
@@ -11,5 +12,6 @@ namespace FinalProjectConsume.Services.Interfaces
         Task<HttpResponseMessage> DeleteAsync(int id);
         Task<IEnumerable<Tour>> SearchAsync(TourSearchRequest searchRequest);
         Task<IEnumerable<Tour>> FilterAsync(TourFilter filter);
+        Task<Paginated<Tour>> GetPaginatedAsync(int page = 1, int take = 5);
     }
 }

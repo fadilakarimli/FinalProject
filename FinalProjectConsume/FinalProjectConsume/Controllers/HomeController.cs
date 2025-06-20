@@ -98,32 +98,25 @@ namespace FinalProjectConsume.Controllers
             return Json(nextTours);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Subscribe(SubscribePostVM model)
+        public async Task<IActionResult> Subscribe([FromBody] SubscribePostVM model)
         {
-            if (!ModelState.IsValid)
-            {
-                TempData["Error"] = "Email düzgün deyil.";
-                return RedirectToAction("Index");
-            }
+            if (string.IsNullOrWhiteSpace(model.Email) || !model.Email.Contains("@"))
+                return BadRequest("Email düzgün deyil.");
 
             var response = await _newsLetterService.CreateAsync(new NewsLetterCreate { Email = model.Email });
 
             if (response.IsSuccessStatusCode)
-            {
-                TempData["Success"] = "Abun?lik uðurla ?lav? edildi.";
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                TempData["Error"] = "X?ta baþ verdi.";
-                return RedirectToAction("Index");
-            }
+                return Ok("Email ?lav? olundu");
+
+            return StatusCode(500, "Email bazaya yazýlmadý");
         }
 
 
-
     }
+
+
+
 }
+

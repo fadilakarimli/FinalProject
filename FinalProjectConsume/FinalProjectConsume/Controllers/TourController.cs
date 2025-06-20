@@ -29,27 +29,45 @@ namespace FinalProjectConsume.Controllers
                 BaseAddress = new Uri("https://localhost:7145")
             };
         }
-        public async Task<IActionResult> Index(string search)
+        public async Task<IActionResult> Index(int page = 1, string? search = null)
         {
-            var amenities= await _amenityService.GetAllAsync();
-            var activity = await _activityService.GetAllAsync();    
-            var city = await _cityService.GetAllAsync();
-            var tours = await _tourService.GetAllAsync();
+            int take = 6; // Səhifədə neçə tur göstəriləcək
 
+            var amenities = await _amenityService.GetAllAsync();
+            var activities = await _activityService.GetAllAsync();
+            var cities = await _cityService.GetAllAsync();
+
+            IEnumerable<Tour> tours = await _tourService.GetAllAsync();
+
+            // Axtarış varsa filterləyirik
             if (!string.IsNullOrWhiteSpace(search))
             {
-                // Adına görə filter et
                 tours = tours.Where(t => t.Name != null && t.Name
-                                          .ToLower()
-                                          .Contains(search.Trim().ToLower()));
+                                         .ToLower()
+                                         .Contains(search.Trim().ToLower()));
             }
+
+            // Səhifələmə üçün ümumi element sayı
+            int totalTours = tours.Count();
+
+            // Səhifələnmiş tur siyahısı
+            var pagedTours = tours
+                .Skip((page - 1) * take)
+                .Take(take)
+                .ToList();
+
+            // Səhifələmə üçün total səhifə sayı
+            int totalPages = (int)Math.Ceiling(totalTours / (double)take);
+
             var model = new TourPageVM
             {
-                Tours = tours.ToList(),
+                Tours = pagedTours,
                 Amenities = amenities.ToList(),
-                Activities = activity.ToList(),
-                Cities = city.ToList(),
-                SearchTerm = search ?? string.Empty
+                Activities = activities.ToList(),
+                Cities = cities.ToList(),
+                SearchTerm = search ?? string.Empty,
+                CurrentPage = page,
+                TotalPages = totalPages
             };
 
             return View(model);
@@ -84,6 +102,23 @@ namespace FinalProjectConsume.Controllers
             var resultJson = await response.Content.ReadAsStringAsync();
             return Content(resultJson, "application/json");
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> Paginated(int page = 1)
+        //{
+        //    int take = 6;
+        //    var pagedResult = await _tourService.GetPaginatedAsync(page, take);
+
+        //    var model = new TourPageVM
+        //    {
+        //        Tours = pagedResult.Items.ToList(),
+        //        CurrentPage = page,
+        //        TotalPages = pagedResult.TotalPages
+        //    };
+
+        //    return View(model);
+        //}
+
 
 
 

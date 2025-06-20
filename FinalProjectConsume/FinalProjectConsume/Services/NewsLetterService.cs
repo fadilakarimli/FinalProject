@@ -16,10 +16,13 @@ namespace FinalProjectConsume.Services
         }
         public async Task<HttpResponseMessage> CreateAsync(NewsLetterCreate model)
         {
-            var json = JsonSerializer.Serialize(model);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            // Email stringini JSON formatında string kimi serialize edirik:
+            var emailJson = JsonSerializer.Serialize(model.Email); // burda artıq "test@gmail.com" olur
+            var content = new StringContent(emailJson, Encoding.UTF8, "application/json");
             return await _httpClient.PostAsync($"{_baseUrl}AddEmail", content);
         }
+
+
         public async Task<HttpResponseMessage> DeleteAsync(int id)
         {
             return await _httpClient.DeleteAsync($"{_baseUrl}Delete/{id}");

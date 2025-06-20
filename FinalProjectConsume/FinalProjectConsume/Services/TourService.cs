@@ -1,4 +1,5 @@
-﻿using FinalProjectConsume.Models.Tour;
+﻿using FinalProjectConsume.Models.Paginate;
+using FinalProjectConsume.Models.Tour;
 using FinalProjectConsume.Services.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Net.Http.Headers;
@@ -161,6 +162,20 @@ namespace FinalProjectConsume.Services
             return tours ?? Enumerable.Empty<Tour>();
         }
 
+
+        public async Task<Paginated<Tour>> GetPaginatedAsync(int page = 1, int take = 5)
+        {
+            var response = await _httpClient.GetAsync($"{_baseUrl}paginated?page={page}&take={take}");
+            response.EnsureSuccessStatusCode();
+
+            var jsonData = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Paginated<Tour>>(jsonData, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+        }
+
+            
 
 
     }
