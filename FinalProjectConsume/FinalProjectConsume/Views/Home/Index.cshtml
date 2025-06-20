@@ -83,13 +83,14 @@
                     <h5>All Cities</h5>
                     <div class="form-clt">
                         <div class="form">
-                            <select class="single-select w-100">
-                                <option disabled selected>Your city</option>
-                                @foreach (var city in Model.Cities)
-                                {
-                                    <option value="@city.Id">@city.Name</option>
-                                }
-                            </select>
+                                <select class="single-select w-100" name="cityId">
+                                    <option disabled selected>Your city</option>
+                                    @foreach (var city in Model.Cities)
+                                    {
+                                        <option value="@city.Id">@city.Name</option>
+                                    }
+                                </select>
+
                         </div>
                     </div>
                 </div>
@@ -102,13 +103,14 @@
                     <h5>All Activity</h5>
                     <div class="form-clt">
                         <div class="form">
-                            <select class="single-select w-100">
-                                <option>Choose Activity</option>
-                                @foreach (var item in Model.Activities)
-                                {
-                                    <option value="@item.Id">@item.Name</option>
-                                }
-                            </select>
+                                <select class="single-select w-100" name="activityId">
+                                    <option>Choose Activity</option>
+                                    @foreach (var item in Model.Activities)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+
                         </div>
                     </div>
                 </div>
@@ -121,7 +123,7 @@
                     <h5>Departure Date</h5>
                     <div class="form-clt">
                         <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                            <input class="form-control" type="text" placeholder="Date Form" readonly="">
+                             <input class="form-control" type="text" name="departureDate" placeholder="Date From" readonly="">
                             <span class="input-group-addon"><i class="far fa-calendar"></i></span>
                         </div>
                     </div>
@@ -135,7 +137,8 @@
                     <h5>Guest</h5>
                     <div class="form-clt">
                         <div class="form">
-                            <input type="number" class="form-control" placeholder="Number of Guests" min="1" />
+                                <input type="number" class="form-control" name="guestCount" placeholder="Number of Guests" min="1" />
+
                         </div>
                     </div>
                 </div>
@@ -157,7 +160,7 @@
                 <span class="wow fadeInUp">Trending Destinations</span>
                 <h2 class="wow fadeInUp" data-wow-delay=".3s">Trendy Travel Locations</h2>
             </div>
-            <a href="destination.html" class="theme-btn theme-btn-2 wow fadeInUp" data-wow-delay=".5s">
+            <a asp-controller="Destination" asp-action="Index" class="theme-btn theme-btn-2 wow fadeInUp" data-wow-delay=".5s">
                 <span>Explore More</span> <i class="far fa-long-arrow-right"></i>
             </a>
         </div>
@@ -221,7 +224,7 @@
                                 <h5>“@item.Subtitle”</h5>
                             </div>
                             <div class="about-btn">
-                                <a href="about.html" class="theme-btn wow fadeInUp" data-wow-delay=".3s">
+                                <a asp-controller="About" asp-action="Index" class="theme-btn wow fadeInUp" data-wow-delay=".3s">
                                     <span>More About Travil</span> <i class="far fa-long-arrow-right"></i>
                                 </a>
                             </div>

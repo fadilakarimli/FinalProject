@@ -1,0 +1,206 @@
+﻿@using static FinalProjectConsume.ViewComponents.HeaderViewComponent
+@model HeaderVMVC
+<header class="header-section header-inner">
+    <div class="header-top-section">
+        <div class="container-fluid">
+            <div class="header-top-wrapper">
+                <ul class="top-left">
+                    <li>
+                        <i class="far fa-envelope"></i>
+                        @* <a href="mailto:info@example.com">info@example.com</a> *@
+                        <a>
+                            @Model.Settings.FirstOrDefault(x=>x.Key == "Email")?.Value
+                        </a>
+                    </li>
+                    <li>
+                        <i class="far fa-map-marker-alt"></i>
+                        @Model.Settings.FirstOrDefault(x => x.Key == "Location")?.Value
+                    </li>
+                </ul>
+                <div class="social-icon">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="header-sticky" class="header-1 header-4">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="header-left">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img src="~/assets/img/logo/black-logo.svg" alt="logo-img">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="header-right d-flex justify-content-end align-items-center">
+                        <div class="mean__menu-wrapper">
+                            <div class="main-menu">
+                                <nav id="mobile-menu">
+                                    <ul>
+                                        <li class="has-dropdown menu-thumb">
+                                            <a asp-action="Index" asp-controller="Home">
+                                                Home
+                                            </a>
+                                        </li>
+                                        @*   <li class="has-dropdown active d-xl-none">
+                                        <a href="index.html" class="border-none">
+                                        Home
+                                        </a>
+                                        <ul class="submenu">
+                                        <li><a href="index.html">Home 01</a></li>
+                                        <li><a href="index-2.html">Home 02</a></li>
+                                        <li><a href="index-3.html">Home 03</a></li>
+                                        </ul>
+                                        </li> *@
+                                        <li>
+                                            <a asp-action="Index" asp-controller="Tour">
+                                                Tours
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="Index" asp-controller="Destination">
+                                                Destinations
+                                            </a>
+                                        </li>
+                                        <li class="has-dropdown">
+                                            <a asp-action="Index" asp-controller="About">
+                                                About
+                                                <i class="fas fa-chevron-down"></i>
+                                            </a>
+                                            <ul class="submenu">
+
+                                                <li><a asp-action="Index" asp-controller="Team">Our Team</a></li>
+                                                <li><a href="faq.html">Faqs</a></li>
+                                                <li><a href="404.html">404 Error</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a asp-action="Index" asp-controller="New">
+                                                News
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="Index" asp-controller="Contact">
+                                                Contact
+                                            </a>
+                                        </li>
+                                        <li style="position: relative; display: inline-block;">
+                                            <a onclick="showAuthOptions()">
+                                                <i class="fas fa-user"></i>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <span style="margin-left: 5px;">
+                                                        @User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value
+                                                    </span>
+                                                }
+                                            </a>
+
+                                            <div id="auth-options" style="display: none; position: absolute; top: 100%; left: 0; background: white; padding: 5px; border: 1px solid #ccc; z-index: 100; font-size: 14px; min-width: 120px; text-align: center; border-radius: 5px;">
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <form asp-action="Logout" asp-controller="Account" method="post" style="margin: 0;">
+                                                        <button type="submit" style="background: none; border: none; color: black; padding: 5px; cursor: pointer;">Logout</button>
+                                                    </form>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="Login" asp-controller="Account" style="display: block; padding: 5px; text-decoration: none; color: black;">Login</a>
+                                                    <a asp-action="Register" asp-controller="Account" style="display: block; padding: 5px; text-decoration: none; color: black;">Register</a>
+                                                }
+                                            </div>
+                                        </li>
+
+
+                                        @*       <li>
+                                        <a><i class="fas fa-shopping-cart"></i></a>
+                                        </li> *@
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="contact-items">
+                            <div class="icon">
+                                <img src="~/assets/img/call.png" alt="img">
+                            </div>
+                            <div class="content">
+                                <span>Call Us</span>
+                                <h6><a href="tel:+8809533309">+88 (09) 53 33 09</a></h6>
+                            </div>
+                        </div>
+                        <form method="get" asp-action="Index" asp-controller="Tour" class="search-form">
+                            <input class="search-input"
+                                   type="text"
+                                   name="search"
+                                   autocomplete="off"
+                                   placeholder="Search tours..."
+                                   value="@Model.SearchTerm" />
+                            <button type="submit" class="search-btn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+
+                        <style>
+                            .search-form {
+                                display: flex;
+                                background: white;
+                                border: 2px solid #3498db;
+                                border-radius: 25px;
+                                overflow: hidden;
+                                max-width: 300px;
+                                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                            }
+
+                            .search-input {
+                                flex: 1;
+                                border: none;
+                                outline: none;
+                                padding: 10px 16px;
+                                font-size: 13px;
+                                color: #000;
+                            }
+
+                                .search-input::placeholder {
+                                    color: #999;
+                                }
+
+                                .search-input:focus {
+                                    color: #000;
+                                }
+
+                            .search-btn {
+                                background: #3498db;
+                                border: none;
+                                padding: 10px 16px;
+                                color: white;
+                                cursor: pointer;
+                                transition: background 0.3s;
+                            }
+
+                                .search-btn:hover {
+                                    background: #2980b9;
+                                }
+                        </style>
+                        @*  <a href="tour-details.html" class="theme-btn">
+                        <span>Explore More</span> <i class="far fa-long-arrow-right"></i>
+                        </a> *@
+                        <div class="header__hamburger d-xl-none my-auto">
+                            <div class="sidebar__toggle">
+                                <div class="header-bar">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

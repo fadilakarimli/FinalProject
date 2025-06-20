@@ -29,34 +29,62 @@ namespace FinalProjectConsume.Controllers
                 BaseAddress = new Uri("https://localhost:7145")
             };
         }
-        public async Task<IActionResult> Index(int page = 1, string? search = null)
+        public async Task<IActionResult> Index(int page = 1,  string? search = null,int? cityId = null,int? activityId = null,string? departureDate = null,   int? guestCount = null)
         {
-            int take = 6; // Səhifədə neçə tur göstəriləcək
+            int take = 6;
 
             var amenities = await _amenityService.GetAllAsync();
             var activities = await _activityService.GetAllAsync();
             var cities = await _cityService.GetAllAsync();
 
-            IEnumerable<Tour> tours = await _tourService.GetAllAsync();
+            var tours = await _tourService.GetAllAsync();
 
-            // Axtarış varsa filterləyirik
+            // Axtarış
             if (!string.IsNullOrWhiteSpace(search))
             {
-                tours = tours.Where(t => t.Name != null && t.Name
-                                         .ToLower()
-                                         .Contains(search.Trim().ToLower()));
+                tours = tours.Where(t => t.Name != null && t.Name.ToLower().Contains(search.Trim().ToLower()));
             }
 
-            // Səhifələmə üçün ümumi element sayı
+            // City adı ilə filter (CityNames listində varsa)
+            if (cityId.HasValue)
+            {
+                var selectedCity = cities.FirstOrDefault(c => c.Id == cityId.Value);
+                if (selectedCity != null)
+                {
+                    tours = tours.Where(t => t.CityNames != null && t.CityNames.Contains(selectedCity.Name));
+                }
+            }
+
+            // Activity adı ilə filter (ActivityNames listində varsa)
+            if (activityId.HasValue)
+            {
+                var selectedActivity = activities.FirstOrDefault(a => a.Id == activityId.Value);
+                if (selectedActivity != null)
+                {
+                    tours = tours.Where(t => t.ActivityNames != null && t.ActivityNames.Contains(selectedActivity.Name));
+                }
+            }
+
+            // StartDate (Departure) ilə filter
+            if (!string.IsNullOrWhiteSpace(departureDate))
+            {
+                if (DateTime.TryParseExact(departureDate, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
+                {
+                    tours = tours.Where(t =>
+                        DateTime.TryParse(t.StartDate, out DateTime startDate)
+                        && startDate.Date == parsedDate.Date);
+                }
+            }
+
+            // Guest count (Capacity) ilə filter
+            if (guestCount.HasValue)
+            {
+                tours = tours.Where(t => t.Capacity >= guestCount.Value);
+            }
+
+            // Pagination
             int totalTours = tours.Count();
-
-            // Səhifələnmiş tur siyahısı
-            var pagedTours = tours
-                .Skip((page - 1) * take)
-                .Take(take)
-                .ToList();
-
-            // Səhifələmə üçün total səhifə sayı
+            var pagedTours = tours.Skip((page - 1) * take).Take(take).ToList();
             int totalPages = (int)Math.Ceiling(totalTours / (double)take);
 
             var model = new TourPageVM
@@ -67,11 +95,19 @@ namespace FinalProjectConsume.Controllers
                 Cities = cities.ToList(),
                 SearchTerm = search ?? string.Empty,
                 CurrentPage = page,
-                TotalPages = totalPages
+                TotalPages = totalPages,
+
+                // UI-də inputları doldurmaq üçün
+                SelectedCityId = cityId,
+                SelectedActivityId = activityId,
+                SelectedDepartureDate = departureDate,
+                SelectedGuestCount = guestCount
             };
 
             return View(model);
         }
+
+
 
 
 

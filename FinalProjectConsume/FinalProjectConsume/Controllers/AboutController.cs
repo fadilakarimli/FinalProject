@@ -51,7 +51,9 @@ namespace FinalProjectConsume.Controllers
                 AboutTeamMembers = aboutTeamMember.ToList(),    
                 AboutApps = aboutApp.ToList(),
                 AboutDestinations = aboutDest.ToList(),
-                AboutBlogs = aboutBlogs.ToList(),
+                AboutBlogs = aboutBlogs.OrderByDescending(b => b.CreatedDate) // ← tarixə görə tərsinə sırala
+                    .Take(3)
+                    .ToList(),
                 AboutTravils = aboutTravil.ToList(),
                 SearchTerm = search ?? string.Empty
 

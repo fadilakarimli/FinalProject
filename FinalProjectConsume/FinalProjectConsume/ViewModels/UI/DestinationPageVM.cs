@@ -7,5 +7,8 @@ namespace FinalProjectConsume.ViewModels.UI
         public IEnumerable<TrandingDestination> TrandingDestinations { get; set; }
         public string SearchTerm { get; set; }
 
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
+
     }
 }

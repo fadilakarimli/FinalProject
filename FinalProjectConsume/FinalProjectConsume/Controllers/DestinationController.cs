@@ -5,6 +5,7 @@ using FinalProjectConsume.Models.Slider;
 using FinalProjectConsume.Models.SliderInfo;
 using FinalProjectConsume.Models.SpecialOffer;
 using FinalProjectConsume.Models.TeamMember;
+using FinalProjectConsume.Models.TrandingDestination;
 using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels.UI;
 using Microsoft.AspNetCore.Mvc;
@@ -18,18 +19,44 @@ namespace FinalProjectConsume.Controllers
         {
             _trandingDestinationService = trandingDestinationService;
         }
-        public async Task <ActionResult> Index(string search)
+        public async Task<IActionResult> Index(int page = 1, string? search = null)
         {
-            var trandingDestinatons = await _trandingDestinationService.GetAllAsync();
+            int take = 6; // Hər səhifədə 6 element göstərilsin
 
+            // Bütün destinationları alırıq
+            IEnumerable<TrandingDestination> destinations = await _trandingDestinationService.GetAllAsync();
+
+            // Search varsa filtr tətbiq edirik
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                destinations = destinations.Where(d => d.Title != null && d.Title
+                                                            .ToLower()
+                                                            .Contains(search.Trim().ToLower()));
+            }
+
+            // Ümumi element sayı
+            int totalDestinations = destinations.Count();
+
+            // Səhifələnmiş hissəni seçirik
+            var pagedDestinations = destinations
+                .Skip((page - 1) * take)
+                .Take(take)
+                .ToList();
+
+            // Ümumi səhifə sayı
+            int totalPages = (int)Math.Ceiling(totalDestinations / (double)take);
+
+            // ViewModel
             var model = new DestinationPageVM
             {
-                TrandingDestinations = trandingDestinatons.ToList(),
-                SearchTerm = search ?? string.Empty
-
+                TrandingDestinations = pagedDestinations,
+                SearchTerm = search ?? string.Empty,
+                CurrentPage = page,
+                TotalPages = totalPages
             };
 
             return View(model);
         }
+
     }
 }

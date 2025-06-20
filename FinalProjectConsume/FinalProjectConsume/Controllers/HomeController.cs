@@ -76,7 +76,7 @@ namespace FinalProjectConsume.Controllers
                 Blogs = blogs.ToList(),
                 DestinationFeatures = destinationFeatures.ToList(),
                 TeamMembers = teamMembers.ToList(),
-                TrandingDestinations = trandingDestinatons.ToList(),
+                TrandingDestinations = trandingDestinatons.Take(6).ToList(),
                 Tours = tours.ToList(),
                 Sliders = sliders.ToList(),
                 SliderInfos = sliderInfos.ToList(),

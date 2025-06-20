@@ -17,5 +17,12 @@ namespace FinalProjectConsume.ViewModels.UI
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
 
+
+        public int? SelectedCityId { get; set; }
+        public int? SelectedActivityId { get; set; }
+        public string? SelectedDepartureDate { get; set; }
+        public int? SelectedGuestCount { get; set; }
+
+
     }
 }

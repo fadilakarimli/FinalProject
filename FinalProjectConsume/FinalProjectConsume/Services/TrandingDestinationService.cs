@@ -1,6 +1,9 @@
-﻿using FinalProjectConsume.Models.TrandingDestination;
+﻿using FinalProjectConsume.Models.Paginate;
+using FinalProjectConsume.Models.Tour;
+using FinalProjectConsume.Models.TrandingDestination;
 using FinalProjectConsume.Services.Interfaces;
 using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace FinalProjectConsume.Services
 {
@@ -59,6 +62,20 @@ namespace FinalProjectConsume.Services
         public async Task<TrandingDestination> GetByIdAsync(int id)
         {
             return await _httpClient.GetFromJsonAsync<TrandingDestination>($"{_baseUrl}GetById/{id}");
+        }
+
+
+
+        public async Task<Paginated<Tour>> GetPaginatedAsync(int page = 1, int take = 5)
+        {
+            var response = await _httpClient.GetAsync($"{_baseUrl}paginated?page={page}&take={take}");
+            response.EnsureSuccessStatusCode();
+
+            var jsonData = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Paginated<Tour>>(jsonData, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
         }
     }
 }

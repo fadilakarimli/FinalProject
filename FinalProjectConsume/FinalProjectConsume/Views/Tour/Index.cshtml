@@ -67,8 +67,16 @@
                                                         <option disabled selected>Your city</option>
                                                         @foreach (var city in Model.Cities)
                                                         {
-                                                            <option value="@city.Id">@city.Name</option>
+                                                            if (city.Id == Model.SelectedCityId)
+                                                            {
+                                                                <option value="@city.Id" selected>@city.Name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@city.Id">@city.Name</option>
+                                                            }
                                                         }
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -88,9 +96,9 @@
                                                         <option disabled selected>Choose Activity</option>
                                                         @if (Model.Activities != null && Model.Activities.Any())
                                                         {
-                                                            foreach (var activity in Model.Activities)
+                                                            @foreach (var activity in Model.Activities)
                                                             {
-                                                                <option value="@activity.Id">@activity.Name</option>
+                                                                <option value="@activity.Id" selected="@(activity.Id == Model.SelectedActivityId ? "selected" : null)">@activity.Name</option>
                                                             }
                                                         }
                                                         else
@@ -112,7 +120,8 @@
                                             <h5>Departure Date</h5>
                                             <div class="form-clt">
                                                 <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                                    <input class="form-control" name="departureDate" type="text" placeholder="Date From" readonly="">
+                                                    <input class="form-control" name="departureDate" type="text" placeholder="Date From" readonly value="@Model.SelectedDepartureDate">
+
                                                     <span class="input-group-addon"><i class="far fa-calendar"></i></span>
                                                 </div>
                                             </div>
@@ -128,7 +137,8 @@
                                             <h5>Guest</h5>
                                             <div class="form-clt">
                                                 <div class="form">
-                                                    <input type="number" name="guestCount" class="form-control" placeholder="Number of Guests" min="1" />
+                                                    <input type="number" name="guestCount" class="form-control" placeholder="Number of Guests" min="1" value="@(Model.SelectedGuestCount ?? 1)">
+
                                                 </div>
                                             </div>
                                         </div>
