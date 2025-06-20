@@ -218,14 +218,14 @@
                                     View in Map
                                 </h3>
                                 <div class="google-map">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6678.7619084840835!2d144.9618311901502!3d-37.81450084255415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b4758afc1d%3A0x3119cc820fdfc62e!2sEnvato!5e0!3m2!1sen!2sbd!4v1641984054261!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12157.714958905637!2d49.83549152315648!3d40.37718943337763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d079efb5163%3A0xc20aa51a5f0b5e01!2sCode%20Academy!5e0!3m2!1sen!2saz!4v1750445825748!5m2!1sen!2saz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                             <div class="review-area">
-                                <h3>
+                                @* <h3>
                                     Customer Reviews
-                                </h3>
-                                <div class="courses-reviews-box-items">
+                                </h3> *@
+                              @*   <div class="courses-reviews-box-items">
                                     <div class="courses-reviews-box">
                                         <div class="reviews-box">
                                             <h2><span class="odometer" data-count="4.9">00</span></h2>
@@ -319,180 +319,181 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> *@
                             </div>
+
                             <div class="client-review-items">
-                                <h3>Clients Reviews</h3>
+                                <h3>Clients Reviews for @Model.Tour.Name</h3>
+
                                 <div class="clinet-box-items">
-                                    <div class="clinet-box">
-                                        <div class="star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <h5>
-                                            "Our family trip was amazing from start to finish! The itinerary was perfect, the guides were knowledgeable, and the service was excellent. I can’t wait to book our next adventure!"
-                                        </h5>
-                                        <div class="review-wrap-area d-flex gap-4 align-items-center">
-                                            <div class="review-thumb">
-                                                <img src="assets/img/tour/client.png" alt="img">
-                                            </div>
-                                            <div class="review-content">
-                                                <div class="head-area d-flex flex-wrap gap-2 align-items-center justify-content-between">
-                                                    <div class="cont">
-                                                        <h5>Smith Thomas</h5>
-                                                        <span>from New York, USA</span>
+                                    @if (Model.Reviews != null && Model.Reviews.Any())
+                                    {
+                                        foreach (var review in Model.Reviews)
+                                        {
+                                            <div class="clinet-box">
+                                                <div class="star">
+                                                    @for (int i = 0; i < review.Star; i++)
+                                                    {
+                                                        <i class="fas fa-star"></i>
+                                                    }
+                                                    @for (int i = review.Star; i < 5; i++)
+                                                    {
+                                                        <i class="far fa-star"></i>
+                                                    }
+                                                </div>
+                                                <h5>
+                                                    @review.Message
+                                                </h5>
+                                                <div class="review-wrap-area d-flex gap-4 align-items-center">
+                                                    <div class="review-thumb">
                                                     </div>
-                                                    <h6><a href="#">Reply</a></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clinet-box style-2">
-                                        <div class="star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <h5>
-                                            The itinerary was perfect, the guides were knowledgeable, and the service was excellent. I can’t wait to book our next adventure!"
-                                        </h5>
-                                        <div class="review-wrap-area d-flex gap-4 align-items-center">
-                                            <div class="review-thumb">
-                                                <img src="assets/img/tour/client.png" alt="img">
-                                            </div>
-                                            <div class="review-content">
-                                                <div class="head-area d-flex flex-wrap gap-2 align-items-center justify-content-between">
-                                                    <div class="cont">
-                                                        <h5>Smith Thomas</h5>
-                                                        <span>from New York, USA</span>
+                                                    <div class="review-content">
+                                                        <div class="head-area d-flex flex-wrap gap-2 align-items-center justify-content-between">
+                                                            <div class="cont">
+                                                                <h5>@review.Name</h5>
+                                                                <!-- Əlavə məlumat varsa buraya -->
+                                                            </div>
+                                                         <h6><a href="#" class="reply-link">Reply</a></h6>
+                                                        </div>
+
+                                                            <div class="reply-box" style="display:none; margin-top:10px;">
+                                                                <textarea class="form-control" rows="3" placeholder="Write your reply..."></textarea>
+                                                                <button class="btn btn-primary btn-sm mt-2 submit-reply-btn">Submit</button>
+                                                            </div>
+
+                                                        
+                                                            <div class="review-content" data-review-id="@review.TourId">
+                                                            </div>
+
+                                                   <script>
+                                                        document.addEventListener('DOMContentLoaded', function() {
+                                                            var replyLinks = document.querySelectorAll('.reply-link');
+
+                                                            replyLinks.forEach(function(link) {
+                                                                link.addEventListener('click', function(e) {
+                                                                    e.preventDefault();
+
+                                                                    var container = link.closest('.review-content');
+                                                                    var replyBox = container.querySelector('.reply-box');
+
+                                                                    replyBox.style.display = (replyBox.style.display === 'block') ? 'none' : 'block';
+                                                                });
+                                                            });
+                                                            var submitButtons = document.querySelectorAll('.submit-reply-btn');
+
+                                                            submitButtons.forEach(function(button) {
+                                                                button.addEventListener('click', async function(e) {
+                                                                    e.preventDefault();
+
+                                                                    var replyBox = e.target.closest('.reply-box');
+                                                                    var textarea = replyBox.querySelector('textarea');
+                                                                    var replyText = textarea.value.trim();
+
+                                                                    if (!replyText) {
+                                                                        alert('Please write a reply before submitting.');
+                                                                        return;
+                                                                    }
+
+                                                                    var reviewContent = replyBox.closest('.review-content');
+                                                                    var reviewId = reviewContent.getAttribute('data-review-id');
+
+                                                                    try {
+                                                                        let response = await fetch('/api/review/reply', {
+                                                                            method: 'POST',
+                                                                            headers: {
+                                                                                'Content-Type': 'application/json'
+                                                                            },
+                                                                            body: JSON.stringify({
+                                                                                ReviewId: reviewId,
+                                                                                Message: replyText,
+                                                                            })
+                                                                        });
+
+                                                                        if (response.ok) {
+                                                                            textarea.value = '';
+                                                                            replyBox.style.display = 'none';
+
+                                                                            var newReply = document.createElement('div');
+                                                                            newReply.classList.add('reply-item');
+                                                                            newReply.innerHTML = `<p>${replyText}</p>`;
+
+                                                                            var repliesContainer = reviewContent.querySelector('.replies-container');
+                                                                            if (!repliesContainer) {
+                                                                                repliesContainer = document.createElement('div');
+                                                                                repliesContainer.classList.add('replies-container');
+                                                                                reviewContent.appendChild(repliesContainer);
+                                                                            }
+                                                                            repliesContainer.appendChild(newReply);
+                                                                        } else {
+                                                                            alert('Failed to submit reply. Try again later.');
+                                                                        }
+                                                                    } catch (error) {
+                                                                        alert('Error occurred while submitting reply.');
+                                                                        console.error(error);
+                                                                    }
+                                                                });
+                                                            });
+                                                        });
+                                                        </script>
+
+
                                                     </div>
-                                                    <h6><a href="#">Reply</a></h6>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="clinet-box-3">
-                                    <div class="star">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <h5>
-                                        "Our family trip was amazing from start to finish! The itinerary was perfect, the guides were knowledgeable, and the service was excellent. I can’t wait to book our next adventure!"
-                                    </h5>
-                                    <div class="review-wrap-area d-flex gap-4 align-items-center">
-                                        <div class="review-thumb">
-                                            <img src="assets/img/tour/client.png" alt="img">
-                                        </div>
-                                        <div class="review-content">
-                                            <div class="head-area d-flex flex-wrap gap-2 align-items-center justify-content-between">
-                                                <div class="cont">
-                                                    <h5>Smith Thomas</h5>
-                                                    <span>from New York, USA</span>
-                                                </div>
-                                                <img src="assets/img/tour/quote.png" alt="img">
-                                            </div>
-                                        </div>
-                                    </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p>No reviews yet.</p>
+                                    }
                                 </div>
                             </div>
+
                             <div class="review-comment-items">
                                 <h3>Add Your Reviews</h3>
-                                <ul>
-                                    <li>
-                                        Services
-                                        <div class="star">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        Hotel
-                                        <div class="star">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        Places
-                                        <div class="star">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </li>
-                                </ul>
                                 <ul class="mb-0">
                                     <li>
-                                        Safety
-                                        <div class="star">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        Foods
-                                        <div class="star">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        Guides
-                                        <div class="star">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
+                                        FeedBack
+                                        <div class="star" id="starWrapper">
+                                            <i class="far fa-star" data-value="1"></i>
+                                            <i class="far fa-star" data-value="2"></i>
+                                            <i class="far fa-star" data-value="3"></i>
+                                            <i class="far fa-star" data-value="4"></i>
+                                            <i class="far fa-star" data-value="5"></i>
                                         </div>
                                     </li>
                                 </ul>
+
                                 <h4>Leave Feedback</h4>
-                                <form action="#" id="contact-form" method="POST">
+                                <form asp-controller="Review" asp-action="SubmitReview" method="post" id="contact-form">
+                                    <!-- Burada TourId gizli olaraq göndərilir -->
+                                    <input type="hidden" name="TourId" value="@Model.Tour.Id" />
+
                                     <div class="row g-4">
                                         <div class="col-lg-6">
                                             <div class="form-clt">
-                                                <input type="text" name="name" id="name" placeholder="Your name">
+                                                <input type="text" name="Name" id="name" placeholder="Your name" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-clt">
-                                                <input type="text" name="phone" id="phone" placeholder="Your phone">
+                                                <input type="text" name="Phone" id="phone" placeholder="Your phone" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-clt">
-                                                <input type="text" name="email2" id="email21" placeholder="Your email">
+                                                <input type="email" name="Email" id="email21" placeholder="Your email" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-clt">
-                                                <textarea name="message" id="message" placeholder="Your comments..."></textarea>
+                                                <textarea name="Message" id="message" placeholder="Your comments..." required></textarea>
                                             </div>
                                         </div>
+
+                                        <!-- Star rating gizli input -->
+                                        <input type="hidden" name="Star" id="starInput" value="0" />
+
                                         <div class="col-lg-6">
                                             <button type="submit" class="theme-btn text-center">
                                                 <span>Submit Reviews</span> <i class="far fa-long-arrow-right"></i>
@@ -501,6 +502,37 @@
                                     </div>
                                 </form>
                             </div>
+
+                            <style>
+                                .far.fa-star {
+                                    font-size: 24px;
+                                    cursor: pointer;
+                                    color: #ccc;
+                                }
+
+                                    .far.fa-star.selected {
+                                        color: gold;
+                                    }
+                            </style>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    const stars = document.querySelectorAll('#starWrapper .far.fa-star');
+                                    const starInput = document.getElementById('starInput');
+
+                                    stars.forEach(star => {
+                                        star.addEventListener('click', () => {
+                                            const val = star.getAttribute('data-value');
+                                            starInput.value = val;
+
+                                            stars.forEach(s => s.classList.remove('selected'));
+                                            for (let i = 0; i < val; i++) {
+                                                stars[i].classList.add('selected');
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
