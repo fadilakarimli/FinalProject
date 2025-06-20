@@ -10,5 +10,7 @@
         public int Star { get; set; }
         public int TourId { get; set; }
         public DateTime CreatedAt { get; set; }
+
+        public string? ReplyMessage { get; set; }
     }
 }
