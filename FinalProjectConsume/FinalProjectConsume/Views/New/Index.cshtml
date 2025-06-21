@@ -52,33 +52,31 @@
         <div class="news-area">
             <div class="row">
                 <div class="col-12 col-xl-8 col-lg-7">
-                    <div class="blog-posts">
-                        @foreach (var item in Model.Blogs)
+                    <div class="blog-posts" id="blogPosts">
+                        @if (Model.Blogs != null && Model.Blogs.Any())
                         {
-                            <div class="single-blog-post">
-                                <div class="post-featured-thumb bg-cover" style="background-image: url(@item.Image)">
-                                </div>
-                                <div class="post-content">
-                                    <div class="post-meta">
-                                        <span><i class="fal fa-comments"></i>@item.CommentCount</span>
-                                        <span><i class="fal fa-calendar-alt"></i>@item.CreatedDate</span>
-                                    </div>
-                                    <h2>
-                                        <a href="news-details.html">
-                                            @item.Title
+                            foreach (var blog in Model.Blogs)
+                            {
+                                <div class="single-blog-post">
+                                    <div class="post-featured-thumb bg-cover" style="background-image: url(@blog.Image)"></div>
+                                    <div class="post-content">
+                                        <div class="post-meta">
+                                            <span><i class="fal fa-comments"></i>@blog.CommentCount</span>
+                                            <span><i class="fal fa-calendar-alt"></i>@blog.CreatedDate.ToShortDateString()</span>
+                                        </div>
+                                        <h2><a href="/Blog/Details/@blog.Id">@blog.Title</a></h2>
+                                        <p>@blog.Content</p>
+                                        <a href="/Blog/Details/@blog.Id" class="theme-btn mt-4 line-height">
+                                            <span>Read More</span> <i class="far fa-long-arrow-right"></i>
                                         </a>
-                                    </h2>
-                                    <p>
-                                       @item.Content
-                                    </p>
-                                    <a href="news-details.html" class="theme-btn mt-4 line-height">
-                                        <span>Read More</span> <i class="far fa-long-arrow-right"></i>
-                                    </a>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         }
-                       
-                   
+                        else
+                        {
+                            <p>Heç bir nəticə tapılmadı.</p>
+                        }
                     </div>
                     <div class="page-nav-wrap mt-5 text-center">
                         <ul>
@@ -97,12 +95,64 @@
                                 <h3>Search</h3>
                             </div>
                             <div class="search_widget">
-                                <form action="#">
-                                    <input type="text" placeholder="Keywords here....">
+                                <form id="searchForm">
+                                    <input type="text" id="searchInput" placeholder="Keywords here...." />
                                     <button type="submit"><i class="fal fa-search"></i></button>
                                 </form>
+
                             </div>
                         </div>
+
+                        <script>
+                            document.getElementById('searchForm').addEventListener('submit', async function (e) {
+                                e.preventDefault();
+
+                                const query = document.getElementById('searchInput').value.trim();
+                                if (!query) {
+                                    alert('Axtarış üçün söz daxil edin');
+                                    return;
+                                }
+
+                                try {
+                                    const response = await fetch(`/New/SearchApi?query=${encodeURIComponent(query)}`);
+
+                                    if (!response.ok) {
+                                        const errorText = await response.text();
+                                        alert(`Server xətası baş verdi: ${response.status}\n${errorText}`);
+                                        return;
+                                    }
+
+                                    const blogs = await response.json();
+
+                                    const container = document.getElementById('blogPosts');
+                                    if (blogs.length === 0) {
+                                        container.innerHTML = '<p>Heç bir nəticə tapılmadı.</p>';
+                                        return;
+                                    }
+
+                                    container.innerHTML = blogs.map(blog => `
+                                            <div class="single-blog-post">
+                                                <div class="post-featured-thumb bg-cover" style="background-image: url(${blog.image})"></div>
+                                                <div class="post-content">
+                                                    <div class="post-meta">
+                                                        <span><i class="fal fa-comments"></i>${blog.commentCount}</span>
+                                                        <span><i class="fal fa-calendar-alt"></i>${new Date(blog.createdDate).toLocaleDateString()}</span>
+                                                    </div>
+                                                    <h2><a href="/Blog/Details/${blog.id}">${blog.title}</a></h2>
+                                                    <p>${blog.content}</p>
+                                                    <a href="/Blog/Details/${blog.id}" class="theme-btn mt-4 line-height">
+                                                        <span>Read More</span> <i class="far fa-long-arrow-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        `).join('');
+
+                                } catch (error) {
+                                    alert('Server xətası baş verdi: ' + error);
+                                }
+                            });
+                        </script>
+
                     </div>
                 </div>
             </div>

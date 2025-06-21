@@ -36,6 +36,21 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> RemoveRole(string userId, string roleName)
+        {
+            var success = await _accountService.RemoveRoleAsync(userId, roleName);
+
+            if (success)
+                TempData["Success"] = "Rol uğurla silindi!";
+            else
+                TempData["Error"] = "Xəta baş verdi.";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
 
 
     }

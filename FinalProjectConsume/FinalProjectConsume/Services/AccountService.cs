@@ -55,6 +55,20 @@ namespace FinalProjectConsume.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> RemoveRoleAsync(string userId, string roleName)
+        {
+            var data = new
+            {
+                UserId = userId,
+                RoleName = roleName
+            };
+
+            // Burada API endpointin adını özünə görə uyğunlaşdır
+            var response = await _httpClient.PostAsJsonAsync("https://localhost:7145/api/admin/Account/RemoveRole/RemoveRole", data);
+            return response.IsSuccessStatusCode;
+        }
+
+
 
 
 

@@ -71,5 +71,8 @@ namespace FinalProjectConsume.Services
             return await _httpClient.GetFromJsonAsync<Blog>($"{_baseUrl}GetById/{id}");
         }
 
+
+
+
     }
 }

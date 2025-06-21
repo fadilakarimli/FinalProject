@@ -35,6 +35,16 @@
                         </select>
                         <button type="submit" class="btn btn-sm btn-success">Approve</button>
                     </form>
+                    <form asp-action="RemoveRole" asp-controller="User" asp-area="Admin" method="post" class="d-flex gap-1">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <select name="roleName" class="form-select form-select-sm">
+                            @foreach (var role in user.Roles)
+                            {
+                                <option value="@role">@role</option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         }

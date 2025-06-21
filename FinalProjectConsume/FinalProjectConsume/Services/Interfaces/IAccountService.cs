@@ -9,6 +9,7 @@ namespace FinalProjectConsume.Services.Interfaces
         Task<string> VerifyEmailAsync(string email, string token);
         Task<List<User>> GetAllUsersAsync();
         Task<bool> AssignRoleAsync(string userId, string roleName);
+        Task<bool> RemoveRoleAsync(string userId, string roleName);
 
     }
 }
