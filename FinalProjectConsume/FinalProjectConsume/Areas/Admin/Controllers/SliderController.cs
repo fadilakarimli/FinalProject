@@ -2,11 +2,14 @@
 using FinalProjectConsume.Models.Slider;
 using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Policy = "AdminOnly")]
+
     public class SliderController : Controller
     {
         private readonly ISliderService _sliderService;

@@ -1,11 +1,14 @@
 ﻿using FinalProjectConsume.Models.NewsLetter;
 using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Policy = "AdminOnly")]
+
     public class NewsLetterController : Controller
     {
         private readonly INewsLetterService _newsletterService;

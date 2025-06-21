@@ -1,10 +1,12 @@
-﻿    using FinalProjectConsume.Models.Blog;
-    using FinalProjectConsume.Services.Interfaces;
-    using Microsoft.AspNetCore.Mvc;
+﻿using FinalProjectConsume.Models.Blog;
+using FinalProjectConsume.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
     namespace FinalProjectConsume.Areas.Admin.Controllers
     {
         [Area("Admin")]
+        [Authorize(Policy = "AdminOnly")]
         public class BlogController : Controller
         {
             private readonly IBlogService _blogService;

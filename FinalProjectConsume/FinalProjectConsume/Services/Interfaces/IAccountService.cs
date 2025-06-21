@@ -7,5 +7,8 @@ namespace FinalProjectConsume.Services.Interfaces
         Task<HttpResponseMessage> LoginAsync(Login model);
         Task<bool> RegisterAsync(Register model);
         Task<string> VerifyEmailAsync(string email, string token);
+        Task<List<User>> GetAllUsersAsync();
+        Task<bool> AssignRoleAsync(string userId, string roleName);
+
     }
 }

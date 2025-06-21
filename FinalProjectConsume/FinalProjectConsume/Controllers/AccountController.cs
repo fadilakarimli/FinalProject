@@ -57,48 +57,42 @@ namespace FinalProjectConsume.Controllers
             {
                 PropertyNameCaseInsensitive = true
             });
-
             if (loginResponse != null && loginResponse.Success)
             {
-                // SESSION 
-                //HttpContext.Session.SetString("AuthToken", loginResponse.Token);
-                //HttpContext.Session.SetString("UserName", loginResponse.UserName ?? "");
-                //var claims = new List<Claim>
-                //{
-                //    new Claim(ClaimTypes.Name, loginResponse.UserName ?? "")
-                //};
+                var roles = loginResponse.Roles; // <- bu roles dolmalıdır API-dən
 
-                //if (loginResponse.Roles != null && loginResponse.Roles.Any())
-                //{
-                //    foreach (var role in loginResponse.Roles)
-                //    {
-                //        claims.Add(new Claim(ClaimTypes.Role, role));
-                //    }
-                //}
+                var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.Name, model.UserNameOrEmail)
+    };
 
-                var identity = new ClaimsIdentity("CookieAuth");
-                identity.AddClaim(new Claim(ClaimTypes.Name, model.UserNameOrEmail));  
+                if (roles != null)
+                {
+                    foreach (var role in roles)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, role));
+                    }
+                }
 
+                var identity = new ClaimsIdentity(claims, "CookieAuth");
                 var principal = new ClaimsPrincipal(identity);
+
                 await HttpContext.SignInAsync("CookieAuth", principal);
 
                 return RedirectToAction("Index", "Home");
             }
+
             else
             {
                 ModelState.AddModelError(string.Empty, loginResponse?.Error ?? "Login failed.");
                 return View(model);
             }
-
-
-
-
         }
 
         [HttpGet]
         public IActionResult Register()
         {
-            return View(new Register()); // boş model göndər
+            return View(new Register());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -176,7 +170,6 @@ namespace FinalProjectConsume.Controllers
         [HttpGet]
         public IActionResult ResetPassword(string email, string token)
         {
-            // Pre-fill the form with email and token if provided
             var model = new UserPasswordVM
             {
                 email = email,
@@ -215,7 +208,11 @@ namespace FinalProjectConsume.Controllers
         {
             return View();
         }
-
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View(); 
+        }
 
 
     }

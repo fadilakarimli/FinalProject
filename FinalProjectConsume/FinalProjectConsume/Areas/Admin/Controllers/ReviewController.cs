@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
 using System.Net;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Policy = "AdminOnly")]
+
     public class ReviewController : Controller
     {
         private readonly HttpClient _httpClient;

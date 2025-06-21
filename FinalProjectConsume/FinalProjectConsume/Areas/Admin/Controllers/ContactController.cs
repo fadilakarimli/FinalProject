@@ -1,5 +1,6 @@
 ﻿using FinalProjectConsume.Models.Contact;
 using FinalProjectConsume.ViewModels.UI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -8,6 +9,8 @@ using System.Text;
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Policy = "AdminOnly")]
+
     public class ContactController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

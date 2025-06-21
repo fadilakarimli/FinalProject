@@ -33,5 +33,31 @@ namespace FinalProjectConsume.Services
         }
 
 
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            var response = await _httpClient.GetAsync("https://localhost:7145/api/admin/Account/GetAllUsers");
+
+            if (!response.IsSuccessStatusCode)
+                return new List<User>();
+
+            return await response.Content.ReadFromJsonAsync<List<User>>();
+        }
+
+        public async Task<bool> AssignRoleAsync(string userId, string roleName)
+        {
+            var data = new
+            {
+                UserId = userId,
+                RoleName = roleName
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("https://localhost:7145/api/admin/Account/AssignRole/AssignRole", data);
+            return response.IsSuccessStatusCode;
+        }
+
+
+
+
+
     }
 }

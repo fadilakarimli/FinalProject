@@ -1,11 +1,14 @@
 ﻿using FinalProjectConsume.Models.TeamMember;
 using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Policy = "AdminOnly")]
+
     public class TeamMemberController : Controller
     {
         private readonly ITeamMemberService _teamMemberService;

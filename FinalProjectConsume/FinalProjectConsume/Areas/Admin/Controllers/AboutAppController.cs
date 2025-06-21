@@ -1,10 +1,12 @@
 ﻿using FinalProjectConsume.Models.AboutApp;
 using FinalProjectConsume.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Policy = "AdminOnly")]
     public class AboutAppController : Controller
     {
         private readonly IAboutAppService _aboutAppService;
