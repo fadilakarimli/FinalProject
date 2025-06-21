@@ -613,8 +613,7 @@
                                 </li>
                             </ul>
 
-                            <!-- ✅ FORM əlavə olundu -->
-                            <form asp-action="Create" asp-controller="Booking" method="post" id="bookingForm">
+                            <form action="/payment/create-checkout-session" method="POST" id="paymentForm">
                                 <input type="hidden" name="TourId" value="@Model.Tour.Id" />
                                 <input type="hidden" name="AdultsCount" id="AdultsCountInput" value="1" />
                                 <input type="hidden" name="ChildrenCount" id="ChildrenCountInput" value="1" />
@@ -624,7 +623,6 @@
                                 </a>
                             </form>
 
-                            <!-- ✅ JS ilə dəyərləri form inputlarına ötür -->
                             <script>
                                 document.addEventListener('DOMContentLoaded', () => {
                                     const adultInput = document.getElementById('adultCount');
@@ -634,21 +632,22 @@
                                     const hiddenChild = document.getElementById('ChildrenCountInput');
 
                                     function syncCounts() {
-                                        hiddenAdult.value = adultInput.value;
-                                        hiddenChild.value = childInput.value;
+                                        if (adultInput) hiddenAdult.value = adultInput.value;
+                                        if (childInput) hiddenChild.value = childInput.value;
                                     }
 
-                                    adultInput.addEventListener('input', syncCounts);
-                                    childInput.addEventListener('input', syncCounts);
+                                    if (adultInput) adultInput.addEventListener('input', syncCounts);
+                                    if (childInput) childInput.addEventListener('input', syncCounts);
 
                                     document.getElementById('bookNowBtn').addEventListener('click', function () {
                                         syncCounts();
-                                        document.getElementById('bookingForm').submit();
+                                        document.getElementById('paymentForm').submit();
                                     });
 
                                     syncCounts();
                                 });
                             </script>
+
                         </div>
                     </div>
                 </div>
