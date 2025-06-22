@@ -14,6 +14,7 @@
             <th>AdultCount</th>
             <th>ChildCount</th>
             <th>Total</th>
+            <th>Email</th>
             <th>Status</th>
             <th>Operations</th>
         </tr>
@@ -27,11 +28,12 @@
                 <td>@booking.AdultsCount</td>
                 <td>@booking.ChildrenCount</td>
                 <td>@booking.TotalPrice</td>
-                    <td>@((BookingStatus)booking.Status)</td>
+                <td>@booking.UserEmail</td>
+                <td>@((BookingStatus)booking.Status)</td>
                 <td>
                     @if (User.IsInRole("SuperAdmin"))
                     {
-                            <form asp-controller="Booking" asp-action="UpdateStatus" method="post" style="display:inline;">
+                            <form  asp-area="Admin" asp-controller="Booking" asp-action="UpdateStatus" method="post" style="display:inline;">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="bookingId" value="@booking.Id" />
 

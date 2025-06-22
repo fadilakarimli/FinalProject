@@ -36,8 +36,6 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             return View(bookings);
         }
 
-
-        [HttpPost]
         [HttpPost]
         public async Task<IActionResult> UpdateStatus(int bookingId, string status)
         {
@@ -62,6 +60,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
 
 
 

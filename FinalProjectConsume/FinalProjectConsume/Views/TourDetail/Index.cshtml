@@ -573,6 +573,15 @@
                                         </div>
                                         Total:$<span id="childTotal">@((Model.Tour.Price - 50))</span>
                                     </li>
+                                    <li>
+                                        Email:
+                                        <div class="form-clt">
+                                            <div class="form">
+                                                <input type="email" name="UserEmail" id="userEmail" class="form-control" required placeholder="Enter your email" />
+                                            </div>
+                                        </div>
+                                    </li>
+
                                 </ul>
 
                                 <script>
@@ -612,41 +621,76 @@
                                     Grand Total: $<span id="grandTotal">@((Model.Tour.Price) + (Model.Tour.Price - 50))</span>
                                 </li>
                             </ul>
-
-                            <form action="/payment/create-checkout-session" method="POST" id="paymentForm">
+                            <form action="/booking/create" method="POST" id="paymentForm">
                                 <input type="hidden" name="TourId" value="@Model.Tour.Id" />
+                                <input type="hidden" name="Price" value="@Model.Tour.Price" />
                                 <input type="hidden" name="AdultsCount" id="AdultsCountInput" value="1" />
                                 <input type="hidden" name="ChildrenCount" id="ChildrenCountInput" value="1" />
+                                <input type="hidden" name="UserEmail" id="HiddenUserEmail" value="" />
 
                                 <a href="javascript:void(0);" class="theme-btn" id="bookNowBtn">
                                     <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
                                 </a>
                             </form>
 
+
+
                             <script>
                                 document.addEventListener('DOMContentLoaded', () => {
                                     const adultInput = document.getElementById('adultCount');
                                     const childInput = document.getElementById('childCount');
+                                    const userEmailInput = document.getElementById('userEmail');
 
                                     const hiddenAdult = document.getElementById('AdultsCountInput');
                                     const hiddenChild = document.getElementById('ChildrenCountInput');
+                                    const hiddenEmail = document.getElementById('HiddenUserEmail');
 
-                                    function syncCounts() {
-                                        if (adultInput) hiddenAdult.value = adultInput.value;
-                                        if (childInput) hiddenChild.value = childInput.value;
+                                    const adultPrice = parseFloat('@(Model.Tour.Price)');
+                                    const childPrice = adultPrice - 50;
+
+                                    const adultTotalEl = document.getElementById('adultTotal');
+                                    const childTotalEl = document.getElementById('childTotal');
+                                    const grandTotalEl = document.getElementById('grandTotal');
+
+                                    function updateTotals() {
+                                        const adults = parseInt(adultInput.value) || 0;
+                                        const children = parseInt(childInput.value) || 0;
+
+                                        const adultTotal = adults * adultPrice;
+                                        const childTotal = children * childPrice;
+                                        const grandTotal = adultTotal + childTotal;
+
+                                        adultTotalEl.textContent = adultTotal.toFixed(2);
+                                        childTotalEl.textContent = childTotal.toFixed(2);
+                                        grandTotalEl.textContent = grandTotal.toFixed(2);
                                     }
 
-                                    if (adultInput) adultInput.addEventListener('input', syncCounts);
-                                    if (childInput) childInput.addEventListener('input', syncCounts);
+                                    function syncInputs() {
+                                        if (adultInput) hiddenAdult.value = adultInput.value;
+                                        if (childInput) hiddenChild.value = childInput.value;
+                                        if (userEmailInput && hiddenEmail) hiddenEmail.value = userEmailInput.value;
+                                    }
+
+                                    if (adultInput) adultInput.addEventListener('input', () => {
+                                        updateTotals();
+                                        syncInputs();
+                                    });
+                                    if (childInput) childInput.addEventListener('input', () => {
+                                        updateTotals();
+                                        syncInputs();
+                                    });
+                                    if (userEmailInput) userEmailInput.addEventListener('input', syncInputs);
 
                                     document.getElementById('bookNowBtn').addEventListener('click', function () {
-                                        syncCounts();
+                                        syncInputs();
                                         document.getElementById('paymentForm').submit();
                                     });
 
-                                    syncCounts();
+                                    updateTotals();
+                                    syncInputs();
                                 });
                             </script>
+
 
                         </div>
                     </div>

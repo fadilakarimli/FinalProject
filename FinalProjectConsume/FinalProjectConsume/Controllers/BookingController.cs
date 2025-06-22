@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text;
 using FinalProjectConsume.Models.Booking;
 using FinalProjectConsume.Models.Tour;
+using FinalProjectConsume.Enums;
 
 namespace FinalProjectConsume.Controllers
 {
@@ -20,33 +21,18 @@ namespace FinalProjectConsume.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(BookingCreateVM vm)
+        public IActionResult Create(BookingCreateVM vm)
         {
-            var json = JsonSerializer.Serialize(vm);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync("https://localhost:7145/api/Booking/CreateBooking", content);
-
-            if (!response.IsSuccessStatusCode)
-                return RedirectToAction("Error");
-
-            var resultJson = await response.Content.ReadAsStringAsync();
-            var booking = JsonSerializer.Deserialize<Booking>(resultJson,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-            if (booking.Tour == null)
+            if (string.IsNullOrWhiteSpace(vm.UserEmail) && User.Identity.IsAuthenticated)
             {
-                var tourResponse = await _httpClient.GetAsync($"https://localhost:7145/api/Tour/{booking.TourId}");
-                if (!tourResponse.IsSuccessStatusCode)
-                    return RedirectToAction("Error");
-
-                var tourJson = await tourResponse.Content.ReadAsStringAsync();
-                booking.Tour = JsonSerializer.Deserialize<Tour>(tourJson,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                vm.UserEmail = User.Identity.Name;
             }
 
-            decimal totalPrice = (booking.Tour.Price * booking.AdultsCount) +
-                                 (booking.Tour.Price * 0.5m * booking.ChildrenCount);
+            // BookingCreateVM saxla və Keep-lə ki, silinməsin
+            TempData["BookingCreateVM"] = JsonSerializer.Serialize(vm);
+            TempData.Keep("BookingCreateVM");
+
+            decimal totalPrice = (vm.AdultsCount * vm.Price) + (vm.ChildrenCount * vm.Price * 0.5m);
 
             var options = new Stripe.Checkout.SessionCreateOptions
             {
@@ -61,14 +47,14 @@ namespace FinalProjectConsume.Controllers
                     Currency = "usd",
                     ProductData = new Stripe.Checkout.SessionLineItemPriceDataProductDataOptions
                     {
-                        Name = booking.Tour.Name,
+                        Name = "Tour Booking"
                     },
                 },
                 Quantity = 1
             }
         },
                 Mode = "payment",
-                SuccessUrl = $"{Request.Scheme}://{Request.Host}/booking/success?bookingId={booking.Id}",
+                SuccessUrl = $"{Request.Scheme}://{Request.Host}/booking/success",
                 CancelUrl = $"{Request.Scheme}://{Request.Host}/booking/error"
             };
 
@@ -78,68 +64,38 @@ namespace FinalProjectConsume.Controllers
             return Redirect(session.Url);
         }
 
-
-
-        public async Task<IActionResult> Success(string bookingId)
+        public async Task<IActionResult> Success()
         {
-            if (string.IsNullOrEmpty(bookingId))
+            if (!TempData.ContainsKey("BookingCreateVM"))
                 return RedirectToAction("Error");
 
-            var response = await _httpClient.GetAsync($"https://localhost:7145/api/Booking/{bookingId}");
+            TempData.Keep("BookingCreateVM");
+
+            var json = TempData["BookingCreateVM"] as string;
+            var vm = JsonSerializer.Deserialize<BookingCreateVM>(json);
+
+            // 1. Booking Yarat
+            var jsonContent = JsonSerializer.Serialize(vm);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("https://localhost:7145/api/Booking/CreateBooking", content);
+
             if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("❌ Booking creation uğursuz oldu.");
                 return RedirectToAction("Error");
-
-            var bookingJson = await response.Content.ReadAsStringAsync();
-            var booking = JsonSerializer.Deserialize<Booking>(bookingJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-            if (booking == null)
-                return RedirectToAction("Error");
-
-            if (booking.Tour == null)
-            {
-                var tourResponse = await _httpClient.GetAsync($"https://localhost:7145/api/Tour/{booking.TourId}");
-                if (!tourResponse.IsSuccessStatusCode)
-                    return RedirectToAction("Error");
-
-                var tourJson = await tourResponse.Content.ReadAsStringAsync();
-                booking.Tour = JsonSerializer.Deserialize<Tour>(tourJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             }
 
-            // Mail göndərmə
-            try
+            var resultJson = await response.Content.ReadAsStringAsync();
+            var booking = JsonSerializer.Deserialize<Booking>(resultJson, new JsonSerializerOptions
             {
-                var smtpHost = "smtp.gmail.com";
-                var smtpPort = 587;
-                var smtpUser = "fadilafk@code.edu.az";
-                var smtpPass = "fqen ovmf kvou rvos"; // App Password
+                PropertyNameCaseInsensitive = true
+            });
 
-                var mail = new System.Net.Mail.MailMessage();
-                mail.From = new System.Net.Mail.MailAddress(smtpUser);
-
-                if (!string.IsNullOrEmpty(booking.UserEmail))
-                {
-                    mail.To.Add(booking.UserEmail);
-                    mail.Subject = "Rezervasiyanız təsdiqləndi - Travel.az";
-                    mail.Body = " "; // bir boşluq qoy ki, mail spam düşməsin
-                    mail.IsBodyHtml = true;
-
-                    using var smtp = new System.Net.Mail.SmtpClient(smtpHost, smtpPort)
-                    {
-                        Credentials = new System.Net.NetworkCredential(smtpUser, smtpPass),
-                        EnableSsl = true
-                    };
-
-                    await smtp.SendMailAsync(mail);
-                    Console.WriteLine("✅ Email göndərildi.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("❌ Mail xətası: " + ex.Message);
-            }
-
+            Console.WriteLine($"✅ Booking yaradıldı: ID = {booking.Id}");
             return View(booking);
         }
+
 
         public IActionResult Error()
         {
