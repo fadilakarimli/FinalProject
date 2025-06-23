@@ -209,41 +209,50 @@
                                 </div>
                             </div>
                             <div class="review-area">
-                                <h3>
-                                    Customer Reviews
-                                </h3>
+                                <h3>Customer Reviews</h3>
                                 <div class="courses-reviews-box-items">
                                     <div class="courses-reviews-box">
                                         <div class="reviews-box">
-                                            <h2><span class="odometer" data-count="4.9">00</span></h2>
+                                            <h2>
+                                                <span class="odometer" data-count="@Model.AverageStar">@Model.AverageStar</span>
+                                            </h2>
                                             <div class="star">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
+                                                @{
+                                                    int fullStars = (int)Math.Floor(Model.AverageStar);
+                                                    int emptyStars = 5 - fullStars;
+
+                                                    for (int i = 0; i < fullStars; i++)
+                                                    {
+                                                        <i class="fas fa-star"></i>
+                                                    }
+
+                                                    for (int i = 0; i < emptyStars; i++)
+                                                    {
+                                                        <i class="far fa-star"></i>
+                                                    }
+                                                }
                                             </div>
-                                            <p>856+ Reviews</p>
+                                            <p>@Model.ReviewCount Reviews</p>
                                         </div>
                                         <div class="reviews-ratting-right">
                                             <div class="reviews-ratting-item">
-                                                <div class="star">
+                                              @*   <div class="star">
                                                     <i class="fas fa-star"></i>
                                                     <i class="fas fa-star"></i>
                                                     <i class="fas fa-star"></i>
                                                     <i class="fas fa-star"></i>
                                                     <i class="far fa-star"></i>
-                                                </div>
+                                                </div> *@
                                                 <div class="progress">
-                                                    <div class="progress-value style-two"></div>
+                                                    <div class="progress-value style-two" style="width:@(Model.AverageStar * 20)%"></div>
                                                 </div>
-                                                <span>FeedBack</span>
+                                                <span>Feedback</span>
                                             </div>
-                                         
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="client-review-items">
                                 <h3>Clients Reviews for @Model.Tour.Name</h3>
@@ -438,22 +447,33 @@
                                     }
                             </style>
 
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                const submitReviewBtn = document.getElementById('submitReviewBtn');
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const stars = document.querySelectorAll('#starWrapper i');
+                                    const starInput = document.getElementById('starInput');
 
-                                if (submitReviewBtn) {
-                                    submitReviewBtn.addEventListener('click', function (e) {
-                                        const isAuth = submitReviewBtn.dataset.auth === "true";
+                                    stars.forEach(star => {
+                                        star.addEventListener('click', () => {
+                                            const selectedValue = parseInt(star.getAttribute('data-value'));
+                                            starInput.value = selectedValue;
 
-                                        if (!isAuth) {
-                                            e.preventDefault(); 
-                                            window.location.href = "/Account/Login";
-                                        }
+                                            stars.forEach(s => {
+                                                const val = parseInt(s.getAttribute('data-value'));
+                                                if (val <= selectedValue) {
+                                                    s.classList.add('selected');
+                                                    s.classList.remove('far');
+                                                    s.classList.add('fas');
+                                                } else {
+                                                    s.classList.remove('selected');
+                                                    s.classList.remove('fas');
+                                                    s.classList.add('far');
+                                                }
+                                            });
+                                        });
                                     });
-                                }
-                            });
-                        </script>
+                                });
+                            </script>
+
 
                         </div>
                     </div>
