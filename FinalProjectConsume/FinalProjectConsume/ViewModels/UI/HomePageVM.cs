@@ -32,6 +32,8 @@ namespace FinalProjectConsume.ViewModels.UI
         public IEnumerable<AboutAgency> AboutAgencies { get; set; }
         public IEnumerable<Activity> Activities { get; set; }
         public string SearchTerm { get; set; }
+        public List<ReviewVM> Reviews { get; set; } = new List<ReviewVM>();
+
 
 
     }

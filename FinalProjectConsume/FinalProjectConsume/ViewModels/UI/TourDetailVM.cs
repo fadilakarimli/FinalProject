@@ -1,4 +1,5 @@
-﻿using FinalProjectConsume.Models.Tour;
+﻿using FinalProjectConsume.Models.Plan;
+using FinalProjectConsume.Models.Tour;
 
 namespace FinalProjectConsume.ViewModels.UI
 {
@@ -8,6 +9,9 @@ namespace FinalProjectConsume.ViewModels.UI
         public string SearchTerm { get; set; }
 
         public List<ReviewCreateVM> Reviews { get; set; } = new List<ReviewCreateVM>();
+        public List<Plan> Plans { get; set; }
+
+
 
     }
 }

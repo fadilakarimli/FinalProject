@@ -99,10 +99,10 @@
                                                     </span>
                                                 }
                                             </a>
-
                                             <div id="auth-options" style="display: none; position: absolute; top: 100%; left: 0; background: white; padding: 5px; border: 1px solid #ccc; z-index: 100; font-size: 14px; min-width: 120px; text-align: center; border-radius: 5px;">
                                                 @if (User.Identity.IsAuthenticated)
                                                 {
+                                                    <p style="margin-bottom: 5px;">Hi,@User.Identity.Name!</p>
                                                     <form asp-action="Logout" asp-controller="Account" method="post" style="margin: 0;">
                                                         <button type="submit" style="background: none; border: none; color: black; padding: 5px; cursor: pointer;">Logout</button>
                                                     </form>
@@ -113,6 +113,7 @@
                                                     <a asp-action="Register" asp-controller="Account" style="display: block; padding: 5px; text-decoration: none; color: black;">Register</a>
                                                 }
                                             </div>
+
                                         </li>
 
 

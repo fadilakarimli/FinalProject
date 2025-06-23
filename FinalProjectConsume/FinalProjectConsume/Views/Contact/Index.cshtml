@@ -85,7 +85,8 @@
                                 <div class="content">
                                     <span>Our Location</span>
                                     <h3>
-                                        Downtown Dubai, Dubai 00000, UAE
+                                        @Model.Settings.FirstOrDefault(x => x.Key == "Location")?.Value
+
                                     </h3>
                                 </div>
                             </div>
@@ -101,7 +102,8 @@
                                 <div class="content">
                                     <span>Phone Number</span>
                                     <h3>
-                                        <a href="tel:+4940059654444">+494 005 965 4444</a>
+                                        <a>@Model.Settings?.FirstOrDefault(x => x.Key == "Phone")?.Value</a>
+
                                     </h3>
                                 </div>
                             </div>
@@ -122,7 +124,9 @@
                                 <div class="content">
                                     <span>Send Email</span>
                                     <h3>
-                                        <a href="mailto:hellosuporttravil@gmail.com">hellosuporttravil@gmail.com</a>
+                                        <a>
+                                            @Model.Settings?.FirstOrDefault(x => x.Key == "Email")?.Value
+                                        </a>
                                     </h3>
                                 </div>
                             </div>

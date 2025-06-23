@@ -1,5 +1,6 @@
 ﻿@model FinalProjectConsume.ViewModels.UI.TourDetailVM
 @using System.Globalization
+@using Microsoft.AspNetCore.Identity
 
 <!-- Search Section Start -->
 <div class="header-search-bar d-flex align-items-center">
@@ -162,57 +163,43 @@
                                 <h4>Tour Plan</h4>
                                 <div class="faq-accordion">
                                     <div class="accordion" id="accordion2">
-                                        <div class="accordion-item mb-3">
-                                            <h5 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
-                                                    <span>Day 1:</span>  Arrive South Africa Forest
-                                                </button>
-                                            </h5>
-                                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#accordion">
-                                                <div class="accordion-body">
-                                                    If you are going There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteradution in some form by injected humour, or randomised words which don't look even slightly believable. If you are going
+                                        @if (Model.Tour.Plans != null && Model.Tour.Plans.Any())
+                                        {
+                                            int index = 0;
+                                            foreach (var plan in Model.Tour.Plans.OrderBy(p => p.Day))
+                                            {
+                                                var collapseId = $"faq{index + 1}";
+                                                var showClass = index == 0 ? "show" : "";
+                                                var collapsedClass = index == 0 ? "" : "collapsed";
+
+                                                <div class="accordion-item mb-3">
+                                                    <h5 class="accordion-header">
+                                                        <button class="accordion-button @collapsedClass" type="button"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#@collapseId"
+                                                                aria-expanded="@(index == 0 ? "true" : "false")"
+                                                                aria-controls="@collapseId">
+                                                            <span>Day @plan.Day:</span> @plan.Title
+                                                        </button>
+                                                    </h5>
+                                                    <div id="@collapseId" class="accordion-collapse collapse @showClass" data-bs-parent="#accordion2">
+                                                        <div class="accordion-body">
+                                                            @plan.Description
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item mb-3">
-                                            <h5 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
-                                                    <span>Day 2:</span> Lunch Inside of Forest & Adventure
-                                                </button>
-                                            </h5>
-                                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordion">
-                                                <div class="accordion-body">
-                                                    If you are going There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteradution in some form by injected humour, or randomised words which don't look even slightly believable. If you are going
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item mb-3">
-                                            <h5 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
-                                                    <span>Day 3:</span>  Lunch Inside of Forest & Adventure
-                                                </button>
-                                            </h5>
-                                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordion">
-                                                <div class="accordion-body">
-                                                    If you are going There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteradution in some form by injected humour, or randomised words which don't look even slightly believable. If you are going
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h5 class="accordion-header">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
-                                                    <span>Day 4:</span>   We Will Go Back to Canda
-                                                </button>
-                                            </h5>
-                                            <div id="faq4" class="accordion-collapse collapse show" data-bs-parent="#accordion">
-                                                <div class="accordion-body">
-                                                    If you are going There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteradution in some form by injected humour, or randomised words which don't look even slightly believable. If you are going
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                                index++;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div>No tour plans available.</div>
+                                        }
                                     </div>
                                 </div>
                             </div>
+
                             <div class="map-area">
                                 <h3>
                                     View in Map
@@ -222,10 +209,10 @@
                                 </div>
                             </div>
                             <div class="review-area">
-                                @* <h3>
+                                <h3>
                                     Customer Reviews
-                                </h3> *@
-                              @*   <div class="courses-reviews-box-items">
+                                </h3>
+                                <div class="courses-reviews-box-items">
                                     <div class="courses-reviews-box">
                                         <div class="reviews-box">
                                             <h2><span class="odometer" data-count="4.9">00</span></h2>
@@ -250,76 +237,12 @@
                                                 <div class="progress">
                                                     <div class="progress-value style-two"></div>
                                                 </div>
-                                                <span>Services</span>
+                                                <span>FeedBack</span>
                                             </div>
-                                            <div class="reviews-ratting-item">
-                                                <div class="star">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-value style-three"></div>
-                                                </div>
-                                                <span>Safety</span>
-                                            </div>
-                                            <div class="reviews-ratting-item">
-                                                <div class="star">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-value style-three"></div>
-                                                </div>
-                                                <span>Guides</span>
-                                            </div>
-                                            <div class="reviews-ratting-item">
-                                                <div class="star">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-value style-four"></div>
-                                                </div>
-                                                <span>Foods</span>
-                                            </div>
-                                            <div class="reviews-ratting-item">
-                                                <div class="star">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-value style-five"></div>
-                                                </div>
-                                                <span>Hotels</span>
-                                            </div>
-                                            <div class="reviews-ratting-item">
-                                                <div class="star">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-value style-five"></div>
-                                                </div>
-                                                <span>Places</span>
-                                            </div>
+                                         
                                         </div>
                                     </div>
-                                </div> *@
+                                </div>
                             </div>
 
                             <div class="client-review-items">
@@ -448,7 +371,6 @@
                                     }
                                 </div>
                             </div>
-
                             <div class="review-comment-items">
                                 <h3>Add Your Reviews</h3>
                                 <ul class="mb-0">
@@ -463,7 +385,6 @@
                                         </div>
                                     </li>
                                 </ul>
-
                                 <h4>Leave Feedback</h4>
                                 <form asp-controller="Review" asp-action="SubmitReview" method="post" id="contact-form">
                                     <!-- Burada TourId gizli olaraq göndərilir -->
@@ -491,13 +412,15 @@
                                             </div>
                                         </div>
 
-                                        <!-- Star rating gizli input -->
                                         <input type="hidden" name="Star" id="starInput" value="0" />
+                                        @{
+                                            var isAuthenticated = User.Identity.IsAuthenticated;
+                                        }
 
                                         <div class="col-lg-6">
-                                            <button type="submit" class="theme-btn text-center">
-                                                <span>Submit Reviews</span> <i class="far fa-long-arrow-right"></i>
-                                            </button>
+                                          <button type="submit" class="theme-btn text-center" id="submitReviewBtn" data-auth="@isAuthenticated.ToString().ToLower()">
+                                            <span>Submit Reviews</span> <i class="far fa-long-arrow-right"></i>
+                                        </button>
                                         </div>
                                     </div>
                                 </form>
@@ -515,24 +438,23 @@
                                     }
                             </style>
 
-                            <script>
-                                document.addEventListener('DOMContentLoaded', () => {
-                                    const stars = document.querySelectorAll('#starWrapper .far.fa-star');
-                                    const starInput = document.getElementById('starInput');
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const submitReviewBtn = document.getElementById('submitReviewBtn');
 
-                                    stars.forEach(star => {
-                                        star.addEventListener('click', () => {
-                                            const val = star.getAttribute('data-value');
-                                            starInput.value = val;
+                                if (submitReviewBtn) {
+                                    submitReviewBtn.addEventListener('click', function (e) {
+                                        const isAuth = submitReviewBtn.dataset.auth === "true";
 
-                                            stars.forEach(s => s.classList.remove('selected'));
-                                            for (let i = 0; i < val; i++) {
-                                                stars[i].classList.add('selected');
-                                            }
-                                        });
+                                        if (!isAuth) {
+                                            e.preventDefault(); 
+                                            window.location.href = "/Account/Login";
+                                        }
                                     });
-                                });
-                            </script>
+                                }
+                            });
+                        </script>
+
                         </div>
                     </div>
                 </div>
@@ -628,68 +550,82 @@
                                 <input type="hidden" name="ChildrenCount" id="ChildrenCountInput" value="1" />
                                 <input type="hidden" name="UserEmail" id="HiddenUserEmail" value="" />
 
-                                <a href="javascript:void(0);" class="theme-btn" id="bookNowBtn">
+
+                                @{
+                                    var Authenticated = User.Identity.IsAuthenticated;
+                                }
+
+                                <a href="javascript:void(0);" class="theme-btn" id="bookNowBtn" data-auth="@Authenticated.ToString().ToLower()">
                                     <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
                                 </a>
                             </form>
 
 
 
-                            <script>
-                                document.addEventListener('DOMContentLoaded', () => {
-                                    const adultInput = document.getElementById('adultCount');
-                                    const childInput = document.getElementById('childCount');
-                                    const userEmailInput = document.getElementById('userEmail');
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const adultInput = document.getElementById('adultCount');
+                            const childInput = document.getElementById('childCount');
+                            const userEmailInput = document.getElementById('userEmail');
 
-                                    const hiddenAdult = document.getElementById('AdultsCountInput');
-                                    const hiddenChild = document.getElementById('ChildrenCountInput');
-                                    const hiddenEmail = document.getElementById('HiddenUserEmail');
+                            const hiddenAdult = document.getElementById('AdultsCountInput');
+                            const hiddenChild = document.getElementById('ChildrenCountInput');
+                            const hiddenEmail = document.getElementById('HiddenUserEmail');
 
-                                    const adultPrice = parseFloat('@(Model.Tour.Price)');
-                                    const childPrice = adultPrice - 50;
+                            const adultPrice = parseFloat('@(Model.Tour.Price)');
+                            const childPrice = adultPrice - 50;
 
-                                    const adultTotalEl = document.getElementById('adultTotal');
-                                    const childTotalEl = document.getElementById('childTotal');
-                                    const grandTotalEl = document.getElementById('grandTotal');
+                            const adultTotalEl = document.getElementById('adultTotal');
+                            const childTotalEl = document.getElementById('childTotal');
+                            const grandTotalEl = document.getElementById('grandTotal');
 
-                                    function updateTotals() {
-                                        const adults = parseInt(adultInput.value) || 0;
-                                        const children = parseInt(childInput.value) || 0;
+                            function updateTotals() {
+                                const adults = parseInt(adultInput.value) || 0;
+                                const children = parseInt(childInput.value) || 0;
 
-                                        const adultTotal = adults * adultPrice;
-                                        const childTotal = children * childPrice;
-                                        const grandTotal = adultTotal + childTotal;
+                                const adultTotal = adults * adultPrice;
+                                const childTotal = children * childPrice;
+                                const grandTotal = adultTotal + childTotal;
 
-                                        adultTotalEl.textContent = adultTotal.toFixed(2);
-                                        childTotalEl.textContent = childTotal.toFixed(2);
-                                        grandTotalEl.textContent = grandTotal.toFixed(2);
-                                    }
+                                adultTotalEl.textContent = adultTotal.toFixed(2);
+                                childTotalEl.textContent = childTotal.toFixed(2);
+                                grandTotalEl.textContent = grandTotal.toFixed(2);
+                            }
 
-                                    function syncInputs() {
-                                        if (adultInput) hiddenAdult.value = adultInput.value;
-                                        if (childInput) hiddenChild.value = childInput.value;
-                                        if (userEmailInput && hiddenEmail) hiddenEmail.value = userEmailInput.value;
-                                    }
+                            function syncInputs() {
+                                if (adultInput) hiddenAdult.value = adultInput.value;
+                                if (childInput) hiddenChild.value = childInput.value;
+                                if (userEmailInput && hiddenEmail) hiddenEmail.value = userEmailInput.value;
+                            }
 
-                                    if (adultInput) adultInput.addEventListener('input', () => {
-                                        updateTotals();
-                                        syncInputs();
-                                    });
-                                    if (childInput) childInput.addEventListener('input', () => {
-                                        updateTotals();
-                                        syncInputs();
-                                    });
-                                    if (userEmailInput) userEmailInput.addEventListener('input', syncInputs);
+                            const bookNowBtn = document.getElementById('bookNowBtn');
+                            bookNowBtn.addEventListener('click', function () {
+                                const isAuth = bookNowBtn.dataset.auth === "true";
 
-                                    document.getElementById('bookNowBtn').addEventListener('click', function () {
-                                        syncInputs();
-                                        document.getElementById('paymentForm').submit();
-                                    });
+                                if (!isAuth) {
+                                    window.location.href = "/Account/Login"; // Burada login səhifənizin ünvanını yaz
+                                    return;
+                                }
 
-                                    updateTotals();
-                                    syncInputs();
-                                });
-                            </script>
+                                syncInputs();
+                                document.getElementById('paymentForm').submit();
+                            });
+
+                            adultInput.addEventListener('input', () => {
+                                updateTotals();
+                                syncInputs();
+                            });
+                            childInput.addEventListener('input', () => {
+                                updateTotals();
+                                syncInputs();
+                            });
+                            userEmailInput.addEventListener('input', syncInputs);
+
+                            updateTotals();
+                            syncInputs();
+                        });
+                    </script>
+
 
 
                         </div>

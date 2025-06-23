@@ -69,7 +69,9 @@ namespace FinalProjectConsume.Services
         public async Task<Blog> GetByIdAsync(int id)
         {
             return await _httpClient.GetFromJsonAsync<Blog>($"{_baseUrl}GetById/{id}");
+
         }
+
 
 
 

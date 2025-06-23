@@ -1,4 +1,4 @@
-﻿@model HomePageVM
+﻿@model HomePageVM   
 
 @{
     ViewData["Title"] = "Home Page";
@@ -364,7 +364,7 @@
                                                         @tour.Duration
                                                     </li>
                                                 </ul>
-                                                <div class="star">
+                                              @*   <div class="star">
                                                     <!-- Burada star rating varsa dinamik göstərmək olar, yoxdursa hardcoded qalsın -->
                                                     <a href="#"><i class="fas fa-star"></i></a>
                                                     <a href="#"><i class="fas fa-star"></i></a>
@@ -372,7 +372,7 @@
                                                     <a href="#"><i class="fas fa-star"></i></a>
                                                     <a href="#"><i class="far fa-star"></i></a>
                                                     <span>(30)</span>
-                                                </div>
+                                                </div> *@
                                             </div>
                                         </div>
                                     </div>
@@ -617,56 +617,33 @@
         </div>
         <div class="swiper testimonial-slider-4">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="testimonial-box-items-4">
-                        <div class="testi-img">
-                            <img src="assets/img/testimonial/client-03.png" alt="img">
-                        </div>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="icon">
-                            <img src="assets/img/testimonial/quote-01.png" alt="icon">
-                        </div>
-                        <h3>
-                            "Our family trip was amazing from start to finish! The itinerary was perfect, the guides were knowledgeable, and the service was excellent. I can’t wait to book our next adventure!"
-                        </h3>
-                        <div class="client-info">
-                            <h4>William Smith</h4>
-                            <span>from New York, USA</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="testimonial-box-items-4">
-                        <div class="testi-img">
-                            <img src="assets/img/testimonial/client-04.png" alt="img">
-                        </div>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="icon">
-                            <img src="assets/img/testimonial/quote-01.png" alt="icon">
-                        </div>
-                        <h3>
-                            "Our family trip was amazing from start to finish! The itinerary was perfect, the guides were knowledgeable, and the service was excellent. I can’t wait to book our next adventure!"
-                        </h3>
-                        <div class="client-info">
-                            <h4>Michel John</h4>
-                            <span>from New York, USA</span>
+                @foreach (var review in Model.Reviews.Where(r => r.Star == 5))
+                {
+                    <div class="swiper-slide">
+                        <div class="testimonial-box-items-4">
+                            <div class="testi-img">
+                            </div>
+                            <div class="star">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <i class="fas fa-star"></i>
+                                }
+                            </div>
+                            <div class="icon">
+                                <img src="assets/img/testimonial/quote-01.png" alt="quote" />
+                            </div>
+                            <h3>"@review.Message"</h3>
+                            <div class="client-info">
+                                <h4>@review.Name</h4>
+                                @* <span>from @(string.IsNullOrEmpty(review.Country) ? "Unknown" : review.Country)</span> *@
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
+
+
     </div>
 </section>
 <!-- News Section Start -->
@@ -683,18 +660,16 @@
                     <div class="news-box-items-4">
                         <div class="news-img">
                             <img src="@blog.Image" alt="img" />
-                         @*    <ul class="post-date">
+                            <ul class="post-date">
                                 <li>@blog.CreatedDate.Day</li>
                                 <li>@blog.CreatedDate.ToString("MMM").ToUpper()</li>
-                            </ul> *@
+                            </ul>
                         </div>
                         <div class="news-content">
                             <ul>
-                                <li><b>By</b> @blog.Author</li>
-                                <li><b>@blog.CommentCount</b> Comments</li>
                             </ul>
                             <h3>
-                                <a href="@Url.Action("Details", "Blog", new { id = blog.Id })">
+                                <a asp-controller="BlogDetail" asp-action="Index" asp-route-id="@blog.Id">
                                     @blog.Title
                                 </a>
                             </h3>

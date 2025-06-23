@@ -8,5 +8,6 @@
         public string fullName { get; set; }
         public string message { get; set; }
         public int id { get; set; }
+        public List<SettingVM> Settings { get; set; }
     }
 }

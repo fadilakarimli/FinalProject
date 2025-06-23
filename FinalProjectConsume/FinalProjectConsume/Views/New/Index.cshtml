@@ -64,9 +64,9 @@
                                             <span><i class="fal fa-comments"></i>@blog.CommentCount</span>
                                             <span><i class="fal fa-calendar-alt"></i>@blog.CreatedDate.ToShortDateString()</span>
                                         </div>
-                                        <h2><a href="/Blog/Details/@blog.Id">@blog.Title</a></h2>
+                                        <h2><a asp-controller="BlogDetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Title</a></h2>
                                         <p>@blog.Content</p>
-                                        <a href="/Blog/Details/@blog.Id" class="theme-btn mt-4 line-height">
+                                        <a asp-controller="BlogDetail" asp-action="Index" asp-route-id="@blog.Id" class="theme-btn mt-4 line-height">
                                             <span>Read More</span> <i class="far fa-long-arrow-right"></i>
                                         </a>
                                     </div>

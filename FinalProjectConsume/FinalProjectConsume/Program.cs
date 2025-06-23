@@ -81,7 +81,10 @@ builder.Services.AddScoped<IAboutBlogService, AboutBlogService>();
 builder.Services.AddScoped<IAboutTravilService, AboutTravilService>();
 builder.Services.AddScoped<IPlanService, PlanService>();
 builder.Services.AddScoped<ISettingService, SettingService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<INewService, NewService>();
+
+
 //
 
 var app = builder.Build(); 

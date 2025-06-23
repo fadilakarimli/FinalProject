@@ -29,5 +29,7 @@ namespace FinalProjectConsume.Models.Tour
         public string EndDate { get; set; }
 
 
+
+
     }
 }

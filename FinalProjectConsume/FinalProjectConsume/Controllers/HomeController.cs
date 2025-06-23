@@ -5,6 +5,7 @@ using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels.UI;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 using System.Diagnostics;
 using System.Drawing.Printing;
 
@@ -26,6 +27,7 @@ namespace FinalProjectConsume.Controllers
         private readonly IAboutAgencyService _aboutAgencyService;
         private readonly ICityService _cityService;
         private readonly IActivityService _activityService;
+        private readonly IReviewService _reviewService;
 
 
         public HomeController(IBrandService brandService,
@@ -35,7 +37,7 @@ namespace FinalProjectConsume.Controllers
                              ITrandingDestinationService trandingDestinationService, ITourService tourService
                            , ISliderService sliderService, INewsLetterService newsLetterService, ISliderInfoService sliderInfoService, 
                             ISpecialOfferService specialOfferService, IAboutAgencyService aboutAgencyService, ICityService cityService,     
-                            IActivityService activityService)
+                            IActivityService activityService, IReviewService reviewService)
         {
             _brandService = brandService;
             _instagramService = instagramService;
@@ -51,6 +53,7 @@ namespace FinalProjectConsume.Controllers
             _aboutAgencyService = aboutAgencyService;
             _cityService = cityService;
             _activityService = activityService;
+            _reviewService = reviewService;
         }
         public async Task<IActionResult> Index(string search)
         {
@@ -66,7 +69,8 @@ namespace FinalProjectConsume.Controllers
             var specialOffer = await _specialOfferService.GetAllAsync();
             var aboutAgency = await _aboutAgencyService.GetAllAsync();
             var city = await _cityService.GetAllAsync();
-            var activity = await _activityService.GetAllAsync();    
+            var activity = await _activityService.GetAllAsync();
+            var review = await _reviewService.GetAllAsync();
 
 
             var model = new HomePageVM
@@ -84,6 +88,7 @@ namespace FinalProjectConsume.Controllers
                 AboutAgencies = aboutAgency.ToList(),
                 Cities = city.ToList(),
                 Activities = activity.ToList(),
+                Reviews = review.ToList(),          // <-- buraya ?lav? et
                 SearchTerm = search ?? string.Empty
             };
 

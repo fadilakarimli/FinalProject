@@ -29,10 +29,6 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             {
                 PropertyNameCaseInsensitive = true
             });
-
-            // Lazım olsa hər booking-in Tour məlumatını ayrıca çəkmək olar,
-            // amma idealı backend-də booking-lə birgə göndərməkdir.
-
             return View(bookings);
         }
 

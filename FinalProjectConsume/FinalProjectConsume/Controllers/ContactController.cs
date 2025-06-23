@@ -9,6 +9,7 @@ using FinalProjectConsume.Models.SliderInfo;
 using FinalProjectConsume.Models.SpecialOffer;
 using FinalProjectConsume.Models.TeamMember;
 using FinalProjectConsume.Models.TrandingDestination;
+using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels.UI;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -20,15 +21,19 @@ namespace FinalProjectConsume.Controllers
     {
         private readonly HttpClient _httpClient = new();
         private readonly IHttpClientFactory _httpClientFactory;
-        public ContactController(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        private readonly ISettingService _settingService;
+        public ContactController(IHttpClientFactory httpClientFactory, IConfiguration configuration, ISettingService settingService)
         {
             _httpClientFactory = httpClientFactory;
+            _settingService = settingService;
         }
         public async Task<IActionResult> Index(string search)
         {
+            var settings = (await _settingService.GetAllAsync())?.ToList() ?? new List<SettingVM>();
             var model = new ContactVM
             {
-                SearchTerm = search ?? string.Empty
+                SearchTerm = search ?? string.Empty,
+                Settings = settings
             };
 
             return View(model);
