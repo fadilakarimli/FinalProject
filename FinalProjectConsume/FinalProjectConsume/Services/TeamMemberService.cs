@@ -23,6 +23,23 @@ namespace FinalProjectConsume.Services
 
             if (model.Image != null)
             {
+                var allowedTypes = new[]
+                {
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+            "image/bmp",
+            "image/webp"
+        };
+
+                if (!allowedTypes.Contains(model.Image.ContentType.ToLower()))
+                {
+                    return new HttpResponseMessage(System.Net.HttpStatusCode.UnsupportedMediaType)
+                    {
+                        ReasonPhrase = "Only image format"
+                    };
+                }
+
                 var stream = model.Image.OpenReadStream();
                 var fileContent = new StreamContent(stream);
                 fileContent.Headers.ContentType = new MediaTypeHeaderValue(model.Image.ContentType);
@@ -31,6 +48,7 @@ namespace FinalProjectConsume.Services
 
             return await _httpClient.PostAsync($"{_baseUrl}Create", content);
         }
+
 
         public async Task<HttpResponseMessage> DeleteAsync(int id)
         {

@@ -34,15 +34,28 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(DestinationFeatureCreate model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (model.IconImage != null)
+            {
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".svg" };
+                var extension = Path.GetExtension(model.IconImage.FileName).ToLower();
+
+                if (!allowedExtensions.Contains(extension))
+                {
+                    ModelState.AddModelError("IconImage", "Only JPG, PNG, or SVG images are allowed.");
+                }
+            }
+
+            if (!ModelState.IsValid)
+                return View(model);
 
             var response = await _destinationFeatureService.CreateAsync(model);
             if (response.IsSuccessStatusCode)
                 return RedirectToAction(nameof(Index));
 
-            ModelState.AddModelError("", "Xəta baş verdi.");
+            ModelState.AddModelError("", "An error occurred while creating.");
             return View(model);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
@@ -75,8 +88,8 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             ModelState.AddModelError("", "Xəta baş verdi.");
             return View(model);
         }
-
         [HttpPost]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _destinationFeatureService.DeleteAsync(id);

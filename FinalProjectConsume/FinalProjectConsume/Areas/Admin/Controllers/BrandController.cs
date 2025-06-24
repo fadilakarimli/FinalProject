@@ -22,15 +22,17 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             return View(brands);
         }
         [HttpPost]
+        [Route("Admin/Brand/Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _brandService.DeleteAsync(id);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return Ok();
             }
             return BadRequest();
         }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -56,7 +58,15 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var model = new BrandEdit { Id = id };
+            var brand = await _brandService.GetByIdAsync(id);
+            if (brand == null) return NotFound();
+
+            var model = new BrandEdit
+            {
+                Id = brand.Id,
+                ImageUrl = brand.Image
+            };
+
             return View(model);
         }
 

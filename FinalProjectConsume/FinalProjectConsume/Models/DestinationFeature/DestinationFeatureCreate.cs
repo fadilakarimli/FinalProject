@@ -2,18 +2,19 @@
 
 namespace FinalProjectConsume.Models.DestinationFeature
 {
+
     public class DestinationFeatureCreate
     {
-        [Required(ErrorMessage = "Title is required")]
+        [Required]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Tour Count is required")]
+        [Range(0, int.MaxValue, ErrorMessage = "Tour count cannot be negative.")]
         public int TourCount { get; set; }
 
-        [Required(ErrorMessage = "Price is required")]
+        [Range(0, double.MaxValue, ErrorMessage = "Price cannot be negative.")]
         public decimal PriceFrom { get; set; }
 
-        [Required(ErrorMessage = "Please select an icon image")]
+        [Required(ErrorMessage = "Image is required.")]
         public IFormFile IconImage { get; set; }
     }
 

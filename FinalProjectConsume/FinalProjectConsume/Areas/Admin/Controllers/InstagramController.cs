@@ -27,12 +27,15 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _instagramService.DeleteAsync(id);
+
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return Ok(); 
             }
+
             return BadRequest();
         }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -57,9 +60,18 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var model = new InstagramEdit { Id = id };
+            var insta = await _instagramService.GetByIdAsync(id);
+            if (insta == null) return NotFound();
+
+            var model = new InstagramEdit
+            {
+                Id = insta.Id,
+                ImageUrl = insta.Image
+            };
+
             return View(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, InstagramEdit model)

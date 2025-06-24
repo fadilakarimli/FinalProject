@@ -14,7 +14,6 @@ namespace FinalProjectConsume.Models.DestinationFeature
 
         [Required(ErrorMessage = "Price is required")]
         public decimal PriceFrom { get; set; }
-
         public IFormFile IconImage { get; set; }
     }
 }

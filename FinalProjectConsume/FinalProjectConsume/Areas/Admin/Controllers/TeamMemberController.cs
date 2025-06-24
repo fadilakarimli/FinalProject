@@ -76,10 +76,11 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             var response = await _teamMemberService.DeleteAsync(id);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return Ok();
             }
             return BadRequest();
         }
+
         [HttpGet]
         public async Task<IActionResult> Detail(int id)
         {

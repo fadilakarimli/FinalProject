@@ -40,6 +40,7 @@ namespace FinalProjectConsume.Services
 
             content.Add(new StringContent(id.ToString()), "Id");
 
+            // Şəkil varsa əlavə et
             if (model.Image != null)
             {
                 var stream = model.Image.OpenReadStream();
@@ -47,9 +48,15 @@ namespace FinalProjectConsume.Services
                 fileContent.Headers.ContentType = new MediaTypeHeaderValue(model.Image.ContentType);
                 content.Add(fileContent, "Image", model.Image.FileName);
             }
+            else
+            {
+                // Əgər yeni şəkil seçilməyibsə, əvvəlki şəkilin URL-ni yolla
+                content.Add(new StringContent(model.ImageUrl ?? ""), "ImageUrl");
+            }
 
             return await _httpClient.PutAsync($"{_baseUrl}Edit/{id}", content);
         }
+
 
         public async Task<IEnumerable<Instagram>> GetAllAsync()
         {

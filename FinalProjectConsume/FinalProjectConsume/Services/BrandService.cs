@@ -44,6 +44,7 @@ namespace FinalProjectConsume.Services
             using var content = new MultipartFormDataContent();
 
             content.Add(new StringContent(id.ToString()), "Id");
+            content.Add(new StringContent(model.ImageUrl ?? ""), "ImageUrl"); // Əvvəlki şəkil URL-i backend-ə göndərilir
 
             if (model.Image != null)
             {
@@ -55,6 +56,8 @@ namespace FinalProjectConsume.Services
 
             return await _httpClient.PutAsync($"{_baseUrl}Edit/{id}", content);
         }
+
+
 
         public async Task<Brand> GetByIdAsync(int id)
         {
