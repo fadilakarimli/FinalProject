@@ -76,6 +76,8 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Route("Admin/SpecialOffer/Delete/{id}")]
+
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _specialOfferService.DeleteAsync(id);

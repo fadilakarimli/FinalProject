@@ -1,4 +1,5 @@
-﻿using FinalProjectConsume.Models.Plan;
+﻿using FinalProjectConsume.Models.Experience;
+using FinalProjectConsume.Models.Plan;
 using FinalProjectConsume.Models.Tour;
 
 namespace FinalProjectConsume.ViewModels.UI
@@ -10,6 +11,7 @@ namespace FinalProjectConsume.ViewModels.UI
 
         public List<ReviewCreateVM> Reviews { get; set; } = new List<ReviewCreateVM>();
         public List<Plan> Plans { get; set; }
+        public List<Experience> Experiences { get; set; }
 
         public double AverageStar => Reviews != null && Reviews.Any()
             ? Math.Round(Reviews.Average(x => x.Star), 1)

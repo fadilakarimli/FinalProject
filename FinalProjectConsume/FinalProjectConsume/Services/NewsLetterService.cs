@@ -25,7 +25,7 @@ namespace FinalProjectConsume.Services
 
         public async Task<HttpResponseMessage> DeleteAsync(int id)
         {
-            return await _httpClient.DeleteAsync($"{_baseUrl}Delete/{id}");
+            return await _httpClient.DeleteAsync($"{_baseUrl}Delete?id={id}");
         }
         public async Task<IEnumerable<NewsLetter>> GetAllAsync()
         {

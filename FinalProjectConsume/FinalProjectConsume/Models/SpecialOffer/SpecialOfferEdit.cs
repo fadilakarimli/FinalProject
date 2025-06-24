@@ -6,6 +6,8 @@ namespace FinalProjectConsume.Models.SpecialOffer
     {
 
         [Required(ErrorMessage = "Small Title is required")]
+        [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "Only spaces and letters")]
+
         public string TitleSmall { get; set; }
 
         [Required(ErrorMessage = "Main Title is required")]

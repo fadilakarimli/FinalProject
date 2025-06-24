@@ -45,11 +45,13 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [Route("Admin/Country/Delete/{id}")]
+
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _countryService.DeleteAsync(id);
             if (response.IsSuccessStatusCode)
-                return RedirectToAction(nameof(Index));
+                return Ok();
 
             return BadRequest();
         }

@@ -9,9 +9,10 @@ namespace FinalProjectConsume.Controllers
     public class TourDetailController : Controller
     {
         private readonly ITourService _tourService;
+        private readonly IExperienceService _experienceService;
         private readonly HttpClient _httpClient;
 
-        public TourDetailController(ITourService tourService)
+        public TourDetailController(ITourService tourService, IExperienceService experienceService)
         {
             _tourService = tourService;
 
@@ -20,6 +21,7 @@ namespace FinalProjectConsume.Controllers
             {
                 BaseAddress = new Uri("https://localhost:7145") // API URL-ni düzgün yaz
             };
+            _experienceService = experienceService;
         }
         public async Task<IActionResult> Index(int id, string search)
         {
@@ -38,14 +40,19 @@ namespace FinalProjectConsume.Controllers
                 });
             }
 
+            // Experience-ləri xidmət vasitəsilə al
+            var experiences = await _experienceService.GetByTourIdAsync(id);
+
             var vm = new TourDetailVM
             {
                 Tour = tour,
                 SearchTerm = search ?? string.Empty,
-                Reviews = reviews
+                Reviews = reviews,
+                Experiences = experiences.ToList()  // burada doldur
             };
 
             return View(vm);
         }
+
     }
 }

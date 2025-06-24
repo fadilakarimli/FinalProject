@@ -10,5 +10,6 @@ namespace FinalProjectConsume.Services.Interfaces
         Task<HttpResponseMessage> CreateAsync(ExperienceCreate model);
         Task<HttpResponseMessage> EditAsync(int id, ExperienceEdit model);
         Task<HttpResponseMessage> DeleteAsync(int id);
+        Task<IEnumerable<Experience>> GetByTourIdAsync(int tourId);
     }
 }

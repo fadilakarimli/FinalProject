@@ -36,5 +36,12 @@ namespace FinalProjectConsume.Services
         {
             return await _httpClient.GetFromJsonAsync<Experience>($"{_baseUrl}GetById/{id}");
         }
+
+        public async Task<IEnumerable<Experience>> GetByTourIdAsync(int tourId)
+        {
+            return await _httpClient.GetFromJsonAsync<List<Experience>>($"https://localhost:7145/api/admin/Experience/GetByTourId/GetByTourId/{tourId}");
+        }
+
+
     }
 }

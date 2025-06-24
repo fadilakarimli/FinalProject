@@ -25,12 +25,14 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Route("Admin/SliderInfo/Delete/{id}")]
+
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _sliderInfoService.DeleteAsync(id);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return Ok();
             }
             return BadRequest();
         }

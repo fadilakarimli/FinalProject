@@ -72,41 +72,29 @@
                             <p>
                                 @Model.Tour.Desc
                             </p>
-                            <div class="destination-list-item">
-                                <h4>
-                                    Experience the Difference
-                                </h4>
-                                <div class="destination-list">
-                                    <ul class="list">
+                     <div class="destination-list-item">
+                        <h4>Experience the Difference</h4>
+
+                        @if (Model.Experiences != null && Model.Experiences.Any())
+                        {
+                            <div class="destination-list">
+                                <ul class="list">
+                                    @foreach (var exp in Model.Experiences)
+                                    {
                                         <li>
                                             <i class="flaticon-check"></i>
-                                            Trusted, Local Travel Experts
+                                            @exp.Name
                                         </li>
-                                        <li>
-                                            <i class="flaticon-check"></i>
-                                            Flexible, Hassle-Free Bookings
-                                        </li>
-                                        <li>
-                                            <i class="flaticon-check"></i>
-                                            Real-Time Itinerary Updates
-                                        </li>
-                                    </ul>
-                                    <ul class="list">
-                                        <li>
-                                            <i class="flaticon-check"></i>
-                                            Flexible Cancellation Policies
-                                        </li>
-                                        <li>
-                                            <i class="flaticon-check"></i>
-                                            Customized Travel Experiences
-                                        </li>
-                                        <li>
-                                            <i class="flaticon-check"></i>
-                                            Exclusive Travel Deals
-                                        </li>
-                                    </ul>
-                                </div>
+                                    }
+                                </ul>
                             </div>
+                        }
+                        else
+                        {
+                            <p>No experiences available.</p>
+                        }
+                    </div>
+
                             <div class="tour-details-icon">
                                 <div class="row g-5 justity-content-end">
                                     <div class="col-lg-4 col-md-6">
@@ -563,7 +551,7 @@
                                     Grand Total: $<span id="grandTotal">@((Model.Tour.Price) + (Model.Tour.Price - 50))</span>
                                 </li>
                             </ul>
-                            <form action="/booking/create" method="POST" id="paymentForm">
+                         @*    <form action="/booking/create" method="POST" id="paymentForm">
                                 <input type="hidden" name="TourId" value="@Model.Tour.Id" />
                                 <input type="hidden" name="Price" value="@Model.Tour.Price" />
                                 <input type="hidden" name="AdultsCount" id="AdultsCountInput" value="1" />
@@ -578,11 +566,11 @@
                                 <a href="javascript:void(0);" class="theme-btn" id="bookNowBtn" data-auth="@Authenticated.ToString().ToLower()">
                                     <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
                                 </a>
-                            </form>
+                            </form> *@
 
 
 
-                    <script>
+                    <script>    
                         document.addEventListener('DOMContentLoaded', () => {
                             const adultInput = document.getElementById('adultCount');
                             const childInput = document.getElementById('childCount');

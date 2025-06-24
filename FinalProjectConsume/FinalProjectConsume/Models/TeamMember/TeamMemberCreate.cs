@@ -4,12 +4,12 @@ namespace FinalProjectConsume.Models.TeamMember
 {
     public class TeamMemberCreate
     {
-        [Required(ErrorMessage = "Full name is required")]
-        [RegularExpression(@"^[A-Za-zƏəÖöÜüĞğÇçİıŞş\s]+$", ErrorMessage = "Full name must contain only letters and spaces")]
+        [Required]
+        [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "Only spaces and letters")]
         public string FullName { get; set; }
 
-        [Required(ErrorMessage = "Position is required")]
-        [RegularExpression(@"^[A-Za-zƏəÖöÜüĞğÇçİıŞş\s]+$", ErrorMessage = "Position must contain only letters and spaces")]
+        [Required]
+        [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "Only spaces and letters")]
         public string Position { get; set; }
 
         [Required(ErrorMessage = "Please select an image")]

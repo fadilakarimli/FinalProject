@@ -29,7 +29,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             var response = await _sliderService.DeleteAsync(id);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return Ok();
             }
             return BadRequest();
         }

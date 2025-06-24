@@ -73,11 +73,13 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Route("Admin/City/Delete/{id}")]
+
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _cityService.DeleteAsync(id);
             if (response.IsSuccessStatusCode)
-                return RedirectToAction(nameof(Index));
+                return Ok();
 
             return BadRequest();
         }
