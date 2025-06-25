@@ -80,13 +80,30 @@
                     </div>
                     <div class="page-nav-wrap mt-5 text-center">
                         <ul>
-                            <li><a class="page-numbers" href="#">01</a></li>
-                            <li><a class="page-numbers" href="#">02</a></li>
-                            <li><a class="page-numbers" href="#">03</a></li>
-                            <li><a class="page-numbers" href="#">04</a></li>
-                            <li><a class="page-numbers" href="#">05</a></li>
+                            @if (Model.CurrentPage > 1)
+                            {
+                                <li>
+                                    <a class="page-numbers" href="@Url.Action("Index", new { page = Model.CurrentPage - 1, search = Model.SearchTerm })">« Back</a>
+                                </li>
+                            }
+
+                            @for (int i = 1; i <= Model.TotalPages; i++)
+                            {
+                                <li>
+                                    <a class="page-numbers @(i == Model.CurrentPage ? "active" : "")"
+                                       href="@Url.Action("Index", new { page = i, search = Model.SearchTerm })">@i</a>
+                                </li>
+                            }
+
+                            @if (Model.CurrentPage < Model.TotalPages)
+                            {
+                                <li>
+                                    <a class="page-numbers" href="@Url.Action("Index", new { page = Model.CurrentPage + 1, search = Model.SearchTerm })">Next »</a>
+                                </li>
+                            }
                         </ul>
                     </div>
+
                 </div>
                 <div class="col-12 col-xl-4 col-lg-5">
                     <div class="main-sidebar sticky-style">

@@ -100,8 +100,22 @@ namespace FinalProjectConsume.Controllers
             var tours = await _tourService.GetAllAsync();
             var nextTours = tours.Skip(skip).Take(4).ToList();
 
-            return Json(nextTours);
+            var result = nextTours.Select(t => new TourListItemVM
+            {
+                Id = t.Id,
+                Name = t.Name,
+                ImageUrl = t.ImageUrl,
+                Price = t.Price,
+                OldPrice = t.OldPrice,
+                Duration = t.Duration,
+                CountryCount = t.CountryCount,
+                StartDate = t.StartDate.ToString(),
+                CityName = t.CityNames != null && t.CityNames.Count > 0 ? t.CityNames[0] : "No City"
+            });
+
+            return Json(result);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -126,6 +126,19 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function () {
+                                                var today = new Date();
+
+                                                $('#datepicker').datepicker({
+                                                    format: 'dd-mm-yyyy',
+                                                    startDate: today,
+                                                    autoclose: true,
+                                                    todayHighlight: true
+                                                });
+                                            });
+                                        </script>
+
                                     </div>
 
                                     <!-- Guests -->

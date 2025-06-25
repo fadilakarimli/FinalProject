@@ -78,7 +78,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             var response = await _chooseUsAboutService.DeleteAsync(id);
             if (!response.IsSuccessStatusCode)
             {
-                TempData["Error"] = "Silinmə zamanı xəta baş verdi.";
+                return Ok();
             }
             return RedirectToAction(nameof(Index));
         }

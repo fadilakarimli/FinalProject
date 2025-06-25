@@ -76,7 +76,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         {
             var response = await _aboutTeamMemberService.DeleteAsync(id);
             if (response.IsSuccessStatusCode)
-                return RedirectToAction(nameof(Index));
+                return Ok();
 
             return BadRequest();
         }

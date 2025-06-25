@@ -16,18 +16,38 @@ namespace FinalProjectConsume.Controllers
             _blogService = blogService; 
             _newService = newService;
         }
-        public async Task<IActionResult> Index(string search)
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
+            int take = 3;
+
             var blogs = await _blogService.GetAllAsync();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                blogs = blogs.Where(b => b.Title != null &&
+                                         b.Title.ToLower().Contains(search.Trim().ToLower()));
+            }
+
+            int totalBlogs = blogs.Count();
+
+            var pagedBlogs = blogs
+                .Skip((page - 1) * take)
+                .Take(take)
+                .ToList();
+
+            int totalPages = (int)Math.Ceiling(totalBlogs / (double)take);
 
             var vm = new NewVM
             {
-                Blogs = blogs.ToList(),
-                SearchTerm = search ?? string.Empty
-
+                Blogs = pagedBlogs,
+                SearchTerm = search ?? string.Empty,
+                CurrentPage = page,
+                TotalPages = totalPages
             };
+
             return View(vm);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> SearchApi(string query)

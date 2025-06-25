@@ -1,4 +1,5 @@
 ﻿@model HomePageVM   
+@using System.Globalization
 
 @{
     ViewData["Title"] = "Home Page";
@@ -119,15 +120,24 @@
                 <div class="icon">
                     <img src="assets/img/hero/location.png" alt="img">
                 </div>
-                <div class="content">
-                    <h5>Departure Date</h5>
-                    <div class="form-clt">
-                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                             <input class="form-control" type="text" name="departureDate" placeholder="Date From" readonly="">
-                            <span class="input-group-addon"><i class="far fa-calendar"></i></span>
+                    <div class="content">
+                        <h5>Departure Date</h5>
+                        <div class="form-clt">
+                            <input class="form-control" type="date" id="departureDate" name="departureDate" min="" />
                         </div>
                     </div>
-                </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const today = new Date();
+                            const year = today.getFullYear();
+                            const month = String(today.getMonth() + 1).padStart(2, '0');
+                            const day = String(today.getDate()).padStart(2, '0');
+                            const minDate = `${year}-${month}-${day}`;
+
+                            document.getElementById("departureDate").setAttribute("min", minDate);
+                        });
+                    </script>
+
             </div>
             <div class="booking-list">
                 <div class="icon">
@@ -277,16 +287,35 @@
             }
             @foreach (var tour in initialTours)
             {
-                <div class="col-xl-3 col-lg-6 col-md-6 tour-item">
-                    <!-- tour content -->
+                DateTime parsedDate;
+bool isExpired = DateTime.TryParseExact(tour.StartDate, "MM.dd.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate)
+                 && parsedDate < DateTime.Today;
+
+                <div class="col-xl-3 col-lg-6 col-md-6 tour-item position-relative">
                     <div class="tour-box-items">
-                        <div class="thumb">
+                        <div class="thumb position-relative">
                             <img src="@tour.ImageUrl" alt="Tour image" />
+                            @if (isExpired)
+                            {
+                                <div class="expired-badge">Expired</div>
+                            }
                         </div>
                         <div class="content">
                             <span>@(tour.CityNames != null && tour.CityNames.Count > 0 ? tour.CityNames[0] : "Şəhər yoxdur")</span>
 
-                            <h4><a asp-controller="TourDetail" asp-action="Index" asp-route-id="@tour.Id">@tour.Name</a></h4>
+                            <h4>
+                                @if (isExpired)
+                                {
+                                    <span style="color: gray; cursor: not-allowed; text-decoration: line-through;" title="This tour is expired">
+                                        @tour.Name
+                                    </span>
+                                }
+                                else
+                                {
+                                    <a asp-controller="TourDetail" asp-action="Index" asp-route-id="@tour.Id">@tour.Name</a>
+                                }
+                            </h4>
+
                             <h6>
                                 From <span>$@tour.Price</span>
                                 @if (tour.OldPrice.HasValue)
@@ -294,7 +323,7 @@
                                     <del>$@tour.OldPrice</del>
                                 }
                             </h6>
-                            <h6>Capacity:@tour.Capacity</h6>
+                            <h6>Capacity: @tour.Capacity</h6>
                             <ul class="list">
                                 <li><i class="far fa-calendar"></i> @tour.Duration</li>
                                 <li><i class="far fa-flag"></i> @tour.CountryCount Countries</li>
@@ -303,6 +332,23 @@
                     </div>
                 </div>
             }
+
+            <style>
+                .expired-badge {
+                    position: absolute;
+                    top: 15px;
+                    left: 15px;
+                    background-color: rgba(128, 128, 128, 0.8);
+                    color: white;
+                    padding: 5px 10px;
+                    font-size: 12px;
+                    border-radius: 4px;
+                    z-index: 2;
+                    font-weight: bold;
+                }
+            </style>
+
+
         </div>
         <div class="text-center mt-4">
             <button id="show-more-btn" class="btn btn-primary">Show More</button>
@@ -354,7 +400,7 @@
                                             <ul>
                                                 <li>
                                                     <i class="far fa-map-marker-alt"></i>
-                                                    @tour.CityNames
+                                                    @string.Join(", ", tour.CityNames)
                                                 </li>
                                             </ul>
                                             <div class="list">
@@ -719,7 +765,7 @@
 
     document.getElementById("show-more-btn").addEventListener("click", function () {
         if (skipCount >= totalTours) {
-            document.getElementById("show-more-btn").style.display = "none"; // 👈 Yönləndirməni sildik, butonu gizlətdik
+            document.getElementById("show-more-btn").style.display = "none";
             return;
         }
 
@@ -735,27 +781,41 @@
                     const container = document.getElementById("tour-container");
                     const tourItem = document.createElement("div");
                     tourItem.className = "col-xl-3 col-lg-6 col-md-6 tour-item";
-                    tourItem.innerHTML = `
-                            <div class="tour-box-items">
-                                <div class="thumb">
-                                    <img src="${tour.imageUrl}" alt="Tour image" />
-                                </div>
-                                <div class="content">
-                                    <span>${tour.cityName}</span>
-                                    <h4><a href="/Tour/Details/${tour.id}">${tour.name}</a></h4>
-                                    <h6>From <span>$${tour.price}</span>${tour.oldPrice ? `<del>$${tour.oldPrice}</del>` : ""}</h6>
-                                    <ul class="list">
-                                        <li><i class="far fa-calendar"></i> ${tour.duration}</li>
-                                        <li><i class="far fa-flag"></i> ${tour.countryCount} Countries</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        `;
-                    container.appendChild(tourItem);
+
+                    // ✅ Tarixi müqayisə edirik
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    const tourDate = new Date(tour.startDate); // Əsas odur ki, backenddə bu dəyər gəlir
+                    const isExpired = tourDate < today;
+
+                   tourItem.innerHTML = `
+                    <div class="tour-box-items">
+                        <div class="thumb position-relative">
+                            <img src="${tour.imageUrl}" alt="Tour image" />
+                            ${isExpired ? `<div class="expired-badge">Expired</div>` : ""}
+                        </div>
+                        <div class="content">
+                            <span>${tour.cityName}</span>
+                            <h4>
+                                ${isExpired 
+                                    ? `<span style="color: gray; cursor: not-allowed; text-decoration: line-through;" title="This tour is expired">${tour.name}</span>` 
+                                    : `<a href="/TourDetail/Index/${tour.id}">${tour.name}</a>
+`}
+                            </h4>
+                            <h6>From <span>$${tour.price}</span>${tour.oldPrice ? `<del>$${tour.oldPrice}</del>` : ""}</h6>
+                            <ul class="list">
+                                <li><i class="far fa-calendar"></i> ${tour.duration}</li>
+                                <li><i class="far fa-flag"></i> ${tour.countryCount} Countries</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+
+                                    container.appendChild(tourItem);
                 });
                 skipCount += 4;
 
-                // Bu hissəni əlavə edək ki, butonu gizlədək
                 if (skipCount >= totalTours) {
                     document.getElementById("show-more-btn").style.display = "none";
                 }
@@ -764,5 +824,4 @@
                 console.error("Fetch error:", error);
             });
     });
-
 </script>

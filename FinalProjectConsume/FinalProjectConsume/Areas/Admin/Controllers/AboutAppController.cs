@@ -52,11 +52,9 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
             var model = new AboutAppEdit
             {
-                // Note: Şəkillər burada IFormFile olmadığından boş qalacaq, əgər şəkilləri saxlamaq istəyirsənsə xüsusi view modeli yaratmaq lazımdır
                 Title = aboutApp.Title,
                 Desc = aboutApp.Desc,
                 Text = aboutApp.Text
-                // Şəkilləri edit ekranında göstərmək üçün, ya URL-ləri ViewBag vasitəsilə ötür, ya da ayrıca ViewModel yaradıb doldur
             };
 
             return View(model);
@@ -81,7 +79,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         {
             var response = await _aboutAppService.DeleteAsync(id);
             if (response.IsSuccessStatusCode)
-                return RedirectToAction(nameof(Index));
+                return Ok();
 
             return BadRequest();
         }

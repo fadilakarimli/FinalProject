@@ -15,6 +15,9 @@ namespace FinalProjectConsume.Models.Booking
         public DateTime BookingDate { get; set; }
         public string UserEmail { get; set; }
         public int Status { get; set; }
+        public string ConfirmationCode { get; set; }
+        public string StartDate { get; set; }
+
 
         public FinalProjectConsume.Models.Tour.Tour Tour { get; set; }
 

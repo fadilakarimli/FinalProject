@@ -28,7 +28,6 @@ namespace FinalProjectConsume.Controllers
                 vm.UserEmail = User.Identity.Name;
             }
 
-            // BookingCreateVM saxla və Keep-lə ki, silinməsin
             TempData["BookingCreateVM"] = JsonSerializer.Serialize(vm);
             TempData.Keep("BookingCreateVM");
 
@@ -93,7 +92,19 @@ namespace FinalProjectConsume.Controllers
             });
 
             Console.WriteLine($"✅ Booking yaradıldı: ID = {booking.Id}");
-            return View(booking);
+
+            return View(new BookingSuccessVM
+            {
+                TourName = booking.Tour?.Name ?? booking.TourName,
+                BookingDate = !string.IsNullOrEmpty(booking.Tour?.StartDate)
+           ? booking.Tour.StartDate
+           : booking.BookingDate.ToString("dd.MM.yyyy"),
+                AdultsCount = booking.AdultsCount,
+                ChildrenCount = booking.ChildrenCount,
+                TotalPrice = booking.TotalPrice,
+                ConfirmationCode = booking.ConfirmationCode
+            });
+
         }
 
 

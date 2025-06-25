@@ -3,8 +3,11 @@
 @{
     ViewData["Title"] = "Choose Us About Redaktə Et";
 }
+<div class="container" style="margin-left:300px; margin-top:50px;">
+
 
 <h2>@ViewData["Title"]</h2>
+
 
 <form asp-action="Edit" method="post" enctype="multipart/form-data">
     <div class="form-group">
@@ -36,9 +39,9 @@
         <label asp-for="Image"></label>
         <input asp-for="Image" type="file" class="form-control-file" />
         <span asp-validation-for="Image" class="text-danger"></span>
-        <small class="form-text text-muted">Əgər yeni şəkil yükləmək istəyirsinizsə, seçin. Əks halda mövcud şəkil qalacaq.</small>
     </div>
 
-    <button type="submit" class="btn btn-primary">Yenilə</button>
-    <a asp-action="Index" class="btn btn-secondary">Geri</a>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
 </form>
+</div>
