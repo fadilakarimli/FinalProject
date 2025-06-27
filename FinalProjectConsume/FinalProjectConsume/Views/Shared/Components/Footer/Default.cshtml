@@ -14,52 +14,62 @@
                     Subscribe <i class="far fa-search"></i>
                 </button>
             </div>
-            <div id="subscribeMessage" style="color:white;margin-top:10px;"></div>
+            <div id="subscribeMessage" style="color:black;margin-top:10px;"></div>
 
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const subscribeBtn = document.getElementById("subscribeBtn");
-                    const emailInput = document.getElementById("subscribeEmail");
-                    const messageBox = document.getElementById("subscribeMessage");
+      <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const subscribeBtn = document.getElementById("subscribeBtn");
+        const emailInput = document.getElementById("subscribeEmail");
+        const messageBox = document.getElementById("subscribeMessage");
 
-                    subscribeBtn.addEventListener("click", async function () {
-                        const email = emailInput.value.trim();
+        // 🔽 Login olub-olmadığını serverdən gələn dəyişənlə yoxla
+        const isAuthenticated = @User.Identity.IsAuthenticated.ToString().ToLower(); // true/false kimi gələcək
 
-                        if (!email || !email.includes("\u0040")) {
-                            messageBox.innerText = "Zəhmət olmasa düzgün email daxil edin.";
-                            return;
-                        }
+        subscribeBtn.addEventListener("click", async function () {
+            // 🔒 Əgər login deyilsə, blokla
+            if (!isAuthenticated || isAuthenticated === "false") {
+                messageBox.innerText = "Zəhmət olmasa abunə olmaq üçün hesabınıza daxil olun.";
+                return;
+            }
 
-                        const token = document.querySelector('#tokenForm input[name="__RequestVerificationToken"]')?.value;
+            const email = emailInput.value.trim();
 
-                        try {
-                            const response = await fetch("/Home/Subscribe", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    "RequestVerificationToken": token
-                                },
-                                body: JSON.stringify({ email })
-                            });
+            if (!email || !email.includes("\u0040")) {
+                messageBox.innerText = "Zəhmət olmasa düzgün email daxil edin.";
+                return;
+            }
 
-                            const result = await response.text();
-                            console.log("Serverdən cavab:", result);
+            const token = document.querySelector('#tokenForm input[name="__RequestVerificationToken"]')?.value;
 
-                            if (response.ok) {
-                                messageBox.innerText = "Abunəlik uğurla əlavə olundu.";
-                                emailInput.value = "";
-                            } else {
-                                console.error("Server error cavabı:", result);
-                                messageBox.innerText = "Xəta baş verdi: " + result;
-                            }
-
-                        } catch (error) {
-                            console.error("Xəta:", error);
-                            messageBox.innerText = "Serverlə əlaqə zamanı xəta baş verdi.";
-                        }
-                    });
+            try {
+                const response = await fetch("/Home/Subscribe", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "RequestVerificationToken": token
+                    },
+                    body: JSON.stringify({ email })
                 });
-            </script>
+
+                const result = await response.text();
+                console.log("Serverdən cavab:", result);
+
+                if (response.ok) {
+                    messageBox.innerText = "Abunəlik uğurla əlavə olundu.";
+                    emailInput.value = "";
+                } else {
+                    console.error("Server error cavabı:", result);
+                    messageBox.innerText = "Xəta baş verdi: " + result;
+                }
+
+            } catch (error) {
+                console.error("Xəta:", error);
+                messageBox.innerText = "Serverlə əlaqə zamanı xəta baş verdi.";
+            }
+        });
+    });
+</script>
+
 
 
 
@@ -70,8 +80,8 @@
                 <div class="col-xl-5 col-lg-7 col-md-12">
                     <div class="footer-widget-items">
                         <div class="widget-title">
-                            <a href="index.html" class="footer-logo">
-                                <img src="~/assets/img/logo/black-logo.svg" alt="img">
+                            <a asp-action="Index" asp-controller="Home" class="footer-logo">
+                                <img src="@Model.FirstOrDefault(x => x.Key == "HeaderLogo")?.Value">    
                             </a>
                         </div>
                         <div class="footer-content">

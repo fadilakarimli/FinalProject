@@ -1,7 +1,9 @@
 ﻿using FinalProjectConsume.Models.Plan;
+using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
@@ -11,24 +13,49 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
     public class PlanController : Controller
     {
         private readonly IPlanService _planService;
+        private readonly ITourService _tourService;
 
-        public PlanController(IPlanService planService)
+        public PlanController(IPlanService planService, ITourService tourService)
         {
             _planService = planService;
+            _tourService = tourService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var plans = await _planService.GetAllAsync();
+            var plans = (await _planService.GetAllAsync()).ToList();
+            var tours = await _tourService.GetAllAsync();
+
+            foreach (var plan in plans)
+            {
+                var tour = tours.FirstOrDefault(t => t.Id == plan.TourId);
+                if (tour != null)
+                    plan.TourName = tour.Name;
+            }
+
             return View(plans);
         }
 
+
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            // Burada turları al
+            var tours = await _tourService.GetAllAsync();
+
+            var model = new PlanCreate
+            {
+                Tours = tours.Select(t => new SelectListItem
+                {
+                    Value = t.Id.ToString(),
+                    Text = t.Name
+                }).ToList()
+            };
+
+            return View(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Create(PlanCreate model)

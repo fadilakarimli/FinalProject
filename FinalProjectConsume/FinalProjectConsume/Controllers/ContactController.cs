@@ -13,6 +13,7 @@ using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels.UI;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Reflection;
 using System.Text;
 
 namespace FinalProjectConsume.Controllers
@@ -45,10 +46,18 @@ namespace FinalProjectConsume.Controllers
         {
             using (var multipartContent = new MultipartFormDataContent())
             {
-                multipartContent.Add(new StringContent(postContactVM.email), "Email");
-                multipartContent.Add(new StringContent(postContactVM.phoneNumber), "PhoneNumber");
-                multipartContent.Add(new StringContent(postContactVM.fullName), "FullName");
-                multipartContent.Add(new StringContent(postContactVM.message), "Message");
+                if (!string.IsNullOrWhiteSpace(postContactVM.email))
+                    multipartContent.Add(new StringContent(postContactVM.email), "Email");
+
+                if (!string.IsNullOrWhiteSpace(postContactVM.phoneNumber))
+                    multipartContent.Add(new StringContent(postContactVM.phoneNumber), "PhoneNumber");
+
+                if (!string.IsNullOrWhiteSpace(postContactVM.fullName))
+                    multipartContent.Add(new StringContent(postContactVM.fullName), "FullName");
+
+                if (!string.IsNullOrWhiteSpace(postContactVM.message))
+                    multipartContent.Add(new StringContent(postContactVM.message), "Message");
+
                 var client = _httpClientFactory.CreateClient();
                 var jsonData = JsonConvert.SerializeObject(postContactVM);
                 StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -62,9 +71,9 @@ namespace FinalProjectConsume.Controllers
                 {
                     var errorContent = await responseMessage.Content.ReadAsStringAsync();
                     ModelState.AddModelError(string.Empty, "An error occurred while creating the message.");
-                    return View(postContactVM);
+                    return RedirectToAction("Index");
                 }
-
+                    
             }
 
         }

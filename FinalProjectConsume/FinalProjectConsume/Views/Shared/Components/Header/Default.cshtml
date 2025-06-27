@@ -32,10 +32,10 @@
                 <div class="header-main">
                     <div class="header-left">
                         <div class="logo">
-                            <a href="index.html" class="header-logo">
-                                <img src="~/assets/img/logo/black-logo.svg" alt="logo-img">
+                            <a asp-action="Index" asp-controller="Home" class="header-logo">
+                                <img src="~/assets/img/logo/@Model.Settings.FirstOrDefault(x => x.Key == "HeaderLogo")?.Value">
                             </a>
-                        </div>
+                        </div>  
                     </div>
                     <div class="header-right d-flex justify-content-end align-items-center">
                         <div class="mean__menu-wrapper">

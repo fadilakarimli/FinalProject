@@ -7,5 +7,7 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public int TourId { get; set; }
+
+        public string? TourName { get; set; }
     }
 }

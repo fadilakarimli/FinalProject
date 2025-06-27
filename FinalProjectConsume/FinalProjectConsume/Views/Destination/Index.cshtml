@@ -1,4 +1,6 @@
-﻿<!-- Search Section Start -->
+﻿@model DestinationPageVM
+
+<!-- Search Section Start -->
 <div class="header-search-bar d-flex align-items-center">
     <button class="search-close">×</button>
     <div class="container">
@@ -18,8 +20,7 @@
     </div>
 </div>
 
-<!--  Breadcrumb Section Start -->
-<div class="breadcrumb-wrapper section-padding  bg-cover" style="background-image: url('assets/img/breadcrumb-bg.jpg');">
+<div class="breadcrumb-wrapper section-padding  bg-cover" style="background-image: url('/assets/img/tour/@Model.Settings.FirstOrDefault(x =>x.Key == "TourBanner")?.Value">
     <div class="container-fluid">
         <div class="page-heading">
             <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".3s">
@@ -39,7 +40,8 @@
         </div>
     </div>
     <div class="plane-shape float-bob-x">
-        <img src="~/assets/img/breadcrumb-plane.png" alt="img">
+        <img src="~/assets/img/@Model.Settings.FirstOrDefault(x =>x.Key == "TourBannerFly")?.Value">
+
     </div>
 </div>
 
@@ -54,13 +56,13 @@
                         <div class="destinations-img">
                             <img src="@item.Image" alt="img">
                             <div class="icon">
-                                <a href="/destination-details/@item.Id">
+                                <a asp-controller ="DestinationDetail" asp-action="Index" asp-route-id="@item.Id">
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
                             <ul class="destinations-content">
                                 <li class="title">
-                                    <a href="/destination-details/@item.Id">@item.Title</a>
+                                    <a asp-controller="DestinationDetail" asp-action="Index" asp-route-id="@item.Id">@item.Title</a>
                                 </li>
                             </ul>
                         </div>

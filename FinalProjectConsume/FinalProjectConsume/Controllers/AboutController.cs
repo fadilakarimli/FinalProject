@@ -21,11 +21,13 @@ namespace FinalProjectConsume.Controllers
         private readonly IAboutDestinationService _aboutDestinationService;
         private readonly IAboutBlogService _aboutBlogService;
         private readonly IAboutTravilService _aboutTravilService;
+        private readonly ISettingService _settingService;
+
 
         public AboutController(IBrandService brandService, IChooseUsAboutService chooseUsAboutService
                              , IAboutTeamMemberService aboutTeamMemberService, IAboutAppService aboutAppService,
                               IAboutDestinationService aboutDestinationService, IAboutBlogService aboutBlogService,
-                             IAboutTravilService aboutTravilService)
+                             IAboutTravilService aboutTravilService, ISettingService settingService)
         {
             _brandService = brandService;
             _chooseUsAboutService = chooseUsAboutService;
@@ -34,6 +36,7 @@ namespace FinalProjectConsume.Controllers
             _aboutDestinationService = aboutDestinationService;
             _aboutBlogService = aboutBlogService;
             _aboutTravilService = aboutTravilService;
+            _settingService = settingService;
         }
         public async Task <IActionResult> Index(string search)
         {
@@ -44,18 +47,21 @@ namespace FinalProjectConsume.Controllers
             var aboutDest = await _aboutDestinationService.GetAllAsync();
             var aboutBlogs = await _aboutBlogService.GetAllAsync();
             var aboutTravil = await _aboutTravilService.GetAllAsync();
+            var settings = (await _settingService.GetAllAsync())?.ToList() ?? new List<SettingVM>();
+
             var model = new AboutPageVM
             {
                 Brands = brands.ToList(),
                 ChooseUsAbouts = chooseUsAbout.ToList(),
-                AboutTeamMembers = aboutTeamMember.ToList(),    
+                AboutTeamMembers = aboutTeamMember.Take(4).ToList(),    
                 AboutApps = aboutApp.ToList(),
                 AboutDestinations = aboutDest.ToList(),
                 AboutBlogs = aboutBlogs.OrderByDescending(b => b.CreatedDate) // ← tarixə görə tərsinə sırala
                     .Take(3)
                     .ToList(),
                 AboutTravils = aboutTravil.ToList(),
-                SearchTerm = search ?? string.Empty
+                SearchTerm = search ?? string.Empty,
+                Settings = settings
 
             };
 

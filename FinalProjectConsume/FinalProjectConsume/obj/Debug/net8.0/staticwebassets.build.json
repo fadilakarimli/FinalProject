@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "i/ALknoJblJ+RhN5UhitozTXYemZlUshjEhnlcbqu3Q=",
+  "Hash": "0qLcN/G7PLV4EI1N1DpOlmxRo2awdsAArIa6KofThjE=",
   "Source": "FinalProjectConsume",
   "BasePath": "_content/FinalProjectConsume",
   "Mode": "Default",
@@ -7900,6 +7900,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\tour\\new\\shape-image-2.png"
+    },
+    {
+      "Identity": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\wwwroot\\assets\\img\\tour\\pool-bg.jpg",
+      "SourceId": "FinalProjectConsume",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\wwwroot\\",
+      "BasePath": "_content/FinalProjectConsume",
+      "RelativePath": "assets/img/tour/pool-bg.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\tour\\pool-bg.jpg"
     },
     {
       "Identity": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\wwwroot\\assets\\img\\tour\\post-1.jpg",

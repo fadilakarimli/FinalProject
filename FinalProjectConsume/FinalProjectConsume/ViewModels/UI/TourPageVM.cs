@@ -22,6 +22,10 @@ namespace FinalProjectConsume.ViewModels.UI
         public int? SelectedActivityId { get; set; }
         public string? SelectedDepartureDate { get; set; }
         public int? SelectedGuestCount { get; set; }
+        public IEnumerable<SettingVM> Settings { get; set; } = new List<SettingVM>();
+    
+
+
 
 
     }

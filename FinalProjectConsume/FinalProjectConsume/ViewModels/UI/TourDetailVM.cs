@@ -18,11 +18,7 @@ namespace FinalProjectConsume.ViewModels.UI
             : 0.0;
         public int ReviewCount => Reviews?.Count ?? 0;
 
-        public Dictionary<int, int> StarCounts =>
-            Reviews
-                ?.GroupBy(r => r.Star)
-                .ToDictionary(g => g.Key, g => g.Count())
-            ?? new Dictionary<int, int>();
+        public Dictionary<int, int> StarCounts => Reviews?.GroupBy(r => r.Star).ToDictionary(g => g.Key, g => g.Count())?? new Dictionary<int, int>();
 
 
 

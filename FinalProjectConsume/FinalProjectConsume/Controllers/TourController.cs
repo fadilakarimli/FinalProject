@@ -13,12 +13,14 @@ namespace FinalProjectConsume.Controllers
         private readonly IAmenityService _amenityService;
         private readonly IActivityService _activityService;
         private readonly ICityService _cityService;
+        private readonly ISettingService _settingService;
         private readonly HttpClient _httpClient;
 
         public TourController(ITourService tourService
                            , IAmenityService amenityService,
                              IActivityService activityService,
-                             ICityService cityService)
+                             ICityService cityService,
+                             ISettingService settingService)
         {
             _tourService = tourService;
             _amenityService = amenityService;
@@ -28,6 +30,7 @@ namespace FinalProjectConsume.Controllers
             {
                 BaseAddress = new Uri("https://localhost:7145")
             };
+            _settingService = settingService;
         }
         public async Task<IActionResult> Index(int page = 1,  string? search = null,int? cityId = null,int? activityId = null,string? departureDate = null,   int? guestCount = null)
         {
@@ -86,6 +89,8 @@ namespace FinalProjectConsume.Controllers
             int totalTours = tours.Count();
             var pagedTours = tours.Skip((page - 1) * take).Take(take).ToList();
             int totalPages = (int)Math.Ceiling(totalTours / (double)take);
+            var settings = (await _settingService.GetAllAsync())?.ToList() ?? new List<SettingVM>();
+
 
             var model = new TourPageVM
             {
@@ -101,7 +106,8 @@ namespace FinalProjectConsume.Controllers
                 SelectedCityId = cityId,
                 SelectedActivityId = activityId,
                 SelectedDepartureDate = departureDate,
-                SelectedGuestCount = guestCount
+                SelectedGuestCount = guestCount,
+                Settings = settings
             };
 
             return View(model);
@@ -124,7 +130,6 @@ namespace FinalProjectConsume.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Filter([FromBody] TourFilter filter)
-
         {
             var json = JsonSerializer.Serialize(filter);
             var content = new StringContent(json, Encoding.UTF8, "application/json");

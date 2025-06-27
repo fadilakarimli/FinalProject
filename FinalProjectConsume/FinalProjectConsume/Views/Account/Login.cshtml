@@ -184,12 +184,15 @@
     <form asp-action="Login" asp-controller="Account" method="post">
 
         <h3>Login Here</h3>
-
-        <input type="text" name="UserNameOrEmail" id="UserNameOrEmail" placeholder="UserNameOrEmail">
+        <div>
+            <input type="text" name="UserNameOrEmail" id="UserNameOrEmail" placeholder="UserNameOrEmail">
+            <span asp-validation-for="UserNameOrEmail" class="text-danger" style="font-size:13px;"></span>
+        </div>
 
         <div class="password-container">
             <input type="password" name="Password" id="userPassword" placeholder="Password">
             <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+            <span asp-validation-for="Password" class="text-danger" style="font-size:13px;"></span>
         </div>
 
         <button type="submit">Log In</button>

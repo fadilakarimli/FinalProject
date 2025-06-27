@@ -22,7 +22,8 @@
 </div>
 
 <!--  Breadcrumb Section Start -->
-<div class="breadcrumb-wrapper section-padding  bg-cover" style="background-image: url('assets/img/breadcrumb-bg.jpg');">
+<div class="breadcrumb-wrapper section-padding  bg-cover" style="background-image: url('/assets/img/tour/@Model.Settings.FirstOrDefault(x =>x.Key == "TourBanner")?.Value">
+
     <div class="container-fluid">
         <div class="page-heading">
             <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".3s">
@@ -42,7 +43,8 @@
         </div>
     </div>
     <div class="plane-shape float-bob-x">
-        <img src="assets/img/breadcrumb-plane.png" alt="img">
+        <img src="~/assets/img/@Model.Settings.FirstOrDefault(x =>x.Key == "TourBannerFly")?.Value">
+
     </div>
 </div>
 
@@ -370,7 +372,7 @@
             }
         </div>
         <div class="team-button text-center mt-5 wow fadeInUp" data-wow-delay=".3s">
-            <a asp-action="Index" class="theme-btn">
+            <a asp-action="Index" asp-controller="Team" class="theme-btn">
                 <span>View All Member</span> <i class="far fa-long-arrow-right"></i>
             </a>
         </div>
@@ -442,14 +444,14 @@
                         </div>
                         <div class="news-content">
                             <h3>
-                                <a asp-controller="AboutBlog" asp-action="Detail" asp-route-id="@item.Id">
+                                <a asp-controller="AboutDetail" asp-action="Index" asp-route-id="@item.Id">
                                     @item.Name
                                 </a>
                             </h3>
                             <p>
                                 @item.Desc
                             </p>
-                            <a asp-controller="AboutBlog" asp-action="Detail" asp-route-id="@item.Id" class="theme-btn">
+                            <a asp-controller="AboutDetail" asp-action="Index" asp-route-id="@item.Id" class="theme-btn">
                                 <span>Read More</span> <i class="far fa-long-arrow-right"></i>
                             </a>
                         </div>

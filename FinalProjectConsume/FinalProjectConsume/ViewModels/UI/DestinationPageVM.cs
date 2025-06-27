@@ -9,6 +9,8 @@ namespace FinalProjectConsume.ViewModels.UI
 
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
+        public List<SettingVM> Settings { get; set; }
+
 
     }
 }

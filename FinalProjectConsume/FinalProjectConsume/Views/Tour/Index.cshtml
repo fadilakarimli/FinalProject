@@ -1,4 +1,5 @@
-﻿@model TourPageVM
+﻿@using System.Globalization
+@model TourPageVM
 <!-- Search Section Start -->
 <div class="header-search-bar d-flex align-items-center">
     <button class="search-close">×</button>
@@ -20,7 +21,8 @@
 </div>
 
 <!--  Breadcrumb Section Start -->
-<div class="breadcrumb-wrapper section-padding  bg-cover" style="background-image: url('~/assets/img/breadcrumb-bg.jpg');">
+
+<div class="breadcrumb-wrapper section-padding  bg-cover" style="background-image: url('/assets/img/tour/@Model.Settings.FirstOrDefault(x =>x.Key == "TourBanner")?.Value">
     <div class="container-fluid">
         <div class="page-heading">
             <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".3s">
@@ -40,7 +42,7 @@
         </div>
     </div>
     <div class="plane-shape float-bob-x">
-        <img src="~/assets/img/breadcrumb-plane.png" alt="img">
+        <img src="~/assets/img/@Model.Settings.FirstOrDefault(x =>x.Key == "TourBannerFly")?.Value">
     </div>
 </div>
 
@@ -221,17 +223,43 @@
 
                 <div class="col-xl-9 col-lg-8">
                     <div class="row justify-content-center" id="toursRowContainer">
+                        @{
+                            foreach (var tour in Model.Tours)
+                            {
+                                DateTime parsedDate;
+                                bool isExpired = DateTime.TryParseExact(tour.StartDate, "MM.dd.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate)
+                                && parsedDate < DateTime.Today;
+                            }
+                        }
+
                         @foreach (var tour in Model.Tours)
                         {
-                            <div class="col-4 wow fadeInUp" data-wow-delay=".2s">
+                            DateTime parsedDate;
+                            bool isExpired = DateTime.TryParseExact(tour.StartDate, "MM.dd.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate)
+                            && parsedDate < DateTime.Today;
+
+                            <div class="col-4 wow fadeInUp position-relative" data-wow-delay=".2s">
                                 <div class="tour-box-items">
-                                    <div class="thumb">
+                                    <div class="thumb position-relative">
                                         <img src="@tour.ImageUrl" alt="Tour image" />
+                                        @if (isExpired)
+                                        {
+                                            <div class="expired-badge">Expired</div>
+                                        }
                                     </div>
                                     <div class="content">
-                                        <span>@tour.CityNames</span>
+                                        <span>@(tour.CityNames != null && tour.CityNames.Count > 0 ? tour.CityNames[0] : "Şəhər yoxdur")</span>
                                         <h4>
-                                            <a asp-controller="TourDetail" asp-action="Index" asp-route-id="@tour.Id">@tour.Name</a>
+                                            @if (isExpired)
+                                            {
+                                                <span style="color: gray; cursor: not-allowed; text-decoration: line-through;" title="This tour is expired">
+                                                    @tour.Name
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="TourDetail" asp-action="Index" asp-route-id="@tour.Id">@tour.Name</a>
+                                            }
                                         </h4>
                                         <h6>
                                             From <span>$@tour.Price</span>
@@ -255,6 +283,21 @@
                             </div>
                         }
                     </div>
+
+                    <style>
+                        .expired-badge {
+                            position: absolute;
+                            top: 15px;
+                            left: 15px;
+                            background-color: rgba(128, 128, 128, 0.8);
+                            color: white;
+                            padding: 5px 10px;
+                            font-size: 12px;
+                            border-radius: 4px;
+                            z-index: 2;
+                            font-weight: bold;
+                        }
+                    </style>
 
 
 

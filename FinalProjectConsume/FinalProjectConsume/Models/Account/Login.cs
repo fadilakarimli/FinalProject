@@ -4,10 +4,10 @@ namespace FinalProjectConsume.Models.Account
 {
     public class Login
     {
-        [Required]
+        [Required(ErrorMessage = "UserName or Email Important!!")]
         public string UserNameOrEmail { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password Important!!")]
         public string Password { get; set; }
     }
 }

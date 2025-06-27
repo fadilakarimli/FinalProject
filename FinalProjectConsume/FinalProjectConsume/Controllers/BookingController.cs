@@ -30,8 +30,8 @@ namespace FinalProjectConsume.Controllers
 
             TempData["BookingCreateVM"] = JsonSerializer.Serialize(vm);
             TempData.Keep("BookingCreateVM");
-
-            decimal totalPrice = (vm.AdultsCount * vm.Price) + (vm.ChildrenCount * vm.Price * 0.5m);
+            
+            decimal totalPrice = vm.Price*vm.AdultsCount + (vm.Price - 50)*vm.ChildrenCount;
 
             var options = new Stripe.Checkout.SessionCreateOptions
             {

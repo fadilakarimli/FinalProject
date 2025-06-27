@@ -14,9 +14,13 @@
 <div class="container" style="margin-left:300px; margin-top:50px;">
     <h2>@ViewData["Title"]</h2>
 
-    <p>
-        <a asp-action="Create" class="btn btn-success">Create</a>
-    </p>
+    @if (offers.Count < 1)
+    {
+        <p>
+            <a asp-action="Create" class="btn btn-success">Create</a>
+        </p>
+    }
+
 
     <table class="table table-bordered table-striped">
         <thead>

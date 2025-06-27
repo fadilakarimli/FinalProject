@@ -6,7 +6,6 @@ namespace FinalProjectConsume.Models.DestinationFeature
     public class DestinationFeatureCreate
     {
         [Required]
-        [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "Only spaces and letters")]
         public string Title { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = "Tour count cannot be negative.")]

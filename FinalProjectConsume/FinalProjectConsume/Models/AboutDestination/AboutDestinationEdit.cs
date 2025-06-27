@@ -7,6 +7,6 @@ namespace FinalProjectConsume.Models.AboutDestination
         [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "Only spaces and letters")]
 
         public string Name { get; set; }
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }

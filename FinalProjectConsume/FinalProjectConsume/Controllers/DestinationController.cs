@@ -15,9 +15,11 @@ namespace FinalProjectConsume.Controllers
     public class DestinationController : Controller
     {
         private readonly ITrandingDestinationService _trandingDestinationService;
-        public DestinationController(ITrandingDestinationService trandingDestinationService)
+        private readonly ISettingService _settingService;
+        public DestinationController(ITrandingDestinationService trandingDestinationService, ISettingService settingService)
         {
             _trandingDestinationService = trandingDestinationService;
+            _settingService = settingService;
         }
         public async Task<IActionResult> Index(int page = 1, string? search = null)
         {
@@ -45,6 +47,7 @@ namespace FinalProjectConsume.Controllers
 
             // Ümumi səhifə sayı
             int totalPages = (int)Math.Ceiling(totalDestinations / (double)take);
+            var settings = (await _settingService.GetAllAsync())?.ToList() ?? new List<SettingVM>();
 
             // ViewModel
             var model = new DestinationPageVM
@@ -52,7 +55,9 @@ namespace FinalProjectConsume.Controllers
                 TrandingDestinations = pagedDestinations,
                 SearchTerm = search ?? string.Empty,
                 CurrentPage = page,
-                TotalPages = totalPages
+                TotalPages = totalPages,
+                Settings = settings
+
             };
 
             return View(model);

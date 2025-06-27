@@ -7,6 +7,8 @@ namespace FinalProjectConsume.ViewModels.UI
     {
         public AboutTeamMember AboutTeamMember { get; set; }
         public string SearchTerm { get; set; }
+        public IEnumerable<SettingVM> Settings { get; set; } = new List<SettingVM>();
+
 
     }
 }

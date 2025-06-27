@@ -77,7 +77,7 @@ namespace FinalProjectConsume.Controllers
             {
                 Brands = brands.ToList(),
                 Instagrams = instagrams.ToList(),
-                Blogs = blogs.ToList(),
+                Blogs = blogs.Take(3).ToList(),
                 DestinationFeatures = destinationFeatures.ToList(),
                 TeamMembers = teamMembers.ToList(),
                 TrandingDestinations = trandingDestinatons.Take(6).ToList(),
@@ -88,7 +88,7 @@ namespace FinalProjectConsume.Controllers
                 AboutAgencies = aboutAgency.ToList(),
                 Cities = city.ToList(),
                 Activities = activity.ToList(),
-                Reviews = review.ToList(),          // <-- buraya ?lav? et
+                Reviews = review.ToList(),        
                 SearchTerm = search ?? string.Empty
             };
 
