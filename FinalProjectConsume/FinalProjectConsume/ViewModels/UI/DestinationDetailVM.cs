@@ -7,6 +7,8 @@ namespace FinalProjectConsume.ViewModels.UI
     {
         public TrandingDestination TrandingDestination { get; set; }
         public string SearchTerm { get; set; }
+        public List<SettingVM> Settings { get; set; }
+
 
     }
 }

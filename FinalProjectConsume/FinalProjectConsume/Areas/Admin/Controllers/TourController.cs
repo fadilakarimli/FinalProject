@@ -1,9 +1,11 @@
-﻿using FinalProjectConsume.Models.Tour;
+﻿using FinalProjectConsume.Models.Plan;
+using FinalProjectConsume.Models.Tour;
 using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Globalization;
 
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
@@ -42,7 +44,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             var cities = await _cityService.GetAllAsync();
             var amenities = await _amenityService.GetAllAsync();
             var countries = await _countryService.GetAllAsync();
-            //var experiences = await _experienceService.GetAllAsync(); // 🔹 YENİ
+            //var experiences = await _experienceService.GetAllAsync(); 
 
             ViewBag.Cities = cities
                  .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
@@ -72,7 +74,6 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Eyni ViewBag-ləri POST-da da doldur:
                 var activities = await _activityService.GetAllAsync();
                 var amenities = await _amenityService.GetAllAsync();
                 var countries = await _countryService.GetAllAsync();
@@ -98,41 +99,87 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
                 return View(model);
             }
 
-            // Əgər model düzgünsə:
             await _tourService.CreateAsync(model);
             return RedirectToAction(nameof(Index));
         }
-    
+
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var tour = await _tourService.GetByIdAsync(id);
             if (tour == null) return NotFound();
 
+            var activities = await _activityService.GetAllAsync();
+            var cities = await _cityService.GetAllAsync();
+            var amenities = await _amenityService.GetAllAsync();
+            var countries = await _countryService.GetAllAsync();
+
             var model = new TourEdit
             {
+                Id = tour.Id,
                 Name = tour.Name,
                 Duration = tour.Duration,
                 CountryCount = tour.CountryCount,
                 Price = tour.Price,
                 OldPrice = tour.OldPrice,
-                Capacity = tour.Capacity 
+                Capacity = tour.Capacity,
+                Desc = tour.Desc,
+                CityIds = tour.CityIds ?? new List<int>(),
+                CountryIds = tour.CountryIds ?? new List<int>(),
+                ActivityIds = tour.ActivityIds ?? new List<int>(),
+                AmenityIds = tour.AmenityIds ?? new List<int>(),
+                //ExistingImageUrl = tour.ImageUrl,
+                StartTime = DateTime.ParseExact(tour.StartDate, "MM.dd.yyyy", CultureInfo.InvariantCulture),
+                EndTime = DateTime.ParseExact(tour.EndDate, "MM.dd.yyyy", CultureInfo.InvariantCulture),
+
+                Cities = new SelectList(cities, "Id", "Name"),
+                Countries = new SelectList(countries, "Id", "Name"),
+                Activities = new SelectList(activities, "Id", "Name"),
+                Amenities = new SelectList(amenities, "Id", "Name")
             };
 
             return View(model);
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, TourEdit model)
+        public async Task<IActionResult> Edit(int id, [FromForm] TourEdit model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+            {
+                var activities = await _activityService.GetAllAsync();
+                var cities = await _cityService.GetAllAsync();
+                var amenities = await _amenityService.GetAllAsync();
+                var countries = await _countryService.GetAllAsync();
+
+                ViewBag.Cities = cities.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
+                ViewBag.Activities = activities.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
+                ViewBag.Amenities = amenities.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
+                ViewBag.Countries = countries.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
+
+                return View(model);
+            }
 
             var response = await _tourService.EditAsync(id, model);
             if (response.IsSuccessStatusCode)
                 return RedirectToAction(nameof(Index));
 
-            ModelState.AddModelError(string.Empty, "Yeniləmə zamanı xəta baş verdi.");
+            ModelState.AddModelError("", "Yeniləmə zamanı xəta baş verdi.");
+
+            var acts = await _activityService.GetAllAsync();
+            var cts = await _cityService.GetAllAsync();
+            var amns = await _amenityService.GetAllAsync();
+            var cns = await _countryService.GetAllAsync();
+
+            ViewBag.Cities = cts.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
+            ViewBag.Activities = acts.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
+            ViewBag.Amenities = amns.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
+            ViewBag.Countries = cns.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
+
             return View(model);
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
@@ -147,41 +194,65 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int id)
         {
-            var tour = await _tourService.GetByIdAsync(id);
+            var tourDto = await _tourService.GetByIdAsync(id);
 
-            if (tour == null)
+            if (tourDto == null)
                 return NotFound();
 
-            if (!string.IsNullOrEmpty(tour.StartDate))
-            {
-                if (DateTime.TryParseExact(tour.StartDate, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out var startDate))
-                {
-                    Console.WriteLine($"Parsed StartDate: {startDate}");
-                }
-            }
+            // Bütün şəhərləri al (içində CountryName də var)
+            var cities = await _cityService.GetAllAsync();
 
-            if (!string.IsNullOrEmpty(tour.EndDate))
+            // Tour-a aid city-ləri götür
+            var tourCities = cities.Where(c => tourDto.CityIds.Contains(c.Id)).ToList();
+
+            // City-lərin CountryName-lərini distinct al
+            var countryNames = tourCities
+                .Select(c => c.CountryName)
+                .Distinct()
+                .ToList();
+
+            // Map et modelə
+            var tour = new Tour
             {
-                if (DateTime.TryParseExact(tour.EndDate, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out var endDate))
+                Id = tourDto.Id,
+                Name = tourDto.Name,
+                Duration = tourDto.Duration,
+                CountryCount = countryNames.Count,
+                Desc = tourDto.Desc,
+                Price = tourDto.Price,
+                Capacity = tourDto.Capacity,
+                OldPrice = tourDto.OldPrice,
+                ImageUrl = tourDto.ImageUrl,
+                CityNames = tourDto.CityNames,
+                ActivityNames = tourDto.ActivityNames,
+                Amenities = tourDto.Amenities,
+                ExperienceNames = tourDto.ExperienceNames,
+                Plans = tourDto.Plans?.Select(p => new Plan
                 {
-                    Console.WriteLine($"Parsed EndDate: {endDate}");
-                }
-            }
+                    Day = p.Day,
+                    Title = p.Title,
+                    Description = p.Description
+                }).ToList(),
+                CountryNames = countryNames,
+                StartDate = tourDto.StartDate,
+                EndDate = tourDto.EndDate
+            };
 
             return View(tour);
         }
 
 
+
         [HttpGet]
         public async Task<IActionResult> Search()
         {
-            var cities = await _cityService.GetAllAsync(); // Şəhər siyahısı
-            var activities = await _activityService.GetAllAsync(); // Fəaliyyət siyahısı
+            var cities = await _cityService.GetAllAsync();
+            var activities = await _activityService.GetAllAsync(); 
 
             var vm = new TourSearchRequest
             {
-                AvailableCities = cities,      // bunu TourSearchRequest-də əlavə elə
-                AvailableActivities = activities // eyni şəkildə buraya da
+                AvailableCities = cities,  
+                AvailableActivities = activities 
             };
 
             return View(vm);

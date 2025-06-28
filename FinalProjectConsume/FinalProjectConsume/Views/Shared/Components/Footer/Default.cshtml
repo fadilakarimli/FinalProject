@@ -81,7 +81,7 @@
                     <div class="footer-widget-items">
                         <div class="widget-title">
                             <a asp-action="Index" asp-controller="Home" class="footer-logo">
-                                <img src="@Model.FirstOrDefault(x => x.Key == "HeaderLogo")?.Value">    
+                                <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "HeaderLogo")?.Value">
                             </a>
                         </div>
                         <div class="footer-content">
@@ -184,50 +184,24 @@
                             <div class="gallery-wrap">
                                 <div class="gallery-item">
                                     <div class="thumb">
-                                        <a href="~/assets/img/footer/gallery-1.jpg" class="img-popup">
-                                            <img src="~/assets/img/footer/gallery-1.jpg" alt="gallery-img">
+                                        <a class="img-popup">
+                                            <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "Gallery1")?.Value" alt="gallery-img">
                                             <div class="icon">
                                                 <i class="far fa-plus"></i>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="thumb">
-                                        <a href="~/assets/img/footer/gallery-2.jpg" class="img-popup">
-                                            <img src="~/assets/img/footer/gallery-2.jpg" alt="gallery-img">
+                                        <a class="img-popup">
+                                            <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "Gallery2")?.Value" alt="gallery-img">
                                             <div class="icon">
                                                 <i class="far fa-plus"></i>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="thumb">
-                                        <a href="~/assets/img/footer/gallery-3.jpg" class="img-popup">
-                                            <img src="~/assets/img/footer/gallery-3.jpg" alt="gallery-img">
-                                            <div class="icon">
-                                                <i class="far fa-plus"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="gallery-item">
-                                    <div class="thumb">
-                                        <a href="~/assets/img/footer/gallery-4.jpg" class="img-popup">
-                                            <img src="~/assets/img/footer/gallery-4.jpg" alt="gallery-img">
-                                            <div class="icon">
-                                                <i class="far fa-plus"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="thumb">
-                                        <a href="~/assets/img/footer/gallery-5.jpg" class="img-popup">
-                                            <img src="~/assets/img/footer/gallery-5.jpg" alt="gallery-img">
-                                            <div class="icon">
-                                                <i class="far fa-plus"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="thumb">
-                                        <a href="~/assets/img/footer/gallery-6.jpg" class="img-popup">
-                                            <img src="~/assets/img/footer/gallery-6.jpg" alt="gallery-img">
+                                        <a class="img-popup">
+                                            <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "Gallery3")?.Value" alt="gallery-img">
                                             <div class="icon">
                                                 <i class="far fa-plus"></i>
                                             </div>
@@ -236,24 +210,50 @@
                                 </div>
                                 <div class="gallery-item">
                                     <div class="thumb">
-                                        <a href="~/assets/img/footer/gallery-7.jpg" class="img-popup">
-                                            <img src="~/assets/img/footer/gallery-7.jpg" alt="gallery-img">
+                                        <a class="img-popup">
+                                            <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "Gallery4")?.Value" alt="gallery-img">
                                             <div class="icon">
                                                 <i class="far fa-plus"></i>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="thumb">
-                                        <a href="~/assets/img/footer/gallery-8.jpg" class="img-popup">
-                                            <img src="~/assets/img/footer/gallery-8.jpg" alt="gallery-img">
+                                        <a class="img-popup">
+                                            <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "Gallery5")?.Value" alt="gallery-img">
                                             <div class="icon">
                                                 <i class="far fa-plus"></i>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="thumb">
-                                        <a href="~/assets/img/footer/gallery-9.jpg" class="img-popup">
-                                            <img src="~/assets/img/footer/gallery-9.jpg" alt="gallery-img">
+                                        <a class="img-popup">
+                                            <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "Gallery6")?.Value" alt="gallery-img">
+                                            <div class="icon">
+                                                <i class="far fa-plus"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="thumb">
+                                        <a class="img-popup">
+                                            <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "Gallery7")?.Value" alt="gallery-img">
+                                            <div class="icon">
+                                                <i class="far fa-plus"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="thumb">
+                                        <a class="img-popup">
+                                            <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "Gallery8")?.Value" alt="gallery-img">
+                                            <div class="icon">
+                                                <i class="far fa-plus"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="thumb">
+                                        <a class="img-popup">
+                                            <img src="~/assets/img/logo/@Model.FirstOrDefault(x => x.Key == "Gallery9")?.Value" alt="gallery-img">
                                             <div class="icon">
                                                 <i class="far fa-plus"></i>
                                             </div>

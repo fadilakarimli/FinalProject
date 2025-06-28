@@ -68,33 +68,49 @@ namespace FinalProjectConsume.Services
             return await _httpClient.DeleteAsync($"{_baseUrl}Delete/{id}");
         }
 
-        public async Task<HttpResponseMessage> EditAsync(int id, TourEdit model)
-        {
-            using var content = new MultipartFormDataContent();
-
-            content.Add(new StringContent(model.Name), "Name");
-            content.Add(new StringContent(model.Duration), "Duration");
-            content.Add(new StringContent(model.CountryCount.ToString()), "CountryCount");
-            content.Add(new StringContent(model.Price.ToString()), "Price");
-            if (model.OldPrice != null)
-                content.Add(new StringContent(model.OldPrice.ToString()), "OldPrice");
-            content.Add(new StringContent(model.CityId.ToString()), "CityId");
-
-            if (model.ImageFile != null)
+            public async Task<HttpResponseMessage> EditAsync(int id, TourEdit model)
             {
-                var stream = model.ImageFile.OpenReadStream();
-                var fileContent = new StreamContent(stream);
-                fileContent.Headers.ContentType = new MediaTypeHeaderValue(model.ImageFile.ContentType);
-                content.Add(fileContent, "ImageFile", model.ImageFile.FileName);
+                using var content = new MultipartFormDataContent();
+
+                content.Add(new StringContent(model.Name ?? ""), "Name");
+                content.Add(new StringContent(model.Duration ?? ""), "Duration");
+                content.Add(new StringContent(model.CountryCount.ToString()), "CountryCount");
+                content.Add(new StringContent(model.Desc ?? ""), "Desc");
+                content.Add(new StringContent(model.StartTime.ToString("yyyy-MM-dd")), "StartDate");
+                content.Add(new StringContent(model.EndTime.ToString("yyyy-MM-dd")), "EndDate");
+                content.Add(new StringContent(model.Price.ToString()), "Price");
+                if (model.OldPrice.HasValue)
+                    content.Add(new StringContent(model.OldPrice.Value.ToString()), "OldPrice");
+                content.Add(new StringContent(model.Capacity.ToString()), "Capacity");
+
+                foreach (var cityId in model.CityIds ?? Enumerable.Empty<int>())
+                    content.Add(new StringContent(cityId.ToString()), "CityIds");
+
+                foreach (var activityId in model.ActivityIds ?? Enumerable.Empty<int>())
+                    content.Add(new StringContent(activityId.ToString()), "ActivityIds");
+
+                foreach (var amenityId in model.AmenityIds ?? Enumerable.Empty<int>())
+                    content.Add(new StringContent(amenityId.ToString()), "AmenityIds");
+
+                foreach (var countryId in model.CountryIds ?? Enumerable.Empty<int>())
+                    content.Add(new StringContent(countryId.ToString()), "CountryIds");
+
+                if (model.ImageFile != null)
+                {
+                    var stream = model.ImageFile.OpenReadStream();
+                    var fileContent = new StreamContent(stream);
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue(model.ImageFile.ContentType);
+                    content.Add(fileContent, "ImageFile", model.ImageFile.FileName);
+                }
+
+                //if (!string.IsNullOrEmpty(model.ExistingImageUrl))
+                //{
+                //    content.Add(new StringContent(model.ExistingImageUrl), "ExistingImageUrl");
+                //}
+
+                return await _httpClient.PutAsync($"{_baseUrl}Edit/{id}", content);
             }
 
-            if (!string.IsNullOrEmpty(model.ExistingImageUrl))
-            {
-                content.Add(new StringContent(model.ExistingImageUrl), "ExistingImageUrl");
-            }
-
-            return await _httpClient.PutAsync($"{_baseUrl}Edit/{id}", content);
-        }
 
         public async Task<IEnumerable<Tour>> GetAllAsync()
         {

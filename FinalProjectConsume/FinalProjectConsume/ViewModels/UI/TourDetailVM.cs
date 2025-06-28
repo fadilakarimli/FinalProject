@@ -17,8 +17,9 @@ namespace FinalProjectConsume.ViewModels.UI
             ? Math.Round(Reviews.Average(x => x.Star), 1)
             : 0.0;
         public int ReviewCount => Reviews?.Count ?? 0;
-
         public Dictionary<int, int> StarCounts => Reviews?.GroupBy(r => r.Star).ToDictionary(g => g.Key, g => g.Count())?? new Dictionary<int, int>();
+        public List<SettingVM> Settings { get; set; }
+
 
 
 

@@ -11,10 +11,12 @@ namespace FinalProjectConsume.Controllers
     {
         private readonly IBlogService _blogService;
         private readonly INewService _newService;
-        public NewController(IBlogService blogService, INewService newService)
+        private readonly ISettingService _settingService;
+        public NewController(IBlogService blogService, INewService newService, ISettingService settingService)
         {
             _blogService = blogService; 
             _newService = newService;
+            _settingService = settingService;
         }
         public async Task<IActionResult> Index(string search, int page = 1)
         {
@@ -36,13 +38,17 @@ namespace FinalProjectConsume.Controllers
                 .ToList();
 
             int totalPages = (int)Math.Ceiling(totalBlogs / (double)take);
+            var settings = (await _settingService.GetAllAsync())?.ToList() ?? new List<SettingVM>();
+
 
             var vm = new NewVM
             {
                 Blogs = pagedBlogs,
                 SearchTerm = search ?? string.Empty,
                 CurrentPage = page,
-                TotalPages = totalPages
+                TotalPages = totalPages,
+                Settings = settings
+
             };
 
             return View(vm);

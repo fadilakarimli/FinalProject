@@ -10,9 +10,11 @@ namespace FinalProjectConsume.Controllers
     {
         private readonly ITourService _tourService;
         private readonly IExperienceService _experienceService;
+        private readonly ISettingService _settingService;
+
         private readonly HttpClient _httpClient;
 
-        public TourDetailController(ITourService tourService, IExperienceService experienceService)
+        public TourDetailController(ITourService tourService, IExperienceService experienceService, ISettingService settingService)
         {
             _tourService = tourService;
 
@@ -22,6 +24,7 @@ namespace FinalProjectConsume.Controllers
                 BaseAddress = new Uri("https://localhost:7145") // API URL-ni düzgün yaz
             };
             _experienceService = experienceService;
+            _settingService = settingService;
         }
         public async Task<IActionResult> Index(int id, string search)
         {
@@ -42,13 +45,16 @@ namespace FinalProjectConsume.Controllers
 
             // Experience-ləri xidmət vasitəsilə al
             var experiences = await _experienceService.GetByTourIdAsync(id);
+            var settings = (await _settingService.GetAllAsync())?.ToList() ?? new List<SettingVM>();
 
             var vm = new TourDetailVM
             {
                 Tour = tour,
                 SearchTerm = search ?? string.Empty,
                 Reviews = reviews,
-                Experiences = experiences.ToList()  // burada doldur
+                Experiences = experiences.ToList(),  // burada doldur
+                Settings = settings
+
             };
 
             return View(vm);

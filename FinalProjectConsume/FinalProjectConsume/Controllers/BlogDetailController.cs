@@ -8,10 +8,12 @@ namespace FinalProjectConsume.Controllers
     public class BlogDetailController : Controller
     {
         private readonly IBlogService _blogService;
+        private readonly ISettingService _settingService;
 
-        public BlogDetailController(IBlogService blogService)
+        public BlogDetailController(IBlogService blogService, ISettingService settingService)
         {
             _blogService = blogService;
+            _settingService = settingService;
         }
 
         public async Task<IActionResult> Index(int id)
@@ -26,11 +28,15 @@ namespace FinalProjectConsume.Controllers
                 .OrderByDescending(b => b.CreatedDate)
                 .Take(3)
                 .ToList();
+            var settings = (await _settingService.GetAllAsync())?.ToList() ?? new List<SettingVM>();
+
 
             var vm = new BlogDetailVM
             {
                 Blog = blog, // əsas blog
-                RelatedBlogs = relatedBlogs // əlaqəli olanlar
+                RelatedBlogs = relatedBlogs, // əlaqəli olanlar
+                Settings = settings
+
             };
 
             return View(vm);

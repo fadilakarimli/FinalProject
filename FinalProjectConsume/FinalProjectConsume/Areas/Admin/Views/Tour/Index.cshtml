@@ -1,7 +1,12 @@
 ﻿@model IEnumerable<FinalProjectConsume.Models.Tour.Tour>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
 
 <div class="container" style="margin-left:300px; margin-top:50px; ">
-    <div class="col-sm-12 col-xl-10">
+    <div class="col-sm-12 col-xl-12">
         <a asp-controller="Tour" asp-action="Create" asp-area="Admin" class="btn btn-success mb-3">Create</a>
         <a asp-controller="Tour" asp-action="Search" asp-area="Admin" class="btn btn-primary mb-3" style="margin-left: 10px;">Search</a>
 
@@ -12,7 +17,6 @@
                     <th>Image</th>
                     <th>Name</th>
                     <th>Duration</th>
-                    <th>Country Count</th>
                     <th>Price</th>
                     <th>Capacity</th>
                     <th>City</th>
@@ -26,23 +30,19 @@
                 {
                     foreach (var item in Model)
                     {
-                        <tr>
+                        <tr id="tour-row-@item.Id">
                             <td>
                                 <img src="@item.ImageUrl" style="width:100px; height:60px;" alt="@item.Name" />
                             </td>
                             <td>@item.Name</td>
                             <td>@item.Duration</td>
-                            <td>@item.CountryCount</td>
                             <td>@item.Price.ToString("C")</td>
                             <td>@item.Capacity</td>
                             <td>@string.Join(", ", item.CityNames ?? new List<string>())</td>
                             <td>@string.Join(", ", item.ActivityNames ?? new List<string>())</td>
                             <td>@string.Join(", ", item.Amenities ?? new List<string>())</td>
                             <td>
-                                <form asp-controller="Tour" asp-action="Delete" asp-area="Admin" method="post" style="display:inline;">
-                                    <input type="hidden" name="id" value="@item.Id" />
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="@item.Id">Delete</button>
                                 <a class="btn btn-warning btn-sm" asp-controller="Tour" asp-action="Edit" asp-route-id="@item.Id" asp-area="Admin">Edit</a>
                                 <a class="btn btn-info btn-sm" asp-controller="Tour" asp-action="Detail" asp-route-id="@item.Id" asp-area="Admin">Detail</a>
                             </td>
@@ -52,10 +52,63 @@
                 else
                 {
                     <tr>
-                        <td colspan="9" class="text-center">Tur tapılmadı.</td>
+                        <td colspan="10" class="text-center">Tur tapılmadı.</td>
                     </tr>
                 }
             </tbody>
+
         </table>
     </div>
 </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteButtons = document.querySelectorAll(".btn-delete");
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success me-2",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const id = this.getAttribute("data-id");
+
+                swalWithBootstrapButtons.fire({
+                    title: "Are you sure you want to delete this tour?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel!",
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`/Admin/Tour/Delete/${id}`, {
+                            method: "POST"
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    // Silinən tr elementini tapıb DOM-dan silirik
+                                    const row = document.getElementById(`tour-row-${id}`);
+                                    if (row) {
+                                        row.remove();
+                                    }
+
+                                    swalWithBootstrapButtons.fire("Deleted!", "Tour has been deleted.", "success");
+                                } else {
+                                    swalWithBootstrapButtons.fire("Error!", "Something went wrong.", "error");
+                                }
+                            })
+                            .catch(() => {
+                                swalWithBootstrapButtons.fire("Error!", "Something went wrong.", "error");
+                            });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons.fire("Cancelled", "Tour is safe :)", "info");
+                    }
+                });
+            });
+        });
+    });
+
+    </script>

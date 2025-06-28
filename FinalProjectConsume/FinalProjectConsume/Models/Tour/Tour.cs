@@ -3,8 +3,8 @@ using System.Numerics;
 using System.Text.Json.Serialization;
 using PlanModel = FinalProjectConsume.Models.Plan;
 
-namespace FinalProjectConsume.Models.Tour
-{
+ namespace FinalProjectConsume.Models.Tour
+ {
     public class Tour
     {
         public int Id { get; set; }
@@ -20,6 +20,7 @@ namespace FinalProjectConsume.Models.Tour
         public List<string> ActivityNames { get; set; }
         public List<string> Amenities { get; set; }
         public List<string> ExperienceNames { get; set; }
+        public List<string> CountryNames { get; set; } = new();
         public List<PlanModel.Plan> Plans { get; set; }
 
         [JsonPropertyName("startDate")]
@@ -27,9 +28,14 @@ namespace FinalProjectConsume.Models.Tour
 
         [JsonPropertyName("endDate")]
         public string EndDate { get; set; }
+        public List<int> CityIds { get; set; }
+        public List<int> ActivityIds { get; set; }
+        public List<int> AmenityIds { get; set; }
+        public List<int> CountryIds { get; set; }
 
 
 
 
     }
-}
+ }
+

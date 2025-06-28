@@ -12,10 +12,21 @@
         <label>Duration:</label>
         <p>@Model.Duration</p>
     </div>
-
     <div class="form-group">
-        <label>Country Count:</label>
-        <p>@Model.CountryCount</p>
+        <label>Countries:</label>
+        @if (Model.CountryNames != null && Model.CountryNames.Any())
+        {
+            <ul>
+                @foreach (var country in Model.CountryNames)
+                {
+                    <li>@country</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No countries available.</p>
+        }
     </div>
 
     <div class="form-group">

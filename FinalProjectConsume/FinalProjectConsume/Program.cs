@@ -90,16 +90,16 @@ builder.Services.AddScoped<INewService, NewService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-else
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
+//// Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseDeveloperExceptionPage();
+//}
+//else
+//{
+//    app.UseExceptionHandler("/Home/Error");
+//    app.UseHsts();
+//}
 
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -109,7 +109,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 
 app.UseHttpsRedirection();
-app.UseMiddleware<GlobalExceptionHandler>();
+//app.UseMiddleware<GlobalExceptionHandler>();
 app.UseStaticFiles();
 
 app.UseRouting();

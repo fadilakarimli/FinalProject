@@ -8,9 +8,12 @@ namespace FinalProjectConsume.Controllers
     public class AboutDetailController : Controller
     {
         private readonly IAboutBlogService _aboutBlogService;
-        public AboutDetailController(IAboutBlogService aboutBlogService)
+        private readonly ISettingService _settingService;
+
+        public AboutDetailController(IAboutBlogService aboutBlogService, ISettingService settingService = null)
         {
-            _aboutBlogService = aboutBlogService;   
+            _aboutBlogService = aboutBlogService;
+            _settingService = settingService;
         }
         public async Task<IActionResult> Index(int id)
         {
@@ -24,10 +27,13 @@ namespace FinalProjectConsume.Controllers
                 .OrderByDescending(b => b.CreatedDate)
                 .Take(3)
                 .ToList();
+            var settings = (await _settingService.GetAllAsync())?.ToList() ?? new List<SettingVM>();
 
             var vm = new AboutDetailVM
             {
                 AboutBlog = aboutBlog, // əsas blog
+                Settings = settings
+
             };
 
             return View(vm);
