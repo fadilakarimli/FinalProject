@@ -424,6 +424,21 @@
                                           <button type="submit" class="theme-btn text-center" id="submitReviewBtn" data-auth="@isAuthenticated.ToString().ToLower()">
                                             <span>Submit Reviews</span> <i class="far fa-long-arrow-right"></i>
                                         </button>
+
+                                            <script>
+                                                document.addEventListener("DOMContentLoaded", function () {
+                                                    const submitBtn = document.getElementById("submitReviewBtn");
+                                                    const isAuth = submitBtn.dataset.auth === "true";
+
+                                                    if (!isAuth) {
+                                                        submitBtn.addEventListener("click", function (e) {
+                                                            e.preventDefault();
+                                                            window.location.href = "/Account/Login";
+                                                        });
+                                                    }
+                                                });
+                                            </script>
+
                                         </div>
                                     </div>
                                 </form>

@@ -140,6 +140,9 @@
                         <p class="wow fadeInUp" data-wow-delay=".5s">
                             We offer carefully curated destinations and tours that capture the true essence of location, ensuring you experience.
                         </p>
+                        @{
+                            ViewBag.IsAuthenticated = User.Identity.IsAuthenticated;
+                        }
                         <form asp-action="CreateMessage" method="post" id="message-form" class="contact-form-items">
                             <div class="row g-4">
                                 <div class="form-clt">
@@ -168,6 +171,16 @@
                                 </div>
                             </div>
                         </form>
+                        <script>
+                            const isAuthenticated = @ViewBag.IsAuthenticated.ToString().ToLower(); // true/false gələcək
+
+                            document.getElementById("message-form").addEventListener("submit", function (e) {
+                                if (!isAuthenticated) {
+                                    e.preventDefault();
+                                    alert("Please , Log in!!!");
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

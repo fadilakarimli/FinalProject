@@ -1,4 +1,5 @@
 ﻿using FinalProjectConsume.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Text.Json;
@@ -17,6 +18,7 @@ namespace FinalProjectConsume.Controllers
             };
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> SubmitReview(ReviewCreateVM vm)
         {

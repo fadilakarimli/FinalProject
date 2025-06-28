@@ -11,6 +11,7 @@ using FinalProjectConsume.Models.TeamMember;
 using FinalProjectConsume.Models.TrandingDestination;
 using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels.UI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Reflection;
@@ -40,7 +41,7 @@ namespace FinalProjectConsume.Controllers
             return View(model);
         }
 
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateMessage(ContactVM postContactVM)
         {
