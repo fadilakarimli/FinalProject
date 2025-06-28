@@ -60,15 +60,46 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(PlanCreate model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+            {
+                // Tour siyahısını doldur
+                var tours = await _tourService.GetAllAsync();
+                model.Tours = tours.Select(t => new SelectListItem
+                {
+                    Value = t.Id.ToString(),
+                    Text = t.Name
+                }).ToList();
+
+                return View(model);
+            }
 
             var response = await _planService.CreateAsync(model);
+
             if (response.IsSuccessStatusCode)
                 return RedirectToAction(nameof(Index));
 
-            ModelState.AddModelError(string.Empty, "Plan yaratmaq zamanı xəta baş verdi.");
+            // 🔽 Əgər duplicate oldu (409 Conflict qaytarıbsa)
+            if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                string errorMessage = await response.Content.ReadAsStringAsync();
+                ModelState.AddModelError("Day", errorMessage); // Day sahəsinin altına error yazırıq
+            }
+            else
+            {
+                ModelState.AddModelError("", "Plan yaratmaq zamanı xəta baş verdi.");
+            }
+
+            // Tour siyahısını yenidən doldur (çünki səhifəyə qayıdırıq)
+            var allTours = await _tourService.GetAllAsync();
+            model.Tours = allTours.Select(t => new SelectListItem
+            {
+                Value = t.Id.ToString(),
+                Text = t.Name
+            }).ToList();
+
             return View(model);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
@@ -76,12 +107,19 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             var plan = await _planService.GetByIdAsync(id);
             if (plan == null) return NotFound();
 
+            var tours = await _tourService.GetAllAsync();
+
             var model = new PlanEdit
             {
                 Day = plan.Day,
                 Title = plan.Title,
                 Description = plan.Description,
-                TourId = plan.TourId
+                TourId = plan.TourId,
+                Tours = tours.Select(t => new SelectListItem
+                {
+                    Value = t.Id.ToString(),
+                    Text = t.Name
+                }).ToList()
             };
 
             return View(model);
@@ -90,15 +128,54 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, PlanEdit model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+            {
+                var tours = await _tourService.GetAllAsync();
+                model.Tours = tours.Select(t => new SelectListItem
+                {
+                    Value = t.Id.ToString(),
+                    Text = t.Name
+                }).ToList();
 
-            var response = await _planService.EditAsync(id, model);
+                return View(model);
+            }
+
+            // Manual convert PlanEdit to PlanEditDto
+            var dto = new PlanEdit
+            {
+                Day = model.Day,
+                Title = model.Title,
+                Description = model.Description,
+                TourId = model.TourId
+            };
+
+            var response = await _planService.EditAsync(id, dto);
+
             if (response.IsSuccessStatusCode)
                 return RedirectToAction(nameof(Index));
 
-            ModelState.AddModelError(string.Empty, "Plan yenilənmə zamanı xəta baş verdi.");
+            if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                string errorMessage = await response.Content.ReadAsStringAsync();
+                ModelState.AddModelError("Day", errorMessage);
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Plan yenilənmə zamanı xəta baş verdi.");
+            }
+
+            var allTours = await _tourService.GetAllAsync();
+            model.Tours = allTours.Select(t => new SelectListItem
+            {
+                Value = t.Id.ToString(),
+                Text = t.Name
+            }).ToList();
+
             return View(model);
         }
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)

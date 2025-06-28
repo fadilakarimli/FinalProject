@@ -21,8 +21,8 @@ namespace FinalProjectConsume.Services
             content.Add(new StringContent(model.ShortDescription), "ShortDescription");
             if (model.Content != null)
                 content.Add(new StringContent(model.Content), "Content");
-            content.Add(new StringContent(model.Author), "Author");
-            content.Add(new StringContent(model.CommentCount.ToString()), "CommentCount");
+            //content.Add(new StringContent(model.Author), "Author");
+            //content.Add(new StringContent(model.CommentCount.ToString()), "CommentCount");
 
             if (model.Image != null)
             {
@@ -47,8 +47,8 @@ namespace FinalProjectConsume.Services
             content.Add(new StringContent(model.ShortDescription), "ShortDescription");
             if (model.Content != null)
                 content.Add(new StringContent(model.Content), "Content");
-            content.Add(new StringContent(model.Author), "Author");
-            content.Add(new StringContent(model.CommentCount.ToString()), "CommentCount");
+            //content.Add(new StringContent(model.Author), "Author");
+            //content.Add(new StringContent(model.CommentCount.ToString()), "CommentCount");
 
             if (model.Image != null)
             {

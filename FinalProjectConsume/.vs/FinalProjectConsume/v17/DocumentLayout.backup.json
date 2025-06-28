@@ -3,12 +3,76 @@
   "WorkspaceRootPath": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\areas\\admin\\views\\plan\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\areas\\admin\\views\\plan\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\areas\\admin\\controllers\\plancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\areas\\admin\\controllers\\plancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\services\\planservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\services\\planservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\models\\plan\\planedit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\models\\plan\\planedit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\areas\\admin\\views\\plan\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\areas\\admin\\views\\plan\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\areas\\admin\\views\\blog\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\areas\\admin\\views\\blog\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\services\\newsletterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\services\\newsletterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\models\\aboutblog\\aboutblogedit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\models\\aboutblog\\aboutblogedit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\models\\blog\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\models\\blog\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\areas\\admin\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\areas\\admin\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\services\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\services\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\views\\new\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\views\\new\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\views\\blogdetail\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\views\\blogdetail\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\areas\\admin\\views\\blog\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\areas\\admin\\views\\blog\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\areas\\admin\\views\\blog\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\areas\\admin\\views\\blog\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\models\\blog\\blogedit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\models\\blog\\blogedit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\models\\blog\\blogcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\models\\blog\\blogcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|c:\\users\\asus\\desktop\\finalproject\\finalprojectconsume\\finalprojectconsume\\areas\\admin\\views\\blog\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5085C86F-0235-401E-B844-C90015C704C2}|FinalProjectConsume\\FinalProjectConsume.csproj|solutionrelative:finalprojectconsume\\areas\\admin\\views\\blog\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +82,240 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ContactController.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Controllers\\ContactController.cs",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Controllers\\ContactController.cs",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Controllers\\ContactController.cs",
-              "RelativeToolTip": "FinalProjectConsume\\Controllers\\ContactController.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAA1wCsAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T13:56:59.848Z",
+              "DocumentIndex": 0,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Plan\\Edit.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Areas\\Admin\\Views\\Plan\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Plan\\Edit.cshtml",
+              "RelativeToolTip": "FinalProjectConsume\\Areas\\Admin\\Views\\Plan\\Edit.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAkwBcAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-28T21:38:51.239Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Contact\\Index.cshtml",
-              "RelativeDocumentMoniker": "FinalProjectConsume\\Views\\Contact\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\Contact\\Index.cshtml*",
-              "RelativeToolTip": "FinalProjectConsume\\Views\\Contact\\Index.cshtml*",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAAALMAAABAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "PlanEdit.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Plan\\PlanEdit.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Models\\Plan\\PlanEdit.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Plan\\PlanEdit.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Models\\Plan\\PlanEdit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T21:36:00.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlanService.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\PlanService.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Services\\PlanService.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\PlanService.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Services\\PlanService.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAqwB0AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T21:19:15.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NewsLetterService.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\NewsLetterService.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Services\\NewsLetterService.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\NewsLetterService.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Services\\NewsLetterService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T21:18:59.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Plan\\Create.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Areas\\Admin\\Views\\Plan\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Plan\\Create.cshtml",
+              "RelativeToolTip": "FinalProjectConsume\\Areas\\Admin\\Views\\Plan\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-28T13:55:53.467Z",
+              "WhenOpened": "2025-06-28T21:16:57.207Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlanController.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Controllers\\PlanController.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Areas\\Admin\\Controllers\\PlanController.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Controllers\\PlanController.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Areas\\Admin\\Controllers\\PlanController.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAgwJMAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T21:16:42.411Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AboutBlogEdit.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\AboutBlog\\AboutBlogEdit.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Models\\AboutBlog\\AboutBlogEdit.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\AboutBlog\\AboutBlogEdit.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Models\\AboutBlog\\AboutBlogEdit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T21:03:33.207Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\New\\Index.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Views\\New\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\New\\Index.cshtml",
+              "RelativeToolTip": "FinalProjectConsume\\Views\\New\\Index.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEcAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-28T20:45:33.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\BlogDetail\\Index.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Views\\BlogDetail\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Views\\BlogDetail\\Index.cshtml",
+              "RelativeToolTip": "FinalProjectConsume\\Views\\BlogDetail\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADEAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-28T20:45:02.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Detail.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Detail.cshtml",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Detail.cshtml",
+              "RelativeToolTip": "FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Detail.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-28T20:44:52.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Index.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Index.cshtml",
+              "RelativeToolTip": "FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAkwAkAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-28T20:44:10.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Edit.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Edit.cshtml",
+              "RelativeToolTip": "FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Edit.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-28T20:44:00.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "BlogEdit.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Blog\\BlogEdit.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Models\\Blog\\BlogEdit.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Blog\\BlogEdit.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Models\\Blog\\BlogEdit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T20:43:51.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Blog.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Blog\\Blog.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Models\\Blog\\Blog.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Blog\\Blog.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Models\\Blog\\Blog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T20:43:40.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Create.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Create.cshtml",
+              "RelativeToolTip": "FinalProjectConsume\\Areas\\Admin\\Views\\Blog\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-28T20:39:32.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BlogService.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\BlogService.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Services\\BlogService.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Services\\BlogService.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Services\\BlogService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T20:38:55.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BlogCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Blog\\BlogCreate.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Models\\Blog\\BlogCreate.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Models\\Blog\\BlogCreate.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Models\\Blog\\BlogCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T20:38:34.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BlogController.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Controllers\\BlogController.cs",
+              "RelativeDocumentMoniker": "FinalProjectConsume\\Areas\\Admin\\Controllers\\BlogController.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\FinalProject\\FinalProjectConsume\\FinalProjectConsume\\Areas\\Admin\\Controllers\\BlogController.cs",
+              "RelativeToolTip": "FinalProjectConsume\\Areas\\Admin\\Controllers\\BlogController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T20:38:31.71Z",
               "EditorCaption": ""
             }
           ]

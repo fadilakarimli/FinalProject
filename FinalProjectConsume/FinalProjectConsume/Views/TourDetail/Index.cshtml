@@ -487,7 +487,8 @@
                 </div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="tour-details-sidebar sticky-style">
-                        <div class="tour-sidebar-items">
+                        <div class="tour-sidebar-items" data-capacity="@Model.Tour.Capacity">
+
                             <h3>Tour Booking</h3>
                             <ul class="form-list">
                                 <li>
@@ -626,17 +627,36 @@
                             }
 
                             const bookNowBtn = document.getElementById('bookNowBtn');
-                            bookNowBtn.addEventListener('click', function () {
-                                const isAuth = bookNowBtn.dataset.auth === "true";
+                                    bookNowBtn.addEventListener('click', function () {
+                                        const isAuth = bookNowBtn.dataset.auth === "true";
 
-                                if (!isAuth) {
-                                    window.location.href = "/Account/Login"; // Burada login səhifənizin ünvanını yaz
-                                    return;
-                                }
+                                        if (!isAuth) {
+                                            window.location.href = "/Account/Login";
+                                            return;
+                                        }
+                                        const email = userEmailInput.value.trim();
+                                        if (email === "") {
+                                            alert("Email not empty!");
+                                            userEmailInput.focus();
+                                            return;
+                                        }
 
-                                syncInputs();
-                                document.getElementById('paymentForm').submit();
-                            });
+
+                                        const container = document.querySelector('.tour-sidebar-items');
+                                        const capacity = parseInt(container.dataset.capacity) || 0;
+
+                                        const adults = parseInt(adultInput.value) || 0;
+                                        const children = parseInt(childInput.value) || 0;
+                                        const totalPeople = adults + children;
+
+                                        if (totalPeople > capacity) {
+                                            alert(`The number of bookings cannot exceed the available capacity! Maximum: ${capacity}`);
+                                            return; 
+                                        }
+
+                                        syncInputs();
+                                        document.getElementById('paymentForm').submit();
+                                    });
 
                             adultInput.addEventListener('input', () => {
                                 updateTotals();

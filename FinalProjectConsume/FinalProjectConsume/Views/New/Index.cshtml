@@ -62,7 +62,7 @@
                                     <div class="post-featured-thumb bg-cover" style="background-image: url(@blog.Image)"></div>
                                     <div class="post-content">
                                         <div class="post-meta">
-                                            <span><i class="fal fa-comments"></i>@blog.CommentCount</span>
+                                      @*       <span><i class="fal fa-comments"></i>@blog.CommentCount</span> *@
                                             <span><i class="fal fa-calendar-alt"></i>@blog.CreatedDate.ToShortDateString()</span>
                                         </div>
                                         <h2><a asp-controller="BlogDetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Title</a></h2>

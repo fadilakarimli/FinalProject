@@ -50,8 +50,8 @@ using Microsoft.AspNetCore.Mvc;
                     Title = blog.Title,
                     ShortDescription = blog.ShortDescription,
                     Content = blog.Content,
-                    Author = blog.Author,
-                    CommentCount = blog.CommentCount
+                    //Author = blog.Author,
+                    //CommentCount = blog.CommentCount
                 };
 
                 return View(model);

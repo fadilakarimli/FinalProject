@@ -181,7 +181,7 @@ namespace FinalProjectConsume.Services
 
         public async Task<Paginated<Tour>> GetPaginatedAsync(int page = 1, int take = 5)
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}paginated?page={page}&take={take}");
+            var response = await _httpClient.GetAsync($"https://localhost:7145/api/admin/Tour/GetPaginated/paginated?page={page}&take={take}");
             response.EnsureSuccessStatusCode();
 
             var jsonData = await response.Content.ReadAsStringAsync();

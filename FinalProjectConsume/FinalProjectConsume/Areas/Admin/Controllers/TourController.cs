@@ -1,11 +1,15 @@
-﻿using FinalProjectConsume.Models.Plan;
+﻿using FinalProjectConsume.Models.Paginate;
+using FinalProjectConsume.Models.Plan;
 using FinalProjectConsume.Models.Tour;
 using FinalProjectConsume.Services;
 using FinalProjectConsume.Services.Interfaces;
+using FinalProjectConsume.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Globalization;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace FinalProjectConsume.Areas.Admin.Controllers
 {
@@ -20,6 +24,8 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         private readonly ICountryService _countryService;
         private readonly IExperienceService _experienceService;
         private readonly ICityService _cityService;
+        private readonly HttpClient _httpClient;
+
 
         public TourController(ITourService tourService , IAmenityService amenityService , IActivityService activityService, ICountryService countryService
                            , IExperienceService experienceService, ICityService cityService)
@@ -32,11 +38,12 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             _cityService = cityService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var tours = await _tourService.GetAllAsync();
-            return View(tours);
+            var paginatedTours = await _tourService.GetPaginatedAsync(page, 6);
+            return View(paginatedTours);
         }
+
         [HttpGet]
         public async Task<IActionResult> Create()
         {
