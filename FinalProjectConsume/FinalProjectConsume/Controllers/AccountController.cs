@@ -225,8 +225,7 @@ namespace FinalProjectConsume.Controllers
 
             try
             {
-                // API-dən current user məlumatlarını al
-                var requestUri = "https://localhost:7145/api/Account/GetProfile";
+                var requestUri = "https://localhost:7145/api/Account/GetProfile/profile";
                 var response = await _httpClient.GetAsync(requestUri);
 
                 if (response.IsSuccessStatusCode)
@@ -244,7 +243,6 @@ namespace FinalProjectConsume.Controllers
                 }
                 else
                 {
-                    // Əgər API-dən məlumat alınmırsa, Claims-dən al
                     var model = new ProfileViewModel
                     {
                         UserName = User.Identity.Name,
@@ -255,7 +253,6 @@ namespace FinalProjectConsume.Controllers
             }
             catch (Exception)
             {
-                // Error halında Claims-dən məlumat al
                 var model = new ProfileViewModel
                 {
                     UserName = User.Identity.Name,
@@ -264,15 +261,12 @@ namespace FinalProjectConsume.Controllers
                 return View(model);
             }
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Profile(ProfileViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
             try
             {
@@ -287,11 +281,13 @@ namespace FinalProjectConsume.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    var responseObj = System.Text.Json.JsonSerializer.Deserialize<ResponseObject>(responseContent, options);
+                    // Sessiyanı bağla (logout et)
+                    await HttpContext.SignOutAsync("CookieAuth");
 
-                    TempData["SuccessMessage"] = "Profil məlumatları uğurla yeniləndi!";
-                    return RedirectToAction("Profile");
+                    TempData["SuccessMessage"] = "Profil uğurla yeniləndi. Zəhmət olmasa yenidən daxil olun.";
+
+                    // İstifadəçini login səhifəsinə yönləndir
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                 {

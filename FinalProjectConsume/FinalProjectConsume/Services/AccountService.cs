@@ -18,7 +18,6 @@ namespace FinalProjectConsume.Services
             return response;
         }
 
-
         public async Task<bool> RegisterAsync(Register model)
         {
             var response = await _httpClient.PostAsJsonAsync(_baseUrl + "Register", model);
@@ -31,7 +30,6 @@ namespace FinalProjectConsume.Services
 
             return await response.Content.ReadAsStringAsync(); 
         }
-
 
         public async Task<List<User>> GetAllUsersAsync()
         {
@@ -54,7 +52,6 @@ namespace FinalProjectConsume.Services
             var response = await _httpClient.PostAsJsonAsync("https://localhost:7145/api/admin/Account/AssignRole/AssignRole", data);
             return response.IsSuccessStatusCode;
         }
-
         public async Task<bool> RemoveRoleAsync(string userId, string roleName)
         {
             var data = new
@@ -66,11 +63,5 @@ namespace FinalProjectConsume.Services
             var response = await _httpClient.PostAsJsonAsync("https://localhost:7145/api/admin/Account/RemoveRole/RemoveRole", data);
             return response.IsSuccessStatusCode;
         }
-
-
-
-
-
-
     }
 }
