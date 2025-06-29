@@ -1,0 +1,191 @@
+﻿@model ProfileViewModel
+@{
+    ViewData["Title"] = "Profil";
+}
+
+<div style="max-width: 600px; margin: 50px auto; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+        <div style="
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto 15px auto;
+            font-size: 28px;
+        ">
+            @(Model.UserName?.Substring(0, 1).ToUpper() ?? "U")
+        </div>
+        <h2 style="margin: 0; color: #333; font-size: 24px;">Profile Settings</h2>
+        <p style="color: #666; margin: 5px 0 0 0;">Update Profile</p>
+    </div>
+
+    <!-- Success Message -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div style="
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+            display: flex;
+            align-items: center;
+            ">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="margin-right: 10px;">
+                <path d="M9 12l2 2 4-4" stroke="#155724" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="12" cy="12" r="10" stroke="#155724" stroke-width="2" />
+            </svg>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <!-- Form -->
+    <form asp-action="Profile" method="post">
+        @Html.AntiForgeryToken()
+
+        <!-- Username Field -->
+        <div style="margin-bottom: 25px;">
+            <label asp-for="UserName" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right: 8px; vertical-align: middle;">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="12" cy="7" r="4" stroke="#666" stroke-width="2" />
+                </svg>
+                UserName
+            </label>
+            <input asp-for="UserName" style="
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #e9ecef;
+                border-radius: 8px;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                box-sizing: border-box;
+                 color: black;
+
+            " onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'" />
+            <span asp-validation-for="UserName" style="color: #dc3545; font-size: 12px; margin-top: 5px; display: block;"></span>
+        </div>
+
+        <!-- Email Field -->
+        <div style="margin-bottom: 25px;">
+            <label asp-for="Email" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right: 8px; vertical-align: middle;">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#666" stroke-width="2" />
+                    <polyline points="22,6 12,13 2,6" stroke="#666" stroke-width="2" />
+                </svg>
+                Email
+            </label>
+            <input asp-for="Email" type="email" style="
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #e9ecef;
+                border-radius: 8px;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                box-sizing: border-box;
+                color: black;
+
+            " onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'" />
+            <span asp-validation-for="Email" style="color: #dc3545; font-size: 12px; margin-top: 5px; display: block;"></span>
+        </div>
+
+        <!-- Validation Summary -->
+        <div asp-validation-summary="All" style="
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+            display: none;
+        "></div>
+
+        <!-- Buttons -->
+        <div style="display: flex; gap: 15px; justify-content: space-between; margin-top: 30px;">
+            <a href="/" style="
+                padding: 12px 25px;
+                background: #6c757d;
+                color: white;
+                text-decoration: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 120px;
+            " onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right: 8px;">
+                    <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Back
+            </a>
+
+            <button type="submit" style="
+                padding: 12px 25px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 120px;
+            " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 15px rgba(102,126,234,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right: 8px;">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" stroke="white" stroke-width="2" />
+                    <polyline points="17,21 17,13 7,13 7,21" stroke="white" stroke-width="2" />
+                    <polyline points="7,3 7,8 15,8" stroke="white" stroke-width="2" />
+                </svg>
+                Save
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Form validation üçün JavaScript -->
+<script>
+    // Validation summary göstər/gizlət
+    document.addEventListener('DOMContentLoaded', function() {
+        const validationSummary = document.querySelector('[asp-validation-summary]');
+        const errorMessages = validationSummary?.querySelectorAll('li');
+
+        if (errorMessages && errorMessages.length > 0) {
+            validationSummary.style.display = 'block';
+        }
+    });
+
+    // Form submit animation
+    const form = document.querySelector('form');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function() {
+        submitButton.innerHTML = `
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="margin-right: 8px; animation: spin 1s linear infinite;">
+                <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="31.416"/>
+            </svg>
+            Yadda saxlanır...
+        `;
+        submitButton.disabled = true;
+    });
+</script>
+
+<style>
+    keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>

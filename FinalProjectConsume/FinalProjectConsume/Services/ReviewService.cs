@@ -31,12 +31,11 @@ namespace FinalProjectConsume.Services
             if (reviews == null || !reviews.Any())
                 return new List<ReviewVM>();
 
-            // Map to VM, Star dəyərini null yoxlaması ilə 0 veririk
             return reviews.Select(r => new ReviewVM
             {
                 Name = r.Name,
                 Message = r.Message,
-                Star = r.Star ?? 0,  // Star int? ola bilərsə null yoxla
+                Star = r.Star ?? 0, 
                 Country = string.IsNullOrEmpty(r.Country) ? "Unknown" : r.Country,
                 ImageUrl = string.IsNullOrEmpty(r.ImageUrl) ? "/assets/img/testimonial/default.png" : r.ImageUrl
             }).ToList();

@@ -73,7 +73,6 @@ namespace FinalProjectConsume.Controllers
             var json = TempData["BookingCreateVM"] as string;
             var vm = JsonSerializer.Deserialize<BookingCreateVM>(json);
 
-            // 1. Booking Yarat
             var jsonContent = JsonSerializer.Serialize(vm);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
@@ -81,7 +80,7 @@ namespace FinalProjectConsume.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                Console.WriteLine("❌ Booking creation uğursuz oldu.");
+                Console.WriteLine("❌ Booking failed.");
                 return RedirectToAction("Error");
             }
 
@@ -91,7 +90,7 @@ namespace FinalProjectConsume.Controllers
                 PropertyNameCaseInsensitive = true
             });
 
-            Console.WriteLine($"✅ Booking yaradıldı: ID = {booking.Id}");
+            Console.WriteLine($"✅ Booking create: ID = {booking.Id}");
 
             return View(new BookingSuccessVM
             {

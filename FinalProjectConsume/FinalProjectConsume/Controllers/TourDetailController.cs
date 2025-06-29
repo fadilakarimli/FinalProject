@@ -18,10 +18,9 @@ namespace FinalProjectConsume.Controllers
         {
             _tourService = tourService;
 
-            // HttpClient-i burada yarat
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7145") // API URL-ni düzgün yaz
+                BaseAddress = new Uri("https://localhost:7145")
             };
             _experienceService = experienceService;
             _settingService = settingService;
@@ -31,7 +30,6 @@ namespace FinalProjectConsume.Controllers
             var tour = await _tourService.GetByIdAsync(id);
             if (tour == null) return NotFound();
 
-            // Review-ları API-dən al
             List<ReviewCreateVM> reviews = new List<ReviewCreateVM>();
             var reviewResponse = await _httpClient.GetAsync($"https://localhost:7145/api/Review/GetByTourId/tour/{id}");
             if (reviewResponse.IsSuccessStatusCode)
@@ -43,7 +41,6 @@ namespace FinalProjectConsume.Controllers
                 });
             }
 
-            // Experience-ləri xidmət vasitəsilə al
             var experiences = await _experienceService.GetByTourIdAsync(id);
             var settings = (await _settingService.GetAllAsync())?.ToList() ?? new List<SettingVM>();
 
@@ -52,7 +49,7 @@ namespace FinalProjectConsume.Controllers
                 Tour = tour,
                 SearchTerm = search ?? string.Empty,
                 Reviews = reviews,
-                Experiences = experiences.ToList(),  // burada doldur
+                Experiences = experiences.ToList(),
                 Settings = settings
 
             };

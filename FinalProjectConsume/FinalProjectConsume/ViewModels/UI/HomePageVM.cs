@@ -34,7 +34,5 @@ namespace FinalProjectConsume.ViewModels.UI
         public string SearchTerm { get; set; }
         public List<ReviewVM> Reviews { get; set; } = new List<ReviewVM>();
 
-
-
     }
 }

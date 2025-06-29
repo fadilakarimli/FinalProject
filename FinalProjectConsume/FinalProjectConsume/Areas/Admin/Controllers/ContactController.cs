@@ -19,8 +19,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-
-        // GET: Admin/Contact
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
@@ -28,16 +27,15 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             if (!response.IsSuccessStatusCode)
             {
                 ModelState.AddModelError("", "An error occurred while loading messages.");
-                return View(new List<ContactVM>());  // ContactVM tipi ilə boş list göndər
+                return View(new List<ContactVM>()); 
             }
 
             var jsonData = await response.Content.ReadAsStringAsync();
             var contactList = JsonConvert.DeserializeObject<List<PostContact>>(jsonData);
 
-            // Bunu əlavə et: PostContact -> ContactVM map
             var viewModelList = contactList.Select(x => new ContactVM
             {
-                id = x.id , // Əgər Id property-ni əlavə etmisənsə (əvvəlki cavabda demişdim)
+                id = x.id ,
                 email = x.email,
                 phoneNumber = x.phoneNumber,
                 fullName = x.fullName,
@@ -48,11 +46,10 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         }
 
 
-        // GET: Admin/Contact/Details/5
         public async Task<IActionResult> Details(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:7145/api/admin/Contact/GetById/{id}"); // endpoint sənin API-nə uyğun olmalıdır
+            var response = await client.GetAsync($"https://localhost:7145/api/admin/Contact/GetById/{id}"); 
             if (!response.IsSuccessStatusCode)
             {
                 ModelState.AddModelError("", "Mesaj tapılmadı.");
@@ -64,7 +61,6 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             return View(contact);
         }
 
-        // Areas/Admin/Controllers/ContactController.cs
 
         [HttpPost]
         public async Task<IActionResult> Reply(int id, string replyMessage)
@@ -77,10 +73,9 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
             var client = _httpClientFactory.CreateClient();
 
-            // Query string ilə göndəririk
             var requestUrl = $"https://localhost:7145/api/admin/Contact/Reply?contactId={id}&replyMessage={Uri.EscapeDataString(replyMessage)}";
 
-            var response = await client.PostAsync(requestUrl, null); // Body yox, query parametrlərlə POST
+            var response = await client.PostAsync(requestUrl, null); 
 
             if (!response.IsSuccessStatusCode)
             {

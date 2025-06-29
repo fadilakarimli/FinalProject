@@ -9,7 +9,11 @@
 <div class="container" style="margin-left:300px; margin-top:50px;">
     <div class="col-sm-12 col-xl-12">
         <a asp-controller="Tour" asp-action="Create" asp-area="Admin" class="btn btn-success mb-3">Create</a>
-        <a asp-controller="Tour" asp-action="Search" asp-area="Admin" class="btn btn-primary mb-3" style="margin-left: 10px;">Search</a>
+        @if (User.IsInRole("SuperAdmin"))
+        {
+            <a asp-controller="Tour" asp-action="Search" asp-area="Admin" class="btn btn-primary mb-3" style="margin-left: 10px;">Search</a>
+
+        }
 
         <table class="table table-hover">
             <thead>
@@ -40,8 +44,11 @@
                             <td>@string.Join(", ", item.ActivityNames ?? new List<string>())</td>
                             <td>@string.Join(", ", item.Amenities ?? new List<string>())</td>
                             <td>
-                                <button class="btn btn-danger btn-sm btn-delete" data-id="@item.Id">Delete</button>
-                                <a class="btn btn-warning btn-sm" asp-controller="Tour" asp-action="Edit" asp-route-id="@item.Id" asp-area="Admin">Edit</a>
+                                @if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <button class="btn btn-danger btn-sm btn-delete" data-id="@item.Id">Delete</button>
+                                    <a class="btn btn-warning btn-sm" asp-controller="Tour" asp-action="Edit" asp-route-id="@item.Id" asp-area="Admin">Edit</a>
+                                }
                                 <a class="btn btn-info btn-sm" asp-controller="Tour" asp-action="Detail" asp-route-id="@item.Id" asp-area="Admin">Detail</a>
                             </td>
                         </tr>
@@ -49,7 +56,7 @@
                 }
                 else
                 {
-                    <tr><td colspan="10" class="text-center">Tur tapılmadı.</td></tr>
+                    <tr><td colspan="10" class="text-center">Tour NotFound.</td></tr>
                 }
             </tbody>
         </table>
@@ -113,25 +120,22 @@
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        fetch(/Admin/Tour / Delete / ${ id }, {
+                      fetch(`/Admin/Tour/Delete/${id}`, {
                             method: "POST"
                         })
-                            .then(response => {
-                                if (response.ok) {
-                                    // Silinən tr elementini tapıb DOM-dan silirik
-                                    const row = document.getElementById(tour - row - ${ id });
-                                    if (row) {
-                                        row.remove();
-                                    }
-
-                                    swalWithBootstrapButtons.fire("Deleted!", "Tour has been deleted.", "success");
-                                } else {
-                                    swalWithBootstrapButtons.fire("Error!", "Something went wrong.", "error");
-                                }
-                            })
-                            .catch(() => {
+                        .then(response => {
+                            if (response.ok) {
+                                const row = document.getElementById(`tour-row-${id}`);
+                                if (row) row.remove();
+                                swalWithBootstrapButtons.fire("Deleted!", "Tour has been deleted.", "success");
+                            } else {
                                 swalWithBootstrapButtons.fire("Error!", "Something went wrong.", "error");
-                            });
+                            }
+                        })
+                        .catch(() => {
+                            swalWithBootstrapButtons.fire("Error!", "Something went wrong.", "error");
+                        });
+
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
                         swalWithBootstrapButtons.fire("Cancelled", "Tour is safe :)", "info");
                     }

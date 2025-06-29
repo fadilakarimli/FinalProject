@@ -74,7 +74,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             var smtpClient = new SmtpClient("smtp.gmail.com") 
             {
                 Port = 587,
-                Credentials = new NetworkCredential("fadilafk@code.edu.az", "fqen ovmf kvou rvos"),
+                Credentials = new NetworkCredential("fadilafk@code.edu.az", "mleq kwrg luex jute"),
                 EnableSsl = true,
             };
 

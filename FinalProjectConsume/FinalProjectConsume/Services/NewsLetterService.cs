@@ -16,8 +16,7 @@ namespace FinalProjectConsume.Services
         }
         public async Task<HttpResponseMessage> CreateAsync(NewsLetterCreate model)
         {
-            // Email stringini JSON formatında string kimi serialize edirik:
-            var emailJson = JsonSerializer.Serialize(model.Email); // burda artıq "test@gmail.com" olur
+            var emailJson = JsonSerializer.Serialize(model.Email); 
             var content = new StringContent(emailJson, Encoding.UTF8, "application/json");
             return await _httpClient.PostAsync($"{_baseUrl}AddEmail", content);
         }

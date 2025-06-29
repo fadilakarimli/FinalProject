@@ -44,7 +44,7 @@ namespace FinalProjectConsume.Services
             using var content = new MultipartFormDataContent();
 
             content.Add(new StringContent(id.ToString()), "Id");
-            content.Add(new StringContent(model.ImageUrl ?? ""), "ImageUrl"); // Əvvəlki şəkil URL-i backend-ə göndərilir
+            content.Add(new StringContent(model.ImageUrl ?? ""), "ImageUrl"); 
 
             if (model.Image != null)
             {

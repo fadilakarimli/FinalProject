@@ -63,7 +63,6 @@ namespace FinalProjectConsume.Services
                 RoleName = roleName
             };
 
-            // Burada API endpointin adını özünə görə uyğunlaşdır
             var response = await _httpClient.PostAsJsonAsync("https://localhost:7145/api/admin/Account/RemoveRole/RemoveRole", data);
             return response.IsSuccessStatusCode;
         }

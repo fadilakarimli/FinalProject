@@ -31,7 +31,7 @@ namespace FinalProjectConsume.Controllers
 
             var vm = new AboutDetailVM
             {
-                AboutBlog = aboutBlog, // əsas blog
+                AboutBlog = aboutBlog, 
                 Settings = settings
 
             };

@@ -33,8 +33,8 @@ namespace FinalProjectConsume.Controllers
 
             var vm = new BlogDetailVM
             {
-                Blog = blog, // əsas blog
-                RelatedBlogs = relatedBlogs, // əlaqəli olanlar
+                Blog = blog,
+                RelatedBlogs = relatedBlogs, 
                 Settings = settings
 
             };

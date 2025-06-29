@@ -17,7 +17,7 @@ public class PaymentController : Controller
                 {
                     PriceData = new SessionLineItemPriceDataOptions
                     {
-                        UnitAmount = 5000, // 50.00 AZN
+                        UnitAmount = 5000, 
                         Currency = "usd",
                         ProductData = new SessionLineItemPriceDataProductDataOptions
                         {

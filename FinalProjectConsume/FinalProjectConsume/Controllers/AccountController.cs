@@ -2,6 +2,7 @@
 using FinalProjectConsume.Models.Account;
 using FinalProjectConsume.Services.Interfaces;
 using FinalProjectConsume.ViewModels;
+using FinalProjectConsume.ViewModels.UI;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -59,7 +60,7 @@ namespace FinalProjectConsume.Controllers
             });
             if (loginResponse != null && loginResponse.Success)
             {
-                var roles = loginResponse.Roles; // <- bu roles dolmalıdır API-dən
+                var roles = loginResponse.Roles; 
 
                 var claims = new List<Claim>
     {
@@ -213,6 +214,99 @@ namespace FinalProjectConsume.Controllers
         {
             return View(); 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login");
+            }
+
+            try
+            {
+                // API-dən current user məlumatlarını al
+                var requestUri = "https://localhost:7145/api/Account/GetProfile";
+                var response = await _httpClient.GetAsync(requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var profileData = System.Text.Json.JsonSerializer.Deserialize<ProfileResponse>(content, options);
+
+                    var model = new ProfileViewModel
+                    {
+                        UserName = profileData.UserName,
+                        Email = profileData.Email
+                    };
+
+                    return View(model);
+                }
+                else
+                {
+                    // Əgər API-dən məlumat alınmırsa, Claims-dən al
+                    var model = new ProfileViewModel
+                    {
+                        UserName = User.Identity.Name,
+                        Email = User.FindFirst(ClaimTypes.Email)?.Value ?? ""
+                    };
+                    return View(model);
+                }
+            }
+            catch (Exception)
+            {
+                // Error halında Claims-dən məlumat al
+                var model = new ProfileViewModel
+                {
+                    UserName = User.Identity.Name,
+                    Email = User.FindFirst(ClaimTypes.Email)?.Value ?? ""
+                };
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Profile(ProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var updateRequest = new UpdateProfileRequest
+                {
+                    UserName = model.UserName,
+                    Email = model.Email
+                };
+
+                var requestUri = "https://localhost:7145/api/Account/UpdateProfile";
+                var response = await _httpClient.PutAsJsonAsync(requestUri, updateRequest);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    var responseObj = System.Text.Json.JsonSerializer.Deserialize<ResponseObject>(responseContent, options);
+
+                    TempData["SuccessMessage"] = "Profil məlumatları uğurla yeniləndi!";
+                    return RedirectToAction("Profile");
+                }
+                else
+                {
+                    var responseObj = await response.Content.ReadFromJsonAsync<ResponseObject>();
+                    ModelState.AddModelError(string.Empty, responseObj?.ResponseMessage ?? "Profil yenilənmədi.");
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Xəta baş verdi: " + ex.Message);
+                return View(model);
+            }
+        }
+
 
 
     }

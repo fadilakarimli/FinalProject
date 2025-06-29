@@ -108,14 +108,17 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
                     .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
                     .ToList();
 
-                return View(model); // səhv olduqda form məlumatları ilə qayıt
+                return View(model);
             }
 
-            return RedirectToAction("Index"); // uğurlu olduqda list səhifəsinə yönləndir
+            return RedirectToAction("Index"); 
         }
 
 
+
+
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Edit(int id)
         {
             var tour = await _tourService.GetByIdAsync(id);
@@ -155,6 +158,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Edit(int id, [FromForm] TourEdit model)
         {
             if (!ModelState.IsValid)
@@ -194,6 +198,7 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _tourService.DeleteAsync(id);
@@ -252,6 +257,8 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
+
         public async Task<IActionResult> Search()
         {
             var cities = await _cityService.GetAllAsync();
@@ -269,6 +276,8 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
+
         public async Task<IActionResult> SearchResults(List<int> CityIds, List<int> ActivityIds, int? Capacity, DateTime? StartDate)
         {
             var searchRequest = new TourSearchRequest

@@ -127,7 +127,7 @@ namespace FinalProjectConsume.Controllers
             var response = await _newsLetterService.CreateAsync(new NewsLetterCreate { Email = model.Email });
 
             if (response.IsSuccessStatusCode)
-                return Ok("Email ?lav? olundu");
+                return Ok("Email elave olundu");
 
             return StatusCode(500, "Email bazaya yazýlmadý");
         }

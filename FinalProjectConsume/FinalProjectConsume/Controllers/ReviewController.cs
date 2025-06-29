@@ -14,7 +14,7 @@ namespace FinalProjectConsume.Controllers
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7145") // API URL-in
+                BaseAddress = new Uri("https://localhost:7145") 
             };
         }
 

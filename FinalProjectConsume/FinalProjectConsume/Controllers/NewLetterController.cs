@@ -40,7 +40,7 @@ namespace FinalProjectConsume.Controllers
                 TempData["ErrorMessage"] = "Please enter a valid email address.";
             }
 
-            return RedirectToAction("Index", "Home");  // Yəni ana səhifəyə qaytarır
+            return RedirectToAction("Index", "Home");  
         }
 
     }
