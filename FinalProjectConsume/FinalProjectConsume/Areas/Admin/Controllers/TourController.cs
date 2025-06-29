@@ -77,15 +77,24 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]TourCreate model)
+        public async Task<IActionResult> Create(TourCreate model)
         {
-            if (!ModelState.IsValid)
+            var response = await _tourService.CreateAsync(model);
+
+            if (!response.IsSuccessStatusCode)
             {
+                var errorMessage = await response.Content.ReadAsStringAsync();
+                ModelState.AddModelError(string.Empty, errorMessage);
+
+                // ViewBag-ları yenidən doldur (çünki səhifə reload olmayacaq):
                 var activities = await _activityService.GetAllAsync();
+                var cities = await _cityService.GetAllAsync();
                 var amenities = await _amenityService.GetAllAsync();
                 var countries = await _countryService.GetAllAsync();
-                //var experiences = await _experienceService.GetAllAsync();
 
+                ViewBag.Cities = cities
+                     .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
+                     .ToList();
 
                 ViewBag.Activities = activities
                     .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
@@ -99,16 +108,12 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
                     .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
                     .ToList();
 
-                //ViewBag.Experiences = experiences
-                //    .Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name })
-                //    .ToList();
-
-                return View(model);
+                return View(model); // səhv olduqda form məlumatları ilə qayıt
             }
 
-            await _tourService.CreateAsync(model);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index"); // uğurlu olduqda list səhifəsinə yönləndir
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
@@ -206,19 +211,15 @@ namespace FinalProjectConsume.Areas.Admin.Controllers
             if (tourDto == null)
                 return NotFound();
 
-            // Bütün şəhərləri al (içində CountryName də var)
             var cities = await _cityService.GetAllAsync();
 
-            // Tour-a aid city-ləri götür
             var tourCities = cities.Where(c => tourDto.CityIds.Contains(c.Id)).ToList();
 
-            // City-lərin CountryName-lərini distinct al
             var countryNames = tourCities
                 .Select(c => c.CountryName)
                 .Distinct()
                 .ToList();
 
-            // Map et modelə
             var tour = new Tour
             {
                 Id = tourDto.Id,

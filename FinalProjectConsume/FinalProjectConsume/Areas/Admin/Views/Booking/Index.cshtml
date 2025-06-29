@@ -38,7 +38,7 @@
                                 <input type="hidden" name="bookingId" value="@booking.Id" />
 
                                 <select name="status" class="form-select form-select-sm">
-                                    <option value="0" selected="@(booking.Status == 0 ? "selected" : "")">Pending</option>
+                                    @* <option value="0" selected="@(booking.Status == 0 ? "selected" : "")">Pending</option> *@
                                     <option value="1" selected="@(booking.Status == 1 ? "selected" : "")">Accepted</option>
                                     <option value="2" selected="@(booking.Status == 2 ? "selected" : "")">Cancelled</option>
                                 </select>

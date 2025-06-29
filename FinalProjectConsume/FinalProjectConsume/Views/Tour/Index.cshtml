@@ -366,17 +366,9 @@
             let parsedDate = null;
 
             if (rawDate) {
-                // əgər tarix nöqtə ilə ayrılıbsa:
-                if (rawDate.includes(".")) {
-                    const [day, month, year] = rawDate.split(".");
-                    parsedDate = `${year}-${month}-${day}T00:00:00`;
-                }
-                // əgər tire ilə ayrılıbsa:
-                else if (rawDate.includes("-")) {
-                    const [day, month, year] = rawDate.split("-");
-                    parsedDate = `${year}-${month}-${day}T00:00:00`;
-                }
+                parsedDate = rawDate + "T00:00:00"; // yyyy-MM-ddT00:00:00 formatında
             }
+
 
 
             const filterDto = {
@@ -422,7 +414,7 @@
                     <div class="content">
                         <span>${tour.cityNames}</span>
                         <h4>
-                            <a href="/Tour/Details/${tour.id}">${tour.name}</a>
+                               <a href="/TourDetail/Index/${tour.id}">${tour.name}</a>
                         </h4>
                         <h6>
                             From <span>$${tour.price}</span>
